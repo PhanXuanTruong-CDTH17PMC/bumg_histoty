@@ -84,7 +84,7 @@ Route::prefix('tin-tuc')->group(function(){
 Route::resource('hoa-don','HoaDonController' );
 
  Route::get('/user', function () {
-     return view('user.layout.user-layout');
+     return view('user.user-thongbao');
  });
 // Route::get('/home-page', function () {
 //     return view('user.home-page');
