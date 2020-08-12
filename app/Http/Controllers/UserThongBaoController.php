@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
+use DB;
+use App\ThongBao;
 
 use Illuminate\Http\Request;
-use App\TinTuc;
 
-class HomePageController extends Controller
+class UserThongBaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,16 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $tintuc= TinTuc::all();
-        return view('user.home-page')->with('tintuc',$tintuc);
+        if(Auth::guard('canho')->check())
+		{
+            $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
+            $thongbao2= DB::table('thongbao')->find(DB::table('thongbao')->max('id'));
+            return view('user.user-thongbao',compact('thongbao','thongbao2'));
+		}
+		else 
+		{
+			return view('quan-tri-vien.dang-nhap');
+		}
     }
 
     /**
@@ -47,8 +57,9 @@ class HomePageController extends Controller
      */
     public function show($id)
     {
-        $tintuc=TinTuc::find($id);
-        return view('user.home-page-tintuc')->with('tintuc',$tintuc);
+        $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
+        $thongbao2= ThongBao::find($id);
+        return view('user.user-chitietthongbao',compact('thongbao','thongbao2'));
     }
 
     /**

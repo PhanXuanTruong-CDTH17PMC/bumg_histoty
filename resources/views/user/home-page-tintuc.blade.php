@@ -53,47 +53,16 @@
 <img  class="img-fluid" name="image" style="height:100vh; width:100%; " src="{{asset('assets/images/img/sile-1.jpg') }}" alt="err">
    <div class="site-section pb-0">
       <div class="container md-8">
-          <h1  style="margin:auto;padding-bottom: 50px;Color green;display: block;text-align: center;"><b>Tin Tức - Sự Kiện</b></h1>
+          <h1  style="margin:auto;padding-bottom: 50px;Color green;display: block;text-align: center;"><b>Tin Tức</b></h1>
       </div>
-      
       <div class="container">
-          <div class="row">
-          @if(count($tintuc)>0)
-                @foreach ($tintuc as $tin_tuc )
-                <div class="col-lg-4 mb-5">
-                    <div class="news-entry-item">
-                        <a href="#" class="thumbnail">
-                          <img  class="img-fluid" style="height:150px;weight:150px;" src="{{asset('assets/images/'.$tin_tuc->anh_dai_dien) }}" alt="err">
-                        </a>
-                        <h3 class="mb-0"><a href="/home-page/{{$tin_tuc->id}}">Tin tức {{$tin_tuc->id}}</a></h3>
-                        <div class="mb-3">
-                              <a >Tạo vào</a> {{$tin_tuc->created_at}}
-                              <p>Nội dung: <html>{{$tin_tuc->mo_ta_tt}}</html></p>
-                        </div>
-                      </div>
-                  </div>
-                @endforeach    
-            @else
-            @endif  
+      <h2>{{$tintuc->tieu_de}}</h2>
+          <div class="container">
+          {!!(substr($tintuc->noi_dung_tt,1, )) !!}
         </div>
       </div>
     </div>
-    <div class="pb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg">
-            <div class="custom-pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-             
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/libs/sweetale>rt2/sweetalert2.min.js') }}"></script>

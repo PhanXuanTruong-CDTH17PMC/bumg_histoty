@@ -17,7 +17,7 @@ class CanHoSeeder extends Seeder
                 'Tang'=>1,
                 'dien_tich'=>200,   
                 'name'=>'CH101',
-                'password'=>hash::make('273657749'),
+                'password'=>hash::make('123456789'),
                 'loai_can_ho_id'=>1,
                 'chu_ho_id'=>1
             ],

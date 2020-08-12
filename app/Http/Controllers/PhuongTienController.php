@@ -7,6 +7,7 @@ use App\PhuongTien;
 use App\LoaiPhuongTien;
 use App\CanHo;
 use App\KhuVuc;
+use App\DichVu;
 use DB;
 
 
@@ -33,8 +34,8 @@ class PhuongTienController extends Controller
         $khuvuc=KhuVuc::all();
         $canho=CanHo::all();
         $loaiphuongtien=LoaiPhuongTien::all();
-
-        return view('phuong-tien.them-moi-phuong-tien',compact('canho','loaiphuongtien','dichvu'));
+        $dichvu=DichVu::all();
+        return view('phuong-tien.them-moi-phuong-tien',compact('khuvuc','canho','loaiphuongtien','dichvu'));
     }
 
     /**

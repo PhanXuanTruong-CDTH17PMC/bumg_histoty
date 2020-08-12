@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm mới tin tức</h4>
+                    <h4 class="page-title">Sửa tin tức</h4>
                 
             </div>
         </div>
@@ -23,14 +23,14 @@
                         {{Form::label('title','Tiêu đề')}}<span class="text-danger"> 
                         *</span>
                         <div class="form-group">
-                            {{Form::Text('tieu_de','',['class'=> 'form-control', 'name' => 'tieu_de', 'placeholder'=>'Nhập tiêu đề'])}}
+                            {{Form::Text('tieu_de',$tintuc->tieu_de,['class'=> 'form-control', 'placeholder'=>'Nhập tiêu đề'])}}
                         </div> 
                         </div>
                     <div class="form-group">
                         {{Form::label('title','Nội dung')}}<span class="text-danger"> 
                         *</span>
                         <div class="form-group">
-                            {{Form::Textarea('noi_dung_tt','',['class'=> 'form-control', 'name' => 'noi_dung_tt', 'placeholder'=>'Nhập nội dung','id'=>'editor1'])}}
+                            {{Form::Textarea('noi_dung_tt',$tintuc->noi_dung_tt,['class'=> 'form-control', 'placeholder'=>'Nhập nội dung','id'=>'editor1'])}}
                         </div> 
                         </div>
                         <div class="form-group">

@@ -59,12 +59,6 @@
                         {{Form::Text('tencanho',$canho->name,['class'=> 'form-control','placeholder'=>'Nhập tên căn hộ'])}}
                     </div> 
                     </div>
-                    <div class="form-group">
-                        {{Form::label('title','Mật khẩu')}}<span class="text-danger"> 
-                    *</span>
-                    <div class="form-group">
-                        {{Form::Text('matkhau',$canho->password,['class'=> 'form-control','placeholder'=>'Nhập mật khẩu căn hộ'])}}
-                    </div> 
                     </div>
                     <div class="form-group">
                         {{Form::label('title','Loại căn hộ')}}<span class="text-danger"> 
@@ -72,9 +66,11 @@
                     
                     <div class="form-group">
                         <select class="form-control" id="loaicanho" name="loaicanho" required focus>
-                        <option value="" disabled selected>Chọn loại căn hộ </option>        
                         @foreach($loaicanho as $loai_can_ho)
+                        @if(($canho->loai_can_ho_id)==($loai_can_ho->id))
                         <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
+                        @else  <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div> 
@@ -86,10 +82,12 @@
                     *</span>
                     
                     <div class="form-group">
-                        <select class="form-control" id="bophan" name="chuho" required focus>
-                        <option value="" disabled selected>Chọn chủ hộ </option>        
+                        <select class="form-control" id="bophan" name="chuho" required focus>    
                         @foreach($cudan as $chu_ho)
+                        @if(($canho->chu_ho_id)==($chu_ho->id))
                         <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
+                        @else <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div> 

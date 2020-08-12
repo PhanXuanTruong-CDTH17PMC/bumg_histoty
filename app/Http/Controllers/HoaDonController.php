@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 use Auth;
 use App\HoaDon;
+use App\CuDan;
 use App\CanHo;
 use App\DichVu;
 use App\ChiTietHoaDon;
@@ -79,7 +82,15 @@ class HoaDonController extends Controller
             $cthoadon->thanh_tien = $cthoadon->so_luong * $dichvu->phi_dv; 
             $cthoadon->save();
          }
-
+         
+        $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
+        $ch = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
+        // dd($ch);
+        $data = [
+            'name'      => "Lê Phú Tấn",
+            'message'   =>   'Pleases pay your bill !'
+            ];
+        Mail::to($ch_mail)->send(new SendMail($data));
         return redirect('hoa-don')->with('success','Add success');
     }
 
@@ -91,7 +102,10 @@ class HoaDonController extends Controller
      */
     public function show($id)
     {
-        //
+        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
+        $hoadon=HoaDon::find($id);
+        $canho=DB::select('SELECT canho.name as name_ch from canho,hoadon where hoadon.id='.$id.' and hoadon.can_ho_id=canho.id');
+        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon','canho'));
     }
 
     /**
@@ -124,7 +138,6 @@ class HoaDonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $hoadon = HoaDon::find($id);
         if( $hoadon->tinh_trang_tt == 1) {
             $hoadon->tinh_trang_tt = 0;

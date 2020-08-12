@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TinTuc;
+use Auth;
+use App\PhanAnh;
 
-class HomePageController extends Controller
+class UserPhanAnhController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $tintuc= TinTuc::all();
-        return view('user.home-page')->with('tintuc',$tintuc);
+        return view('user.user-phananh');
     }
 
     /**
@@ -25,7 +25,7 @@ class HomePageController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.user-phananh');
     }
 
     /**
@@ -36,7 +36,20 @@ class HomePageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'noi_dung_pa'=>'required',
+            
+
+        ]);
+
+        $phananh=new PhanAnh;
+        $phananh->nhan_vien_id=0;
+        $phananh->tinh_trang_xl=0;
+        $phananh->noi_dung_pa= $request->noi_dung_pa;
+        $phananh->chu_ho_id=Auth::guard('canho')->user()->id;
+        $phananh->save();
+
+        return redirect('/thong-bao')->with('success','Add success');
     }
 
     /**
@@ -47,8 +60,7 @@ class HomePageController extends Controller
      */
     public function show($id)
     {
-        $tintuc=TinTuc::find($id);
-        return view('user.home-page-tintuc')->with('tintuc',$tintuc);
+        //
     }
 
     /**

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TinTuc;
+use App\PhuongTien;
+use App\LoaiPhuongTien;
+use App\CanHo;
+use App\KhuVuc;
+use App\DichVu;
+use DB;
+use Auth;
 
-class HomePageController extends Controller
+class UserPhuongTienController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +20,9 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $tintuc= TinTuc::all();
-        return view('user.home-page')->with('tintuc',$tintuc);
+        $id=Auth::guard('canho')->user()->id;
+        $phuongtien=DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and phuongtien.can_ho_id='.$id);
+        return view('user.user-phuongtien')->with('phuongtien',$phuongtien);
     }
 
     /**
@@ -47,8 +54,7 @@ class HomePageController extends Controller
      */
     public function show($id)
     {
-        $tintuc=TinTuc::find($id);
-        return view('user.home-page-tintuc')->with('tintuc',$tintuc);
+        //
     }
 
     /**
