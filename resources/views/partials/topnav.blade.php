@@ -35,7 +35,7 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="nc-icon nc-brll"></i>
-                        <span class="notification">5</span>
+                        <span class="notification">{{Auth('nhanvien')->user()->ho_ten_nv}}</span>
                         <span class="d-lg-none" style="color:White">Notification</span>
                     </a>
                     <ul class="dropdown-menu">
@@ -47,7 +47,7 @@
                     </ul>
                 </li>
                 <li class="button">
-                    <a href="/log-in" class="nav-link  nav-user mr-0 waves-effect" >
+                    <a href="/logout" class="nav-link  nav-user mr-0 waves-effect" >
                         Đăng xuất
                     </a>
                 </li>

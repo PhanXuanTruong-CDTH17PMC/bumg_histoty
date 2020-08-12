@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
-use DB;
-use App\ThongBao;
 
 use Illuminate\Http\Request;
 
-class UserThongBaoController extends Controller
+class UserHoaDonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +13,7 @@ class UserThongBaoController extends Controller
      */
     public function index()
     {
-        if(Auth::guard('canho')->check())
-		{
-            $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-            $thongbao2= DB::table('thongbao')->find(DB::table('thongbao')->max('id'));
-            return view('user.user-thongbao',compact('thongbao','thongbao2'));
-		}
-		else 
-		{
-			return view('quan-tri-vien.dang-nhap');
-		}
+        return view('user.user-hoadon');
     }
 
     /**
@@ -57,9 +45,7 @@ class UserThongBaoController extends Controller
      */
     public function show($id)
     {
-        $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-        $thongbao2= ThongBao::find($id);
-        return view('user.user-chitietthongbao',compact('thongbao','thongbao2'));
+        //
     }
 
     /**

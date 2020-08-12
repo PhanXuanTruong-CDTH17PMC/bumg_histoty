@@ -17,7 +17,7 @@ class CreateCuDansTable extends Migration
             $table->increments('id');
             $table->string('ho_ten_cd');
             $table->Text('CMND');
-            $table->Text('email');
+            $table->string('email');
             $table->Text('SDT');
             $table->Date('ng_sinh');
             $table->Integer('can_ho_id');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ThongBao;
 use App\CanHo;
 use DB;
+use Auth;
 class ThongBaoController extends Controller
 {
     /**
@@ -39,14 +40,16 @@ class ThongBaoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'tieu_de_tb'=>'required',
             'noi_dung_tb'=>'required',
             'can_ho_id'=>'required'
         ]);
 
         $thongbao = new ThongBao;
+        $thongbao->tieu_de_tb =$request ->input('tieu_de_tb');
         $thongbao->noi_dung_tb =$request ->input('noi_dung_tb');
         $thongbao->tinh_trang =0;
-        $thongbao->nhan_vien_id =1;
+        $thongbao->nhan_vien_id =Auth('nhanvien')->user()->id;
         $thongbao->can_ho_id =$request ->input('can_ho_id');
         $thongbao->save();
 
@@ -92,9 +95,10 @@ class ThongBaoController extends Controller
         ]);
 
         $thongbao = ThongBao::find($id);
+        $thongbao->tieu_de_tb =$request ->input('tieu_de_tb');
         $thongbao->noi_dung_tb =$request ->input('noi_dung_tb');
         $thongbao->tinh_trang =0;
-        $thongbao->nhan_vien_id =1;
+        $thongbao->nhan_vien_id =Auth('nhanvien')->user()->id;
         $thongbao->can_ho_id =$request ->input('can_ho_id');
         $thongbao->save();
 

@@ -61,7 +61,7 @@
                     <thead>
                         <tr style="background-color: #6c757d;; color:white">
                             <th>ID</th>
-                            <th>Nội dung</th>
+                            <th>Tiêu đề</th>
                             <th>Ngày thông báo</th>
                             <th>     </th>
                             
@@ -70,7 +70,7 @@
                             @foreach ($thongbao as $thong_bao )
                                     <tr>
                                         <th>{{$thong_bao-> id}}</th>
-                                        <th>{{$thong_bao-> noi_dung_tb}}</th>
+                                        <th>{{$thong_bao-> tieu_de_tb}}</th>
                                         <th>{{$thong_bao-> created_at}}</th> 
                                         
                                          <th style="width: 200px">

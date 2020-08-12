@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    Danh sách hóa đơn
+    Chi tiết hóa đơn
 @endsection
 @section('css')
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
@@ -34,9 +34,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Hóa đơn</h4>
-            <a href="/hoa-don/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-         
+            <h4 class="page-title">Chi tiết hóa đơn</h4>         
             <!-- @if (isset($quanTriViens))
                 <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
             @endif -->
@@ -51,40 +49,30 @@
                 <table  class="table dt-responsive nowrap">
                     <thead>
                         <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th> Căn Hộ</th>
-							<th>Tổng tiền</th>   
-							<th>Hạn Thanh tán</th>    
-							<th> Tinh trạng</th>    
-                            <th>     </th>                       
+							<th>Tên dịch vụ</th>   
+                            <th>Phí dịch vụ</th>   
+							<th>Số lượng</th>    
+                            <th>Đơn vị</th>
+							<th>Thành tiền</th>                     
                        </tr>
-                        @if(count($hoadon)>0)   
-                            @foreach($hoadon as $hoa_don)
+                       @if(count($cthoadon)>0)   
+                            @foreach($cthoadon as $cthoa_don)
                                 <tr>
-                                    <th>{{$hoa_don->id}}</th>
-                                    <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
-                                    <th>{{$hoa_don->tong_tien}}</th>
-                                    <th>{{$hoa_don->created_at}}</th>
-                                    @if($hoa_don->tinh_trang_tt == 1) 
-                                        <th> Đã thanh toán</th>
-                                    @else
-                                        <th> Chưa thanh toán</th>
-                                    @endif
-                                    <th style="width: 200px">
-                                        <div>
-                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Update',['class'=>'btn btn-info'])}}
-                                            {!!Form::close()!!}
-                                        </div>
-                                    </th>
+                                    <th>{{$cthoa_don->ten_dv}}</th>
+                                    <th>{{$cthoa_don->phi_dv}}</th>
+                                    <th>{{$cthoa_don->so_luong}}</th>
+                                    <th>{{$cthoa_don->don_vi}}</th>
+                                    <th>{{$cthoa_don->thanh_tien}}</th>
                                 </tr>
                             @endforeach
                         @endif
+                        
                     </thead>
                     
                 </table>
-            </div> <!-- end card body-->
+                </br>
+                <div>Tổng tiền: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" value="   {{$hoadon->tong_tien}}"></div>
+                </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>

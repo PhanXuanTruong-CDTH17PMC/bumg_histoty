@@ -23,12 +23,13 @@
 <header >
      @include('user.layout.header')
 </header>
-<body class="authentication-bg authentication-bg-pattern">
-    <div class="wrapper">
+<body class="authentication-bg authentication-bg-pattern" >
+    <div class="wrapper" style="margin-left:8%;margin-right:8%">
         @yield('main-content')
     </div>
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 </body>
+@include('user.layout.footer')
 </html>

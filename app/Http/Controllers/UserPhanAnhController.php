@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
-use DB;
-use App\ThongBao;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\PhanAnh;
 
-class UserThongBaoController extends Controller
+class UserPhanAnhController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +15,7 @@ class UserThongBaoController extends Controller
      */
     public function index()
     {
-        if(Auth::guard('canho')->check())
-		{
-            $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-            $thongbao2= DB::table('thongbao')->find(DB::table('thongbao')->max('id'));
-            return view('user.user-thongbao',compact('thongbao','thongbao2'));
-		}
-		else 
-		{
-			return view('quan-tri-vien.dang-nhap');
-		}
+        return view('user.user-phananh');
     }
 
     /**
@@ -35,7 +25,7 @@ class UserThongBaoController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.user-phananh');
     }
 
     /**
@@ -46,7 +36,20 @@ class UserThongBaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'noi_dung_pa'=>'required',
+            
+
+        ]);
+
+        $phananh=new PhanAnh;
+        $phananh->nhan_vien_id=0;
+        $phananh->tinh_trang_xl=0;
+        $phananh->noi_dung_pa= $request->noi_dung_pa;
+        $phananh->chu_ho_id=Auth::guard('canho')->user()->id;
+        $phananh->save();
+
+        return redirect('/thong-bao')->with('success','Add success');
     }
 
     /**
@@ -57,9 +60,7 @@ class UserThongBaoController extends Controller
      */
     public function show($id)
     {
-        $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-        $thongbao2= ThongBao::find($id);
-        return view('user.user-chitietthongbao',compact('thongbao','thongbao2'));
+        //
     }
 
     /**

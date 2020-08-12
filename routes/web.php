@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 
@@ -84,8 +84,16 @@ Route::prefix('tin-tuc')->group(function(){
 Route::resource('hoa-don','HoaDonController' );
 
  Route::get('/user', function () {
-     return view('user.user-thongbao');
+     return view('user.layout.user-layout');
  });
 // Route::get('/home-page', function () {
 //     return view('user.home-page');
-// });
+// 
+ Route::resource('/thong-bao', 'UserThongBaoController');
+ Route::resource('/user-hoa-don', 'UserHoaDonController');
+ Route::resource('/thong-bao', 'UserThongBaoController');
+ Route::resource('/phan-anh','UserPhanAnhController');  
+
+
+Route::get('/sendemail', 'SendEmailController@index');
+Route::post('/sendemail/send', 'SendEmailController@send');

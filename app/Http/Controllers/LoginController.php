@@ -31,7 +31,7 @@ class LoginController extends Controller
 		];
 		if(Auth::guard('canho')->attempt(['name'=>$arr['username'],'password'=>$arr['mat_khau']])){
 			$tintuc=TinTuc::all();
-			return redirect('/user')->with('success','Login success');
+			return redirect('/thong-bao')->with('success','Login success');
 	     }
 		 else if (Auth::guard('nhanvien')->attempt(['username'=>$arr['username'],'password'=>$arr['mat_khau']])){
 			return redirect('danh-sach-nhan-vien')->with('success','Log in success');
