@@ -3,12 +3,10 @@
     Danh sách Nhân viên
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -26,9 +24,6 @@
     <script src="{{ asset('assets/libs/datatables/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/libs/pdfmake/vfs_fonts.js') }}"></script>
-    <!-- third party js ends -->
-
-    <!-- Sweet Alert2 js-->
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     
     <!-- Datatables init -->
@@ -47,9 +42,6 @@
             <a href="/danh-sach-nhan-vien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="/danh-sach-bo-phan   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý bộ phận</a>
 			<a href="/loai-account   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại tài khoản</a><br>
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -73,7 +65,7 @@
                             <th>Loại tài khoản</th>
                             <th>     </th>
                         </tr>
-                        @if (count($nhanvien )>1)
+                        @if (count($nhanvien )>0)
                             @foreach ($nhanvien as $nhan_vien )
                                     <tr>
                                         <th>{{$nhan_vien-> id_nhan_vien}}</th>
@@ -88,22 +80,21 @@
                                         <th>{{$nhan_vien-> loai_account}}</th>
                                         <th>
                                             <div>
-                                            <a href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['NhanVienController@destroy',$nhan_vien->id_nhan_vien],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class="btn "><a href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                            </div>			
                                         </th>
                                     </tr>                              
-                            @endforeach    
-                        @else
+                            @endforeach   
                         @endif
                     </thead>
-                    
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+<!-- @include('models.deleted_success')
+<script>    
+    // $("#dialog1").modal('show');
+</script> -->
 @endsection

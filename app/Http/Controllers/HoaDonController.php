@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use Auth;
 use App\HoaDon;
-use App\CuDan;
 use App\CanHo;
 use App\DichVu;
 use App\ChiTietHoaDon;
@@ -52,9 +51,7 @@ class HoaDonController extends Controller
             'can_ho'=>'required',
             'dich_vu'=>'required',
             'so_luong'=>'required',
-            'tinh_trang_tt'=>'required', 
-            // // 'tong_tien'=>'required', 
-            // 'thanh_tien'=>'required', 
+            'tinh_trang_tt'=>'required'
         ]);
 
         $tt = 0;
@@ -64,9 +61,9 @@ class HoaDonController extends Controller
         }
             
          $hoadon = new HoaDon;
-         $hoadon->can_ho_id =$request->input('can_ho');
-         $hoadon->tinh_trang_tt=$request->input('tinh_trang_tt');
-         $hoadon->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
+         $hoadon->can_ho_id = $request->input('can_ho');
+         $hoadon->tinh_trang_tt = $request->input('tinh_trang_tt');
+         $hoadon->nhan_vien_id = Auth::guard('nhanvien')->user()->id;
          $hoadon->tong_tien = $tt;
          $hoadon->save();
         
@@ -83,13 +80,17 @@ class HoaDonController extends Controller
             $cthoadon->save();
          }
          
-        $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
-        $ch = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
-        // dd($ch);
+        $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
+        $chuho = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
+        $ch_name = DB::select('SELECT canho.name from canho where canho.id ='.$hoadon->can_ho_id);
+       
         $data = [
-            'name'      => "Lê Phú Tấn",
-            'message'   =>   'Pleases pay your bill !'
-            ];
+            'name'      => $chuho[0]->ho_ten_cd,
+            'message'   =>   'Please pay your bill !',
+            'mach'  => $ch_name[0]->name,
+            'tt' =>  $hoadon->tong_tien,
+
+        ];
         Mail::to($ch_mail)->send(new SendMail($data));
         return redirect('hoa-don')->with('success','Add success');
     }
@@ -122,7 +123,7 @@ class HoaDonController extends Controller
         //     'tinh_trang_tt'
         // ])
         // ->where([
-        //       'hoadon.deleted_at Í NULL'
+        //       'hoadon.deleted_at IS NULL'
         // ]);
 
         return view('hoa-don.tinh-trang-hoa-don')->with('hoadon',$hoadon);

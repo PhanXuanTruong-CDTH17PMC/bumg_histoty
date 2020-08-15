@@ -112,7 +112,7 @@ class LoaiPhuongTienController extends Controller
     public function destroy($id)
     {
         $loaiphuongtien=LoaiPhuongTien::find($id);
-        $loaiphuongtien->delete($id);
+        $loaiphuongtien->delete();
          return redirect('loai-phuong-tien')->with('success','Delete success');
     }
 }

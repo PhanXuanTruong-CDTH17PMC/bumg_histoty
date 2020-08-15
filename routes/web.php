@@ -21,40 +21,19 @@ Route::resource('/log-in','LoginController');
 Route::post('getLogin','LoginController@getLogin');
 Route::get('logout','LoginController@logout')->name('logout');
 
-
 Route::get('/admin-info',function(){
     return view('quan-tri-vien.trang-ca-nhan');
 });
-/*Route::get('/danh-sach-nhan-vien',function(){
-    return view('nhan-vien.danh-sach-nhan-vien');
-});*/
 
-//Quản lý thông tin nhân viên
 Route::resource('danh-sach-nhan-vien','NhanVienController');
+
 Route::resource('danh-sach-bo-phan','BoPhanController');
 
-// Route::resource('danh-sach-tin-tuc','TinTucController');
-// Route::resource('danh-sach-thong-bao','ThongBaoController');
-//Quản lý thông tin căn hộ
-/*Route::get('/can-ho', function () {
-    return view('can-ho.danh-sach-can-ho');
-});*/
 Route::resource('can-ho','CanHoController');
 
-
-
-
-
 Route::resource('loai-account', 'LoaiAccountController');
-/*Route::get('/bo-phan', function () {
-    return view('nhan-vien.bo-phan.danh-sach-bo-phan');
-});*/
 
 Route::resource('loai-can-ho', 'LoaiCanHoController');
-
-/*Route::get('/loai-account', function () {
-    return view('nhan-vien.loai-account.danh-sach-loai-account');
-});*/
 
 Route::resource('quan-he', 'MoiQuanHeController');
 
@@ -74,21 +53,117 @@ Route::resource('danh-sach-tin-tuc','TinTucController');
 
 
 Route::resource('dich-vu', 'DichVuController');
-Route::prefix('tin-tuc')->group(function(){
-    Route::get('/','TinTucController@index')->name('danh-sach-tin-tuc');
-    Route::get('them','TinTucController@create')->name('them-tin-tuc');
-    Route::post('them','TinTucController@store')->name('xu-ly-them-tin-tuc');
-});
 
+Route::prefix('nhan-vien')->group(function(){
+    Route::name('nhan-vien.')->group(function(){
+        Route::get('/','NhanVienController@index')->name('danh-sach-nhan-vien');
+        Route::get('them','NhanVienController@create')->name('them');
+        Route::post('them','NhanVienController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','NhanVienController@destroy')->name('xoa');
+    });
+});
+Route::prefix('loai-can-ho')->group(function(){
+    Route::name('loai-can-ho.')->group(function(){
+        Route::get('/','LoaiCanHoController@index')->name('danh-sach');
+        Route::get('them','LoaiCanHoController@create')->name('them');
+        Route::post('them','LoaiCanHoController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','LoaiCanHoController@destroy')->name('xoa');
+    });
+});
+Route::prefix('loai-account')->group(function(){
+    Route::name('loai-account.')->group(function(){
+        Route::get('/','LoaiAccountController@index')->name('danh-sach');
+        Route::get('them','LoaiAccountController@create')->name('them');
+        Route::post('them','LoaiAccountController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','MoiQuanHeController@destroy')->name('xoa');
+    });
+});
+Route::prefix('quan-he')->group(function(){
+    Route::name('quan-he.')->group(function(){
+        Route::get('/','MoiQuanHeController@index')->name('danh-sach');
+        Route::get('them','MoiQuanHeController@create')->name('them');
+        Route::post('them','MoiQuanHeController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','MoiQuanHeController@destroy')->name('xoa');
+    });
+});
+Route::prefix('khu-vuc')->group(function(){
+    Route::name('khu-vuc.')->group(function(){
+        Route::get('/','KhuVucController@index')->name('danh-sach');
+        Route::get('them','KhuVucController@create')->name('them');
+        Route::post('them','KhuVucController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','KhuVucController@destroy')->name('xoa');
+    });
+});
+Route::prefix('loai-phuong-tien')->group(function(){
+    Route::name('loai-phuong-tien.')->group(function(){
+        Route::get('/','LoaiPhuongTienController@index')->name('danh-sach');
+        Route::get('them','LoaiPhuongTienController@create')->name('them');
+        Route::post('them','LoaiPhuongTienController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','LoaiPhuongTienController@destroy')->name('xoa');
+    });
+});
+Route::prefix('phuong-tien')->group(function(){
+    Route::name('phuong-tien.')->group(function(){
+        Route::get('/','PhuongTienController@index')->name('danh-sach');
+        Route::get('them','PhuongTienController@create')->name('them');
+        Route::post('them','PhuongTienController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','PhuongTienController@destroy')->name('xoa');
+    });
+});
+Route::prefix('thong-bao')->group(function(){
+    Route::name('thong-bao.')->group(function(){
+        Route::get('/','ThongBaoController@index')->name('danh-sach');
+        Route::get('them','ThongBaoController@create')->name('them');
+        Route::post('them','ThongBaoController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','ThongBaoController@destroy')->name('xoa');
+    });
+});
+Route::prefix('tin-tuc')->group(function(){
+    Route::name('tin-tuc.')->group(function(){
+        Route::get('/','TinTucController@index')->name('danh-sach');
+        Route::get('them','TinTucController@create')->name('them');
+        Route::post('them','TinTucController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','TinTucController@destroy')->name('xoa');
+    });
+});
+Route::prefix('cu-dan')->group(function(){
+    Route::name('cu-dan.')->group(function(){
+        Route::get('/','CuDanController@index')->name('danh-sach');
+        Route::get('them','CuDanController@create')->name('them');
+        Route::post('them','CuDanController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','CuDanController@destroy')->name('xoa');
+    });
+});
+Route::prefix('can-ho')->group(function(){
+    Route::name('can-ho.')->group(function(){
+        Route::get('/','CanHoController@index')->name('danh-sach');
+        Route::get('them','CanHoController@create')->name('them');
+        Route::post('them','CanHoController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','CanHoController@destroy')->name('xoa');
+    });
+});
+Route::prefix('dich-vu')->group(function(){
+    Route::name('dich-vu.')->group(function(){
+        Route::get('/','DichVuController@index')->name('danh-sach');
+        Route::get('them','DichVuController@create')->name('them');
+        Route::post('them','DichVuController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','DichVuController@destroy')->name('xoa');
+    });
+});
+Route::prefix('bo-phan')->group(function(){
+    Route::name('bo-phan.')->group(function(){
+        Route::get('/','BoPhanController@index')->name('danh-sach');
+        Route::get('them','BoPhanController@create')->name('them');
+        Route::post('them','BoPhanController@store')->name('xu-ly-them');
+        Route::get('/xoa/{id}','BoPhanController@destroy')->name('xoa');
+    });
+});
 
 Route::resource('hoa-don','HoaDonController' );
 
  Route::get('/user', function () {
      return view('user.layout.user-layout');
  });
-// Route::get('/home-page', function () {
-//     return view('user.home-page');
-// 
  Route::resource('/thong-bao', 'UserThongBaoController');
  Route::resource('/user-hoa-don', 'UserHoaDonController');
  Route::resource('/thong-bao', 'UserThongBaoController');

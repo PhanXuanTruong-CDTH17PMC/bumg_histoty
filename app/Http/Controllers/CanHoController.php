@@ -126,7 +126,7 @@ class CanHoController extends Controller
     public function destroy($id)
     {
         $canho = CanHo::find($id);
-        $canho->delete($id);
+        $canho->delete();
         return redirect('can-ho')->with('success','Delete success');
     }
 }

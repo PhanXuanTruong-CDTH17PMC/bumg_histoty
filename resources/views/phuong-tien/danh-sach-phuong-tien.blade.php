@@ -3,12 +3,10 @@
     Danh sách phương tiện
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -47,9 +45,6 @@
             <a href="phuong-tien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="/loai-phuong-tien   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại phương tiện</a><br>
             <a href="/khu-vuc   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý khu vực</a><br>
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -82,22 +77,21 @@
                                         <th>{{$phuong_tien-> tenphuongtien}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="phuong-tien/{{$phuong_tien-> phuongtien_id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['PhuongTienController@destroy',$phuong_tien-> phuongtien_id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class="phuong-tien/{{$phuong_tien-> phuongtien_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('phuong-tien.xoa', ['id' => $phuong_tien-> phuongtien_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                            </div>			
                                         </th>
                                     </tr>                              
                             @endforeach    
-                        @else
                         @endif
                     </thead>
-                    
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+<!-- @include('models.deleted_success')
+<script>    
+    $("#dialog1").modal('show');
+</script> -->
 @endsection

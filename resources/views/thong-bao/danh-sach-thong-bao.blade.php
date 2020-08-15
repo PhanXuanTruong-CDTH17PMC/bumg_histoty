@@ -3,12 +3,10 @@
     Danh sách thông báo
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -75,12 +73,9 @@
                                         
                                          <th style="width: 200px">
                                             <div>
-                                            <a href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['ThongBaoController@destroy',$thong_bao-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('thong-bao.xoa', ['id' => $thong_bao-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                            </div>			
                                         </th>
                                     </tr>                              
                             @endforeach    
@@ -92,4 +87,9 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+
+@include('models.deleted_success')
+<script>    
+    $("#dialog1").modal('show');
+</script>
 @endsection

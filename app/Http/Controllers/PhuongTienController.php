@@ -134,7 +134,7 @@ class PhuongTienController extends Controller
     public function destroy($id)
     {
         $phuongtien = PhuongTien::find($id);
-        $phuongtien->delete($id);
+        $phuongtien->delete();
         return redirect('phuong-tien')->with('success','Delete success');
     }
 }

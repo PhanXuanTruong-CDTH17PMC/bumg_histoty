@@ -144,7 +144,7 @@ class TinTucController extends Controller
     {
         
         $tintuc=TinTuc::find($id);
-        $tintuc->delete($id);
+        $tintuc->delete();
         return redirect('danh-sach-tin-tuc')->with('success','Delete success');
     }
 }

@@ -142,7 +142,7 @@ class NhanVienController extends Controller
     public function destroy($id)
     {
         $nhanvien = NhanVien::find($id);
-        $nhanvien->delete($id);
+        $nhanvien->delete();
         return redirect('danh-sach-nhan-vien')->with('success','Delete success');
 
     }
