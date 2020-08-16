@@ -63,7 +63,7 @@ class TinTucController extends Controller
             $tintuc->save();
         }
         
-        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
+        return redirect()->route('tin-tuc.danh-sach')->with('success','Thêm thành công!');
     }
 
     /**
@@ -127,7 +127,7 @@ class TinTucController extends Controller
             $tintuc->tieu_de = $request->input('tieu_de');
             $tintuc->noi_dung_tt = $request->noi_dung_tt;
             $tintuc->anh_dai_dien = $file_name;
-            $tintuc->nhan_vien_id=1;
+            $tintuc->nhan_vien_id= Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
         }
         

@@ -52,20 +52,20 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Họ tên</th>
-                            <th>CMND</th>
-                            <th>SĐT</th>
-                            <th>Email</th>
-                            <th>Ngày sinh</th>
-                            <th>Tên đăng nhập</th>
-                            <!-- <th>Mật khẩu</th> -->
-                            <th>Bộ phận</th>
-                            <th>Loại tài khoản</th>
-                            <th>     </th>
-                        </tr>
                         @if (count($nhanvien )>0)
+                            <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Họ tên</th>
+                                <th>CMND</th>
+                                <th>SĐT</th>
+                                <th>Email</th>
+                                <th>Ngày sinh</th>
+                                <th>Tên đăng nhập</th>
+                                <!-- <th>Mật khẩu</th> -->
+                                <th>Bộ phận</th>
+                                <th>Loại tài khoản</th>
+                                <th>     </th>
+                            </tr>
                             @foreach ($nhanvien as $nhan_vien )
                                     <tr>
                                         <th>{{$nhan_vien-> id_nhan_vien}}</th>
@@ -85,6 +85,8 @@
                                         </th>
                                     </tr>                              
                             @endforeach   
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
                 </table>

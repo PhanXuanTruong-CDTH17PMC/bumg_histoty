@@ -95,8 +95,8 @@
                             <tr>
                                 <th>{{$hoa_don->id}}</th>
                                 <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
-                                <th>{{$hoa_don->tong_tien}}</th>
-                                <th>{{$hoa_don->created_at}}</th>
+                                <th>{{number_format($hoa_don->tong_tien, 0, ',', '.')}}</th>
+                                <th>{{date('d/m/yy', strtotime($hoa_don->created_at))}}</th>
                                 @if($hoa_don->tinh_trang_tt == 1) 
                                     <th> Đã thanh toán</th>
                                 @else
@@ -113,7 +113,7 @@
                             </tr>
                         @endforeach
                         @else
-                               <h1 style = "text-align: center; color:red"> <i>There is no data.</i></h1> 
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
                     

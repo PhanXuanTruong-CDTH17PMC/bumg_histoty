@@ -53,20 +53,20 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Tên dịch vụ</th>
-                            <th>Đơn vị</th>
-                            <th>Chi Phí</th>
-                            <th>     </th>
-                        </tr>
                          @if (count($dichvu )>0)
+                             <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Tên dịch vụ</th>
+                                <th>Đơn vị</th>
+                                <th>Chi Phí</th>
+                                <th>     </th>
+                            </tr>
                             @foreach ($dichvu as $dich_vu )
                                     <tr>
                                         <th>{{$dich_vu-> id}}</th>
                                         <th>{{$dich_vu-> ten_dich_vu}}</th>
                                         <th>{{$dich_vu-> don_vi}}</th>
-                                        <th>{{$dich_vu-> phi_dv}}</th>
+                                        <th>{{number_format($dich_vu-> phi_dv, 0, ',', '.')}}</th>
                                         <th style="width: 200px">
                                             <div>
                                                 <button type="button" class="btn "><a href="/dich-vu/{{$dich_vu-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
@@ -75,6 +75,8 @@
                                         </th>
                                     </tr>                              
                             @endforeach    
+                        `@else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
                 </table>

@@ -55,13 +55,12 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Tên loại căn hộ</th>
-                            <th></th>
-                        </tr>
-
                         @if (count($loaicanho )>0)
+                            <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Tên loại căn hộ</th>
+                                <th></th>
+                            </tr>
                             @foreach ($loaicanho as $loai_can_ho )
                                     <tr>
                                         <th>{{$loai_can_ho-> id}}</th>
@@ -73,7 +72,9 @@
                                             </div>
                                         </th>
                                     </tr>                              
-                            @endforeach   
+                            @endforeach  
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3>  
                         @endif
                     </thead>
                 </table>

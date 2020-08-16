@@ -110,7 +110,7 @@ class HoaDonController extends Controller
         // dd($tt);
         if(!empty($ch)) {
             $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
-        }
+        }   
         else if(!empty($tt) ) {
             if($tt == 1){
                  
@@ -118,7 +118,7 @@ class HoaDonController extends Controller
             }
             else{ 
                 $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1');
-            }
+            }   
         }
         else {
             $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
@@ -148,7 +148,7 @@ class HoaDonController extends Controller
      */
     public function update(Request $request,$id)
     {
-            $hoadon = HoaDon::find($id);
+        $hoadon = HoaDon::find($id);
         if( $hoadon->tinh_trang_tt == 1) {
             $hoadon->tinh_trang_tt = 0;
         }

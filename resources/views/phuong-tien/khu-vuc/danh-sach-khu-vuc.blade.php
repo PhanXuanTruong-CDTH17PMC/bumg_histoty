@@ -53,25 +53,26 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Khu vực</th>
-                            <th></th>
-                        </tr>
-
                         @if (count($khuvuc )>0)
+                            <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Khu vực</th>
+                                <th></th>
+                            </tr>
                             @foreach ($khuvuc as $khu_vuc )
-                                    <tr>
-                                        <th>{{$khu_vuc-> id}}</th>
-                                        <th>{{$khu_vuc-> ten_khu_vuc}}</th>
-                                        <th style="width: 200px">
-                                            <div>
-                                                <button type="button" class="btn "><a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button"<a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </th>
-                                    </tr>                              
-                            @endforeach    
+                                <tr>
+                                    <th>{{$khu_vuc-> id}}</th>
+                                    <th>{{$khu_vuc-> ten_khu_vuc}}</th>
+                                    <th style="width: 200px">
+                                        <div>
+                                            <button type="button" class="btn "><a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                            <a type="button"<a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </th>
+                                </tr>                              
+                            @endforeach   
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3>  
                         @endif
                     </thead>
                 </table>

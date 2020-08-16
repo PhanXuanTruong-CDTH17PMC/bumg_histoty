@@ -57,14 +57,13 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Tiêu đề</th>
-                            <th>Ngày thông báo</th>
-                            <th>     </th>
-                            
-                        </tr>
                         @if (count($thongbao )>0)
+                            <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Tiêu đề</th>
+                                <th>Ngày thông báo</th>
+                                <th>     </th>
+                            </tr>
                             @foreach ($thongbao as $thong_bao )
                                     <tr>
                                         <th>{{$thong_bao-> id}}</th>
@@ -73,12 +72,14 @@
                                         
                                          <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <button type="button" href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
                                                 <a type="button" href="{{ route('thong-bao.xoa', ['id' => $thong_bao-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>			
                                         </th>
                                     </tr>                              
                             @endforeach    
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
                     <!--  -->

@@ -53,13 +53,13 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d; color:white">
-                            <th>ID</th>
-                            <th>Nội dung</th>
-                            <th>Ngày đăng tin</th>
-                            <th>     </th>
-                        </tr>
                         @if (count($tintuc) >0)
+                            <tr style="background-color: #6c757d; color:white">
+                                <th>ID</th>
+                                <th>Nội dung</th>
+                                <th>Ngày đăng tin</th>
+                                <th>     </th>
+                            </tr>
                             @foreach ($tintuc as $tin_tuc )
                                     <tr>
                                         <th>{{$tin_tuc-> id}}</th>
@@ -73,6 +73,8 @@
                                         </th>
                                     </tr>                              
                             @endforeach    
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
                 </table>
