@@ -3,7 +3,6 @@
     Danh sách tin tức
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
@@ -43,11 +42,7 @@
     <div class="col-12">
         <div class="page-title-box">
             <h4 class="page-title">Tin tức</h4>
-            <a href="{{ Route('tin-tuc.them-tin-tuc') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
+            <a href="{{ Route('tin-tuc.them') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>
 </div>
@@ -72,32 +67,17 @@
                                         <th>{{$tin_tuc-> created_at}}</th> 
                                     `   <th style="width: 200px">
                                             <div>
-                                            <a href="{{Route('tin-tuc.sua-tin-tuc',['id'=>$tin_tuc-> id]) }}" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['TinTucController@destroy',$tin_tuc-> id],'method' =>'POST','class'=>'pull-right',])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger btn-delete', 'id' =>'confirm-delete'])}}
-                                            {!!Form::close()!!}
+                                                <button type="button" class="btn "><a href="danh-sach-tin-tuc/{{$tin_tuc-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button"href="{{ route('tin-tuc.xoa', ['id' => $tin_tuc->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
                         @endif
                     </thead>
-                    <!--  -->
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-
-<script>
-        $('#confirm-delete').on('click', '.btn-delete', function(e) {
-        swal("Are you sure you want to do this?", {
-            buttons: ["Cancle!", "OK!"],
-        });
- 
-});
-
-
-    </script>
 @endsection

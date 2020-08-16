@@ -114,7 +114,7 @@ class ThongBaoController extends Controller
     public function destroy($id)
     {
         $thongbao = ThongBao::find($id);
-        $thongbao->delete($id);
+        $thongbao->delete();
         return redirect('danh-sach-thong-bao')->with('success','Delete success');
     }
 }

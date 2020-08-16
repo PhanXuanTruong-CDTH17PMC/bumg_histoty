@@ -17,11 +17,11 @@ class QuanHeSeeder extends Seeder
                 
             ],
             [
-                'ten_quan_he' => 'Con cái'
+                'ten_quan_he' => 'Vợ '
                 
             ],
             [
-                'ten_quan_he' => 'Vợ '
+                'ten_quan_he' => 'Con cái'
                 
             ],
             [

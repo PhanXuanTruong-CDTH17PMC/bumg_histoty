@@ -101,6 +101,6 @@ class BoPhanController extends Controller
         $bophan = BoPhan::find($id);
         $bophan->delete();
 
-        return redirect('/danh-sach-bo-phan')->with('success','Delete success');
+        return redirect('bo-phan')->with('success','Delete success');
     }
 }

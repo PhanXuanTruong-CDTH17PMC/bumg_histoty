@@ -99,7 +99,7 @@ class LoaiCanHoController extends Controller
     public function destroy($id)
     {
         $loaicanho =LoaiCanHo::find($id);
-        $loaicanho->delete($id);
+        $loaicanho->delete();
 
         return redirect('loai-can-ho')->with('success','delete success');
     }

@@ -7,7 +7,6 @@ use App\PhuongTien;
 use App\LoaiPhuongTien;
 use App\CanHo;
 use App\KhuVuc;
-use App\DichVu;
 use DB;
 
 
@@ -34,8 +33,8 @@ class PhuongTienController extends Controller
         $khuvuc=KhuVuc::all();
         $canho=CanHo::all();
         $loaiphuongtien=LoaiPhuongTien::all();
-        $dichvu=DichVu::all();
-        return view('phuong-tien.them-moi-phuong-tien',compact('khuvuc','canho','loaiphuongtien','dichvu'));
+
+        return view('phuong-tien.them-moi-phuong-tien',compact('canho','loaiphuongtien','dichvu'));
     }
 
     /**
@@ -135,7 +134,7 @@ class PhuongTienController extends Controller
     public function destroy($id)
     {
         $phuongtien = PhuongTien::find($id);
-        $phuongtien->delete($id);
+        $phuongtien->delete();
         return redirect('phuong-tien')->with('success','Delete success');
     }
 }

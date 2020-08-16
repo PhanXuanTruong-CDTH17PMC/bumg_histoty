@@ -3,12 +3,10 @@
     Danh sách căn hộ
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -42,14 +40,10 @@
 <!-- start page title -->
 <div class="row">
     <div class="col-12">
-        <div class="page-title-box col-12">
-            <h2>Danh sách căn hộ</h2>
+        <div class="page-title-box">
+            <h4 class="page-title">Căn hộ</h4>
             <a href="/can-ho/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới căn hộ</a>
 			<a href="/loai-can-ho" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại căn hộ</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -70,7 +64,6 @@
                             <th>     </th>
                         </tr>
 
-
                         @if (count($canho )>0)
                             @foreach ($canho as $can_ho )
                                     <tr>
@@ -82,19 +75,14 @@
                                         <th>{{$can_ho-> chuho}}</th>
                                          <th style="width: 200px">
                                             <div>
-                                            <a href="/can-ho/{{$can_ho->canho_id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['CanHoController@destroy',$can_ho-> canho_id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
+                                                <button type="button" class="btn "><a href="/can-ho/{{$can_ho->canho_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="{{ route('can-ho.xoa', ['id' => $can_ho->canho_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
-                        @else
                         @endif
                     </thead>
-                    <!--  -->
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->

@@ -56,8 +56,9 @@
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-danger btn-block" id="login">Đăng nhập</button>
+                                        <button class="btn btn-danger btn-block" >Đăng nhập</button>
                                     </div>
+
                                 </form>
                                 </div> 
                             </div>

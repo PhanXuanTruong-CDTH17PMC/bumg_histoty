@@ -99,7 +99,7 @@ class KhuVucController extends Controller
     public function destroy($id)
     {
         $khuvuc= KhuVuc::find($id);
-        $khuvuc->delete($id);
+        $khuvuc->delete();
         return redirect('/khu-vuc')->with('success','Delete success');
     }
 }

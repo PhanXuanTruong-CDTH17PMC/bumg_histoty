@@ -3,11 +3,12 @@
     Thêm mới tin tức
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-            <div>
-                    <h4 >Thêm mới tin tức</h4>
+            <div class="page-title-box">
+                
+                    <h4 class="page-title">Thêm mới tin tức</h4>
+                
             </div>
         </div>
     </div>
@@ -43,7 +44,7 @@
                         @endif
                     </div>
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/danh-sach-tin-tuc" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
                     {!!Form::close() !!}
             </div>
         </div>

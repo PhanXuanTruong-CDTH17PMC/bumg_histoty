@@ -47,8 +47,7 @@ class HomePageController extends Controller
      */
     public function show($id)
     {
-        $tintuc=TinTuc::find($id);
-        return view('user.home-page-tintuc')->with('tintuc',$tintuc);
+        //
     }
 
     /**

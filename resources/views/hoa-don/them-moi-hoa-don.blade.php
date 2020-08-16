@@ -28,41 +28,12 @@
                     <div class="form-group">
                         {{Form::label('title','Dịch vụ')}}<span class="text-danger">*</span>
                     </div>    
-                    <div class="form-group">
-                    
-                    @if(count($dichvu)>0)
-                    
-                        @foreach($dichvu as $dich_vu)
-                            <div class="form-row">
-                            <div class="form-group"style="width:50px">
-                                {{Form::Text("dichvu[$dich_vu->id][id]",$dich_vu->id,["class"=> "form-control"])}}
-                            </div>
-                            <div class="form-group">
-                                {{Form::Text("dich_vu[$dich_vu->id][id]",$dich_vu->ten_dich_vu,["class"=> "form-control",])}}
-                            </div>
-                            @if(count($phuongtien)==($dich_vu->id))
-                    
-                                @foreach($phuongtien as $pt)
-                                <div class="form-group">
-                                {{Form::Text("so_luong[$dich_vu->id][soluong]",0,["class"=> "form-control","placeholder"=>"Nhập số lượng","hidden"])}}
-                                </div>
+                    <div class ="col" id = "ser">
 
-                                @endforeach
-                            @else
-                            <div class="form-group">
-                                {{Form::Text("so_luong[$dich_vu->id][soluong]",$dich_vu->so_luong,["class"=> "form-control","placeholder"=>"Nhập số lượng"])}}
-                            </div>
-                            @endif
-                            
-                            </div>
-                        @endforeach
-                    @endif
-                    </div>
-                    <!-- <div class ="col" id = "ser">
-                    </div>     
-                        <div class="form-group">
+                    </div>      
+                    <div class="form-group">
                         <button type ="button" class='btn btn-purple waves-effect waves-light'id ="btnAddService" name='add_service'>Chọn dịch vụ</button>
-                    </div>         -->
+                    </div>            
                     <div class="form-group">
                         {{Form::radio('tinh_trang_tt','1',['class'=> 'form-control', 'name'=>'tinh_trang_tt'])}} 
                         {{Form::label('title',' Đã thanh toán')}}
@@ -70,7 +41,7 @@
                         {{Form::label('title',' Chưa thanh toán')}}
                     </div> 
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/hoa-don" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
                     {!!Form::close() !!}   
             </div>
         </div>
@@ -83,5 +54,6 @@ $(document).ready(function(){
     $("#ser").append(rowTemplate);
   });
 });
+
 </script>
 @endsection

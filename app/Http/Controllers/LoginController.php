@@ -11,7 +11,6 @@ use App\TinTuc;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-
 class LoginController extends Controller
 {
 	function index (){
@@ -45,13 +44,7 @@ class LoginController extends Controller
 	}
 
 	public function logout(){
-		Auth::guard('nhanvien')->logout();
-
-		return view('quan-tri-vien.dang-nhap');
-	}
-	public function userlogout(){
-		Auth::guard('canho')->logout();
-
+		Auth::logout();
 		return view('quan-tri-vien.dang-nhap');
 	}
 }

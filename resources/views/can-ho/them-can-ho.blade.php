@@ -3,11 +3,11 @@
     Thêm mới căn hộ
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box col-12">
-                    <h2>Thêm mới căn hộ</h2>
+            <div class="page-title-box">
+                
+                    <h4 class="page-title">Thêm mới căn hộ</h4>
                 
             </div>
         </div>
@@ -37,7 +37,7 @@
                     </div> 
                     </div>
                     <div class="form-group">
-                        {{Form::label('title','Mật khẩu cho tài khoản căn hộ')}}<span class="text-danger"> 
+                        {{Form::label('title','Mật khẩu')}}<span class="text-danger"> 
                     *</span>
                     <div class="form-group">
                         {{Form::Text('matkhau','',['class'=> 'form-control','placeholder'=>'Nhập mật khẩu căn hộ'])}}
@@ -68,10 +68,9 @@
                     </div> 
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/can-ho" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
                     {!!Form::close() !!}
             </div>
         </div>
     </div>
-</div>
 @endsection

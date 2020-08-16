@@ -59,22 +59,17 @@
                                         <th>{{$quan_he-> ten_quan_he}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/quan-he/{{$quan_he->id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['MoiQuanHeController@destroy',$quan_he-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
+                                                <button type="button" class="btn "><a href="/quan-he/{{$quan_he->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button"<a href="{{ route('quan-he.xoa', ['id' => $quan_he->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
-                        @else
                         @endif
-
                     </thead>
                 </table>
             </div> 
         </div> 
     </div>
-</div>
+<</div>
 @endsection

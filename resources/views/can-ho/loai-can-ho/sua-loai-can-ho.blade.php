@@ -3,11 +3,12 @@
     Sửa loại căn hộ
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-            <div>
-                    <h2>Sửa loại căn hộ</h2>
+            <div class="page-title-box">
+                
+                    <h4 class="page-title">Sửa thông tin loại căn hộ</h4>
+                
             </div>
         </div>
     </div>
@@ -27,11 +28,11 @@
                     </div>
                     {{Form::hidden('_method','PUT')}}
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/loai-can-ho" class="btn btn-purple waves-effect waves-light">Hủy</a>
-                    {!!Form::close() !!}          
+                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    {!!Form::close() !!}
+
+
+                    
         </div>
     </div>
-</div>
-</div>
-</div>
 @endsection

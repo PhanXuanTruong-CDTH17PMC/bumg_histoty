@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TinTuc;
-use Auth;
 class TinTucController extends Controller
 {
     /**
@@ -60,11 +59,11 @@ class TinTucController extends Controller
             $tintuc->tieu_de = $request->input('tieu_de');
             $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
             $tintuc->anh_dai_dien = $file_name;
-            $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
+            $tintuc->nhan_vien_id=1;
             $tintuc->save();
         }
         
-        return redirect('tin-tuc')->with('success','Thêm thành công!');
+        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -126,13 +125,13 @@ class TinTucController extends Controller
             $file->move($filePath, $file_name);
             $tintuc =  TinTuc::find($id);
             $tintuc->tieu_de = $request->input('tieu_de');
-            $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
+            $tintuc->noi_dung_tt = $request->noi_dung_tt;
             $tintuc->anh_dai_dien = $file_name;
-            $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
+            $tintuc->nhan_vien_id=1;
             $tintuc->save();
         }
         
-        return redirect('danh-sach-tin-tuc')->with('success','Thêm thành công!');
+        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -145,7 +144,7 @@ class TinTucController extends Controller
     {
         
         $tintuc=TinTuc::find($id);
-        $tintuc->delete($id);
-        return redirect('danh-sach-tin-tuc')->with('success','Delete success');
+        $tintuc->delete();
+        return redirect('tin-tuc')->with('success','Delete success');
     }
 }

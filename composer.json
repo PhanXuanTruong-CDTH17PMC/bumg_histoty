@@ -12,10 +12,12 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "kreait/firebase-php": "^5.7",
+        "laravel-notification-channels/webpush": "^5.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.1",
-        "pusher/pusher-php-server": "^4.1"
+        "sendgrid/sendgrid": "^7.8"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

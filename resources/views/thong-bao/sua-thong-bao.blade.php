@@ -42,7 +42,7 @@
                    
                     </div>                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/danh-sach-thong-bao" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
                     {!!Form::close() !!}
             </div>
         </div>

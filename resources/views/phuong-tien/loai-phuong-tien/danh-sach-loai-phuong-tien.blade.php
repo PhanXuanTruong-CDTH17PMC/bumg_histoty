@@ -3,12 +3,10 @@
     Danh sách loại phương tiện
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -45,8 +43,6 @@
         <div class="page-title-box">
             <h4 class="page-title">Loại phương tiện</h4>
             <a href="/loai-phuong-tien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            
         </div>
     </div>
 </div>
@@ -60,7 +56,7 @@
                         <tr style="background-color: #6c757d;; color:white">
                             <th>ID</th>
                             <th>Loại phương tiện</th>
-                            <th></th>
+                            <th>     </th>
                         </tr>
 
                         @if (count($loaiphuongtien )>0)
@@ -70,20 +66,14 @@
                                         <th>{{$loai_phuong_tien-> ten_loai_phuong_tien}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/loai-phuong-tien/{{$loai_phuong_tien-> id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['LoaiPhuongTienController@destroy',$loai_phuong_tien-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class="/loai-phuong-tien/{{$loai_phuong_tien-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button"a href="{{ route('loai-phuong-tien.xoa', ['id' => $loai_phuong_tien-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            </div>			
                                         </th>
                                     </tr>                              
-                            @endforeach    
-                        @else
+                            @endforeach   
                         @endif
-
                     </thead>
-                    <!--  -->
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
