@@ -106,9 +106,13 @@ class HoaDonController extends Controller
     {
         $canho=CanHo::all();
         $ch = $request->input('canho_search'); 
-        
-        $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
-      
+        if(!empty($ch)){
+            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
+        }
+        else {
+            $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+        }
+        // dd($request->input('searrch_tt'));
         // if($request->input('searrch_tt') == 0) {
         //     $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1' );
         // }

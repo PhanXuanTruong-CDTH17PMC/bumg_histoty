@@ -45,7 +45,7 @@
     <div class="col-2">
         <div class="form-group">
             <div class="form-group">
-                <select class="form-control"  id = "canho_search"name="canho_search" required focus>
+                <select class="form-control"  id = "canho_search"name="canho_search"  focus>
                     <option value="" disabled selected>Chọn căn hộ</option>        
                     @foreach($canho as $can_ho)
                     <option name="search_ch" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
