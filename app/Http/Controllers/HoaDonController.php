@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use Auth;
 use App\HoaDon;
-use App\CuDan;
 use App\CanHo;
 use App\DichVu;
 use App\ChiTietHoaDon;
@@ -22,8 +21,9 @@ class HoaDonController extends Controller
      */
     public function index()
     {
-        $hoadon=DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  ');
-        return view('hoa-don.danh-sach-hoa-don')->with('hoadon',$hoadon);
+        $canho=CanHo::all();
+        $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  ');
+        return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 
     /**
@@ -33,12 +33,11 @@ class HoaDonController extends Controller
      */
     public function create()
     {
-        $phuongtien=DB::select('SELECT dichvu.id as id_pt from dichvu, loaiphuongtien where dichvu.id=loaiphuongtien.dich_vu_id LIMIT 1' );
         $canho = CanHo::all();
         $dichvu = DichVu::all();
         $tongtien = DB::select('SELECT SUM(thanh_tien) as tongtien from chitiethoadon,hoadon where chitiethoadon.hoa_don_id=hoadon.id');
-        $thanhtien = DB::select('SELECT dichvu.phi_dv*chitiethoadon.so_luong as thanhtien from chitiethoadon,dichvu where chitiethoadon.dich_vu_id=dichvu.id' );
-        return view('hoa-don.them-moi-hoa-don',compact('canho','dichvu','tongtien','thanhtien','phuongtien'));
+        $thanhtien = DB::select('SELECT dichvu.phi_dv*so_luong as thanhtien from chitiethoadon,dichvu where chitiethoadon.dich_vu_id=dichvu.id' );
+        return view('hoa-don.them-moi-hoa-don',compact('canho','dichvu','tongtien','thanhtien'));
     }
 
     /**
@@ -53,53 +52,45 @@ class HoaDonController extends Controller
             'can_ho'=>'required',
             'dich_vu'=>'required',
             'so_luong'=>'required',
-            'tinh_trang_tt'=>'required', 
-            // // 'tong_tien'=>'required', 
-            // 'thanh_tien'=>'required', 
+            'tinh_trang_tt'=>'required'
         ]);
-        // $sophuongtien=DB::select('SELECT dichvu.id as id_pt from dichvu, loaiphuongtien where dichvu.id=loaiphuongtien.dich_vu_id LIMIT 1' );
-        // $soxe=DB::select('SELECT sum(loaiphuongtien.gia_tien) From phuongtien ,loaiphuongtien,dichvu where loaiphuongtien.dich_vu_id=dichvu.id and phuongtien.can_ho_id= '.$request->input('can_ho'));
-        // return $soxe;
+
         $tt = 0;
-        for($i=1; $i<=count($request->input('dich_vu'));$i++){
-            
-            $dichvu2 = DichVu::find($request->input('dichvu.'.$i.'.id'));
-            // if($dichvu2->id==$sophuongtien){
-
-            // }
-            $soluong=($request->input('so_luong.'.$i.'.soluong')); 
-            $tt+= $request->input('so_luong.'.$i.'.soluong') *$dichvu2->phi_dv; 
-
+        for($i=0; $i<count($request->input('dich_vu'));$i++){
+            $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
+            $tt += $request->input('so_luong.'.$i.'.soluong')  * $dichvu->phi_dv; 
         }
-
+            
          $hoadon = new HoaDon;
-         $hoadon->can_ho_id =$request->input('can_ho');
-         $hoadon->tinh_trang_tt=$request->input('tinh_trang_tt');
-         $hoadon->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
+         $hoadon->can_ho_id = $request->input('can_ho');
+         $hoadon->tinh_trang_tt = $request->input('tinh_trang_tt');
+         $hoadon->nhan_vien_id = Auth::guard('nhanvien')->user()->id;
          $hoadon->tong_tien = $tt;
          $hoadon->save();
         
         
-        for($i=1; $i<=count($request->input('dich_vu'));$i++){
+        for($i=0; $i<count($request->input('dich_vu'));$i++){
             $cthoadon = new ChiTietHoaDon;
             $hoadon_id=(DB::table('hoadon')->max('id'));
             $cthoadon->hoa_don_id=$hoadon_id;
             $cthoadon->can_ho_id =$request ->input('can_ho');
-            $cthoadon->dich_vu_id = ($request->input('dichvu.'.$i.'.id'));
-            $dichvu =DB::select('SELECT phi_dv from dichvu where id='.$request->input('dichvu.'.$i.'.id'));  
-            $dichvu2 = DichVu::find($request->input('dichvu.'.$i.'.id'));
+            $cthoadon->dich_vu_id = ($request->input('dich_vu.'.$i.'.id'));
+            $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
             $cthoadon->so_luong = $request->input('so_luong.'.$i.'.soluong');   
-            $cthoadon->thanh_tien = $request->input('so_luong.'.$i.'.soluong') *$dichvu2->phi_dv; 
+            $cthoadon->thanh_tien = $cthoadon->so_luong * $dichvu->phi_dv; 
             $cthoadon->save();
          }
          
-        $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
-        $ch = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$cthoadon->can_ho_id);
-        // dd($ch);
+        $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
+        $chuho = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
+        $ch_name = DB::select('SELECT canho.name from canho where canho.id ='.$hoadon->can_ho_id);
+       $tong = number_format($hoadon->tong_tien, 0, ',', '.');
         $data = [
-            'name'      => "Lê Phú Tấn",
-            'message'   =>   'Pleases pay your bill !'
-            ];
+            'name'      => $chuho[0]->ho_ten_cd,
+            'message'   =>   'Please pay your bill !',
+            'mach'  => $ch_name[0]->name,
+            'tt' =>  $tong
+        ];
         Mail::to($ch_mail)->send(new SendMail($data));
         return redirect('hoa-don')->with('success','Add success');
     }
@@ -110,12 +101,37 @@ class HoaDonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
-        $hoadon=HoaDon::find($id);
-        $canho=DB::select('SELECT canho.name as name_ch from canho,hoadon where hoadon.id='.$id.' and hoadon.can_ho_id=canho.id');
-        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon','canho'));
+        $canho=CanHo::all();
+        $ch = $request->input('canho_search'); 
+        $tt = $request->input('tinh_trang_searrch');
+        // dd($tt);
+        if(!empty($ch)) {
+            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
+        }   
+        else if(!empty($tt) ) {
+            if($tt == 1){
+                $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 0' );
+            }
+            else{ 
+                $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1');
+            }   
+        }
+        else {
+            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+        }
+
+        if(!empty($ch) && !empty($tt)) {
+            if ($tt == 1) {
+                 $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.tinh_trang_tt = 0 and hoadon.can_ho_id =  '.$ch );
+            }
+            else if ($tt == 2) {
+                $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.tinh_trang_tt = 1 and hoadon.can_ho_id =  '.$ch );
+            }
+        }   
+
+        return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 
     /**
@@ -126,17 +142,9 @@ class HoaDonController extends Controller
      */
     public function edit($id)
     {
-        
-         $hoadon =HoaDon::find($id);
-        // ->select([
-        //     'canho,name',
-        //     'tinh_trang_tt'
-        // ])
-        // ->where([
-        //       'hoadon.deleted_at Í NULL'
-        // ]);
-
-        return view('hoa-don.tinh-trang-hoa-don')->with('hoadon',$hoadon);
+        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
+        $hoadon=HoaDon::find($id);
+        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon'));
     }
 
     /**
@@ -146,7 +154,7 @@ class HoaDonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $hoadon = HoaDon::find($id);
         if( $hoadon->tinh_trang_tt == 1) {
