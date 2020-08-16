@@ -68,7 +68,7 @@
                                     `   <th style="width: 200px">
                                             <div>
                                                 <button type="button" class="btn "><a href="danh-sach-tin-tuc/{{$tin_tuc-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('tin-tuc.xoa', ['id' => $tin_tuc->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                                <a type="button"href="{{ route('tin-tuc.xoa', ['id' => $tin_tuc->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
@@ -80,16 +80,4 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-<!-- @include('models.deleted_success')
-<script>    
-    $("#dialog1").modal('show');
-</script> -->
-<script>
-        $('#confirm-delete').on('click', '.btn-delete', function(e) {
-        swal("Are you sure you want to do this?", {
-            buttons: ["Cancle!", "OK!"],
-        });
- 
-});
-</script>
 @endsection

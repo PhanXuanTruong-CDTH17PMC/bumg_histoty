@@ -21,8 +21,9 @@ class HoaDonController extends Controller
      */
     public function index()
     {
-        $hoadon=DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  ');
-        return view('hoa-don.danh-sach-hoa-don')->with('hoadon',$hoadon);
+        $canho=CanHo::all();
+        $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  ');
+        return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 
     /**
@@ -101,11 +102,21 @@ class HoaDonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
-        $hoadon=HoaDon::find($id);
-        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon'));
+        $canho=CanHo::all();
+        $ch = $request->input('canho_search'); 
+        
+        $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
+      
+        // if($request->input('searrch_tt') == 0) {
+        //     $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1' );
+        // }
+        // if($request->input('searrch_tt') == 1) {
+        //     $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt =0');
+        // }
+    
+        return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 
     /**
@@ -116,17 +127,9 @@ class HoaDonController extends Controller
      */
     public function edit($id)
     {
-        
-         $hoadon =HoaDon::find($id);
-        // ->select([
-        //     'canho,name',
-        //     'tinh_trang_tt'
-        // ])
-        // ->where([
-        //       'hoadon.deleted_at IS NULL'
-        // ]);
-
-        return view('hoa-don.tinh-trang-hoa-don')->with('hoadon',$hoadon);
+        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
+        $hoadon=HoaDon::find($id);
+        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon'));
     }
 
     /**
@@ -136,7 +139,7 @@ class HoaDonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $hoadon = HoaDon::find($id);
         if( $hoadon->tinh_trang_tt == 1) {

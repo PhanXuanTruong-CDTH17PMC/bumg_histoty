@@ -67,7 +67,7 @@
                                         <th style="width: 200px">
                                             <div>
                                                 <button type="button" class="btn "><a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                                <a type="button"<a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
@@ -79,8 +79,4 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-<!-- @include('models.deleted_success')
-<script>    
-    $("#dialog1").modal('show');
-</script> -->
 @endsection

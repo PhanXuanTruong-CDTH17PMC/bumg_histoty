@@ -28,12 +28,12 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control " id="canho" name="don_vi" required focus>
-                            <option value="0" disabled selected>Chọn đơn vị</option>        
-                            <option value="1">m3/Tháng</option>  
-                            <option >kWh/Tháng</option>  
-                            <option >Chiếc/Tháng</option>  
-                            <option>Hộ/Tháng</option>  
-                            <option>Người/Tháng</option>  
+                            <option value="" disabled selected>Chọn đơn vị</option>        
+                            <option >VNĐ/m3</option>  
+                            <option >VNĐ/kWh</option>  
+                            <option >VNĐ/Chiếc</option>  
+                            <option>VNĐ/Hộ</option>  
+                            <option>VNĐ/Người</option>  
                         </select>
                     </div> 
                     </div> 

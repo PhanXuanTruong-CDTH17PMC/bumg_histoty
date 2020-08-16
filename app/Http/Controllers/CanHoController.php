@@ -108,7 +108,7 @@ class CanHoController extends Controller
         $canho = CanHo::find($id);
         $canho->Tang =$request ->input('tang');
         $canho->dien_tich =$request ->input('dientich');
-        $canho->name =$request ->input('tencanho');
+        $canho->name =  $request ->input('tencanho');
         $canho->password =hash::make($request ->input('matkhau'));
         $canho->loai_can_ho_id =$request ->input('loaicanho');
         $canho->chu_ho_id =$request ->input('chuho');

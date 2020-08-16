@@ -75,13 +75,12 @@
                                         <th>{{$nhan_vien-> email}}</th>
                                         <th>{{$nhan_vien-> ngay_sinh}}</th>
                                         <th>{{$nhan_vien-> username}}</th>
-                                        <!-- <th>{{$nhan_vien-> password}}</th> -->
                                         <th>{{$nhan_vien-> tenbophan}}</th>
                                         <th>{{$nhan_vien-> loai_account}}</th>
                                         <th>
                                             <div>
                                                 <button type="button" class="btn "><a href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                                <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>			
                                         </th>
                                     </tr>                              
@@ -93,8 +92,4 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-<!-- @include('models.deleted_success')
-<script>    
-    // $("#dialog1").modal('show');
-</script> -->
 @endsection

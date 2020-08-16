@@ -118,7 +118,7 @@ Route::prefix('thong-bao')->group(function(){
         Route::get('/xoa/{id}','ThongBaoController@destroy')->name('xoa');
     });
 });
-Route::prefix('tin-tuc')->group(function(){
+Route::prefix('t in-tuc')->group(function(){
     Route::name('tin-tuc.')->group(function(){
         Route::get('/','TinTucController@index')->name('danh-sach');
         Route::get('them','TinTucController@create')->name('them');
@@ -156,6 +156,15 @@ Route::prefix('bo-phan')->group(function(){
         Route::get('them','BoPhanController@create')->name('them');
         Route::post('them','BoPhanController@store')->name('xu-ly-them');
         Route::get('/xoa/{id}','BoPhanController@destroy')->name('xoa');
+    });
+});
+
+Route::prefix('hoa-don')->group(function(){
+    Route::name('hoa-don.')->group(function(){
+        Route::get('/','HoaDonController@index')->name('danh-sach');
+        Route::post('/search','HoaDonController@show')->name('search');
+        Route::get('them','HoaDonController@create')->name('them');
+        Route::post('them','HoaDonController@store')->name('xu-ly-them');
     });
 });
 

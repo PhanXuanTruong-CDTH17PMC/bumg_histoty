@@ -9,7 +9,7 @@
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-@section('js')
+@section('js')  
     <!-- third party js -->
     <script src="{{ asset('assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
@@ -36,14 +36,46 @@
         <div class="page-title-box">
             <h4 class="page-title">Hóa đơn</h4>
             <a href="/hoa-don/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-         
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
 <!-- end page title --> 
+<form action = "{{ route('hoa-don.search') }}" method = 'POST'>
+<div class="row">
+    <div class="col-2">
+        <div class="form-group">
+            <div class="form-group">
+                <select class="form-control"  id = "canho_search"name="canho_search" required focus>
+                    <option value="" disabled selected>Chọn căn hộ</option>        
+                    @foreach($canho as $can_ho)
+                    <option name="search_ch" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                    @endforeach
+                </select>
+            </div> 
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <div class="form-group">
+                <select class="form-control"  name="tinh_trang_searrch"  focus>
+                    <option value="" disabled selected>Chọn tình trạng</option>  
+                    <option name="searrch_tt" value="0">Chưa thanh toán</option>
+                    <option name="searrch_tt" value="1">Đã thanh toán</option>
+                </select>
+            </div> 
+        </div>
+    </div>
+    <div class="col-2">     
+        <div class="form group">
+            <div class="form group">
+            <button type = 'submit' style="margin-bottom:10px;" class="btn btn-primary ">Tìm Kiếm</button>
+                <a href="/hoa-don/" style="margin-bottom:10px;" class="btn btn-info">Quay lại</a>
+                {{ csrf_field() }}
+            </div>
+        </div>
+    </div>
+ </div>
+ </form>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -72,7 +104,7 @@
                                     @endif
                                     <th style="width: 200px">
                                         <div>
-                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
+                                            {!!Form::open(['action'=> ['HoaDonController@update',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
                                             {{Form::hidden('_method','PUT')}}
                                             {{Form::submit('Update',['class'=>'btn btn-info'])}}
                                             {!!Form::close()!!}

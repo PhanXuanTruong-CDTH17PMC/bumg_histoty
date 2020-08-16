@@ -63,7 +63,7 @@ class TinTucController extends Controller
             $tintuc->save();
         }
         
-        return redirect()->route('danh-sach-tin-tuc')->with('success','Thêm thành công!');
+        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -131,7 +131,7 @@ class TinTucController extends Controller
             $tintuc->save();
         }
         
-        return redirect()->route('danh-sach-tin-tuc')->with('success','Thêm thành công!');
+        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -145,6 +145,6 @@ class TinTucController extends Controller
         
         $tintuc=TinTuc::find($id);
         $tintuc->delete();
-        return redirect('danh-sach-tin-tuc')->with('success','Delete success');
+        return redirect('tin-tuc')->with('success','Delete success');
     }
 }

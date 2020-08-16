@@ -31,10 +31,7 @@
     
     <!-- Datatables init -->
     <script src="{{ asset('assets/js/pages/init/datatables.init.js') }}"></script>
-
-    <!-- Sweet Alert2 QuanTriVien init js-->
     <script src="{{ asset('assets/js/pages/init/sweet-alerts-quan-tri-vien.init.js') }}"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 @endsection
 @section('main-content')
@@ -42,12 +39,8 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Nhân viên</h4>
+            <h4 class="page-title">Bộ Phận  </h4>
             <a href="/danh-sach-bo-phan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -64,7 +57,7 @@
                             <th></th>
                         </tr>
 
-                        @if (count($bophan )>1)
+                        @if (count($bophan )>0)
                             @foreach ($bophan as $bo_phan )
                                     <tr>
                                         <th>{{$bo_phan-> id}}</th>
@@ -72,7 +65,7 @@
                                         <th style="width: 200px">
                                             <div>
                                                 <button type="button" class="btn "><a href="/danh-sach-bo-phan/{{$bo_phan->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <button  type="submit" class="btn delete-confirm" id = "delete" onclick="return confirm('Bạn có chắc muốn xóa?')"data-toggle="modal" data-target="#dialog1"><a href="{{ route('bo-phan.xoa', ['id' => $bo_phan->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                                                <a type="button"  href="{{ route('bo-phan.xoa', ['id' => $bo_phan->id]) }}"  class="btn btn-danger delete-confirm "><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
@@ -84,27 +77,4 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-<!-- @include('models.deleted_success')
-<script>    
-    // $("#dialog1").modal('show');
-</script> -->
-<script>
-$('.delete-confirm').on('click', function (event) {
-        event.preventDefault();
-        var url = $(this).attr('href');
-        Swal.fire({
-            title: 'Bạn có chắc muốn xóa?',
-            text: "Dữ liệu sẽ bị xóa tạm thời!",
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Đồng ý',
-            cancelButtonText: 'Hủy'
-        }).then(function(result) {
-            if (result.value) {
-                window.location.href = url;
-            }
-        });
-    });
-</script>
 @endsection

@@ -15,10 +15,8 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>   
-                {!!Form::open(['action'=> ['CanHoController@destroy',$can_ho->canho_id],'method' =>'POST','class'=>'pull-right'])!!}
-                {{Form::hidden('_method','DELETE')}}
-                {{Form::submit('Có',['class'=> 'btn btn-primary'])}}
-                {!!Form::close()!!}
+                <button  type="submit" class="btn delete-confirm"><a href="{{ route('can-ho.xoa', ['id' => $can_ho-> canho_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a></button>
+                
             </div>
             
         </div>
