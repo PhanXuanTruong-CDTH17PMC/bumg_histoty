@@ -3,12 +3,11 @@
     Thêm mới cư dân
 @endsection
 @section('main-content')
+<div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
-                
-                    <h4 class="page-title">Thêm mới cư dân</h4>
-                
+            <div class="col-12">
+                    <h2>Thêm mới cư dân</h2>
             </div>
         </div>
     </div>
@@ -83,7 +82,7 @@
                     
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/cu-dan" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

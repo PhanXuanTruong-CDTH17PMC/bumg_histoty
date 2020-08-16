@@ -40,11 +40,11 @@
 @endsection
 @section('main-content')
 <!-- start page title -->
-<div class="row">
+<div class="row container">
     <div class="col-12">
-        <div class="page-title-box">
-            <h4 class="page-title">Nhân viên</h4>
-            <a href="/danh-sach-nhan-vien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
+        <div >
+            <h2 class="page-title">Nhân viên</h2>
+            <a href="{{ Route('danh-sach-nhan-vien.them-nhan-vien') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="/danh-sach-bo-phan   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý bộ phận</a>
 			<a href="/loai-account   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại tài khoản</a><br>
             <!-- @if (isset($quanTriViens))
@@ -60,7 +60,7 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
+                        <tr style="background-color: #6c757d; color:white">
                             <th>ID</th>
                             <th>Họ tên</th>
                             <th>CMND</th>
@@ -68,10 +68,11 @@
                             <th>Email</th>
                             <th>Ngày sinh</th>
                             <th>Tên đăng nhập</th>
-                            <!-- <th>Mật khẩu</th> -->
                             <th>Bộ phận</th>
                             <th>Loại tài khoản</th>
-                            <th>     </th>
+                            <th style="width:15
+                            0px"></th>
+                            
                         </tr>
                         @if (count($nhanvien )>1)
                             @foreach ($nhanvien as $nhan_vien )
@@ -88,7 +89,7 @@
                                         <th>{{$nhan_vien-> loai_account}}</th>
                                         <th>
                                             <div>
-                                            <a href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" >Edit</a>
+                                            <a href="{{Route('danh-sach-nhan-vien.sua-nhan-vien',['id'=>$nhan_vien->id_nhan_vien])}}" class="btn btn-info" >Edit</a>
                                             {!!Form::open(['action'=> ['NhanVienController@destroy',$nhan_vien->id_nhan_vien],'method' =>'POST','class'=>'pull-right'])!!}
                                             {{Form::hidden('_method','DELETE')}}
                                             {{Form::submit('Delete',['class'=>'btn btn-danger'])}}

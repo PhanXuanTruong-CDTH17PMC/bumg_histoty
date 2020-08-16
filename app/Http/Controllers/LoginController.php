@@ -11,6 +11,7 @@ use App\TinTuc;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
+
 class LoginController extends Controller
 {
 	function index (){

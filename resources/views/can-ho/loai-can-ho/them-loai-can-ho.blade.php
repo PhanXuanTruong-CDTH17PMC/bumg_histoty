@@ -3,12 +3,11 @@
     Thêm mới loại căn hộ
 @endsection
 @section('main-content')
+<div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
-                
-                    <h4 class="page-title">Thêm loại căn hộ</h4>
-                
+            <div class="page-title-box col-12">
+                    <h2>Thêm loại căn hộ</h2>
             </div>
         </div>
     </div>
@@ -28,7 +27,7 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/loai-can-ho" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
 
 

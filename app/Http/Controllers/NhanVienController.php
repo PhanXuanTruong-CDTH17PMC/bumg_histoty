@@ -8,6 +8,7 @@ use App\NhanVien;
 use App\LoaiAccount;
 use Hash;
 use DB;
+use Auth;
 
 class NhanVienController extends Controller
 {
@@ -139,6 +140,10 @@ class NhanVienController extends Controller
      */
     public function destroy($id)
     {
+        if((Auth::guard('nhanvien')->user()->id)==$id){
+            return redirect('danh-sach-nhan-vien')->with('Error','Can`t Delete');
+        }
+        else
         $nhanvien = NhanVien::find($id);
         $nhanvien->delete($id);
         return redirect('danh-sach-nhan-vien')->with('success','Delete success');

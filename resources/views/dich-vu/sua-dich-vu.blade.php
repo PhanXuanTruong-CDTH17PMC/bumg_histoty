@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    Thêm mới dịch vụ
+    Sửa dịch vụ
 @endsection
 @section('main-content')
     <div class="row">
@@ -65,8 +65,9 @@
                     <div class="form-group">
                         {{Form::Text('phi_dv',$dichvu->phi_dv,['class'=> 'form-control','placeholder'=>'Nhập chi phí dịch vụ'])}}
                     </div> 
+                    <div class="form-group">
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/dich-vu" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
                     </div>         
             </div>

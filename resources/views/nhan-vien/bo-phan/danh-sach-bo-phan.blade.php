@@ -40,11 +40,12 @@
 @endsection
 @section('main-content')
 <!-- start page title -->
+<div class="container">
 <div class="row">
     <div class="col-12">
-        <div class="page-title-box">
-            <h4 class="page-title">Nhân viên</h4>
-            <a href="/danh-sach-bo-phan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
+        <div >
+            <h2 class="page-title">Danh sách bộ phận</h2>
+            <a href="{{Route('bo-phan.them-bo-phan')}}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             
             <!-- @if (isset($quanTriViens))
                 <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
@@ -57,9 +58,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <table  class="table dt-responsive nowrap">
+                <table  class="table dt-responsive nowrap" >
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
+                        <tr style="background-color: #6c757d;; color:white;">
                             <th>ID</th>
                             <th>Bộ phận</th>
                             <th></th>
@@ -72,7 +73,7 @@
                                         <th>{{$bo_phan-> ten_bo_phan}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/danh-sach-bo-phan/{{$bo_phan->id}}/edit" class="btn btn-info" >Edit</a>
+                                            <a href="{{Route('bo-phan.sua-bo-phan',['id'=>$bo_phan->id])}}" class="btn btn-info" >Edit</a>
                                             {!!Form::open(['action'=> ['BoPhanController@destroy',$bo_phan->id],'method' =>'POST','class'=>'pull-right'])!!}
                                             {{Form::hidden('_method','DELETE')}}
                                             {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
@@ -90,5 +91,6 @@
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
+</div>
 </div>
 @endsection

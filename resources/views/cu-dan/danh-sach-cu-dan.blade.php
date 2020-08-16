@@ -41,8 +41,8 @@
 <!-- start page title -->
 <div class="row">
     <div class="col-12">
-        <div class="page-title-box">
-            <h4 class="page-title">Cư dân</h4>
+        <div class="col-12">
+        <h2 class="page-title">Danh sách cư dân</h2>
             <a href="/cu-dan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="quan-he   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý mối quan hệ</a><br>
             <!-- @if (isset($quanTriViens))
@@ -69,7 +69,7 @@
                             <th>Quan hệ</th>
                             <th>     </th>
                         </tr>
-                        @if (count($cudan )>1)
+                        @if (count($cudan   )>0)
                             @foreach ($cudan as $cu_dan )
                                     <tr>
                                         <th>{{$cu_dan-> cu_dan_id}}</th>

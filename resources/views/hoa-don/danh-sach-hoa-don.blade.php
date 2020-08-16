@@ -55,34 +55,46 @@
                             <th> Căn Hộ</th>
 							<th>Tổng tiền</th>   
 							<th>Hạn Thanh tán</th>    
-							<th> Tinh trạng</th>    
-                            <th>     </th>                       
+							<th> Tình trạng</th>    
+                            <th style="width:300px">     </th>                       
                        </tr>
                         @if(count($hoadon)>0)   
                             @foreach($hoadon as $hoa_don)
-                                <tr>
+                                <tr> 
                                     <th>{{$hoa_don->id}}</th>
-                                    <th>{{$hoa_don->canhoname}} <a href="/hoa-don/{{$hoa_don->id}}">Xem chi tiết</a></th>
+                                    <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
                                     <th>{{$hoa_don->tong_tien}}</th>
                                     <th>{{$hoa_don->created_at}}</th>
                                     @if($hoa_don->tinh_trang_tt == 1) 
                                         <th> Đã thanh toán</th>
                                         <th style="width: 200px">
                                         <div>
+                                            <p>
                                             {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right' ])!!}
                                             {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Update',['class'=>'btn btn-info','disabled'])}}
+                                            {{Form::submit('Đã thanh toán',['class'=>'btn btn-info','disabled'])}}
                                             {!!Form::close()!!}
+                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right' ])!!}
+                                            {{Form::hidden('_method','PUT')}}
+                                            {{Form::submit('Chưa thanh toán',['class'=>'btn btn-danger'])}}
+                                            {!!Form::close()!!}
+                                            </p>
                                         </div>
                                     </th>
                                     @else
                                         <th> Chưa thanh toán</th>
                                         <th style="width: 200px">
                                         <div>
+                                        <p>
                                             {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
                                             {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Update',['class'=>'btn btn-info'])}}
+                                            {{Form::submit('Đã thanh toán',['class'=>'btn btn-info'])}}
                                             {!!Form::close()!!}
+                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
+                                            {{Form::hidden('_method','PUT')}}
+                                            {{Form::submit('Chưa thanh toán',['class'=>'btn btn-danger','disabled'])}}
+                                            {!!Form::close()!!}
+                                            </p>
                                         </div>
                                     </th>
                                     @endif

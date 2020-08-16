@@ -43,7 +43,7 @@
     <div class="col-12">
         <div class="page-title-box">
             <h4 class="page-title">Tin tức</h4>
-            <a href="{{ Route('them-tin-tuc') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
+            <a href="{{ Route('tin-tuc.them-tin-tuc') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             
             <!-- @if (isset($quanTriViens))
                 <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
@@ -72,7 +72,7 @@
                                         <th>{{$tin_tuc-> created_at}}</th> 
                                     `   <th style="width: 200px">
                                             <div>
-                                            <a href="danh-sach-tin-tuc/{{$tin_tuc-> id}}/edit" class="btn btn-info" >Edit</a>
+                                            <a href="{{Route('tin-tuc.sua-tin-tuc',['id'=>$tin_tuc-> id]) }}" class="btn btn-info" >Edit</a>
                                             {!!Form::open(['action'=> ['TinTucController@destroy',$tin_tuc-> id],'method' =>'POST','class'=>'pull-right',])!!}
                                             {{Form::hidden('_method','DELETE')}}
                                             {{Form::submit('Delete',['class'=>'btn btn-danger btn-delete', 'id' =>'confirm-delete'])}}

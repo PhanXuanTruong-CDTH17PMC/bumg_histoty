@@ -60,7 +60,7 @@
                         <tr style="background-color: #6c757d;; color:white">
                             <th>ID</th>
                             <th>Loại phương tiện</th>
-                            <th>     </th>
+                            <th></th>
                         </tr>
 
                         @if (count($loaiphuongtien )>0)

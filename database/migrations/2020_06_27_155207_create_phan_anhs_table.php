@@ -15,6 +15,7 @@ class CreatePhanAnhsTable extends Migration
     {
         Schema::create('phananh', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tieu_de_pa');
             $table->string('noi_dung_pa');
             $table->Date('ngay_tao');
             $table->Boolean('tinh_trang_xl');

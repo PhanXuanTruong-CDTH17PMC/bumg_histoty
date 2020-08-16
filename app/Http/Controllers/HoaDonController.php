@@ -33,11 +33,12 @@ class HoaDonController extends Controller
      */
     public function create()
     {
+        $phuongtien=DB::select('SELECT dichvu.id as id_pt from dichvu, loaiphuongtien where dichvu.id=loaiphuongtien.dich_vu_id LIMIT 1' );
         $canho = CanHo::all();
         $dichvu = DichVu::all();
         $tongtien = DB::select('SELECT SUM(thanh_tien) as tongtien from chitiethoadon,hoadon where chitiethoadon.hoa_don_id=hoadon.id');
-        $thanhtien = DB::select('SELECT dichvu.phi_dv*so_luong as thanhtien from chitiethoadon,dichvu where chitiethoadon.dich_vu_id=dichvu.id' );
-        return view('hoa-don.them-moi-hoa-don',compact('canho','dichvu','tongtien','thanhtien'));
+        $thanhtien = DB::select('SELECT dichvu.phi_dv*chitiethoadon.so_luong as thanhtien from chitiethoadon,dichvu where chitiethoadon.dich_vu_id=dichvu.id' );
+        return view('hoa-don.them-moi-hoa-don',compact('canho','dichvu','tongtien','thanhtien','phuongtien'));
     }
 
     /**
@@ -56,13 +57,21 @@ class HoaDonController extends Controller
             // // 'tong_tien'=>'required', 
             // 'thanh_tien'=>'required', 
         ]);
-
+        // $sophuongtien=DB::select('SELECT dichvu.id as id_pt from dichvu, loaiphuongtien where dichvu.id=loaiphuongtien.dich_vu_id LIMIT 1' );
+        // $soxe=DB::select('SELECT sum(loaiphuongtien.gia_tien) From phuongtien ,loaiphuongtien,dichvu where loaiphuongtien.dich_vu_id=dichvu.id and phuongtien.can_ho_id= '.$request->input('can_ho'));
+        // return $soxe;
         $tt = 0;
-        for($i=0; $i<count($request->input('dich_vu'));$i++){
-            $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
-            $tt += $request->input('so_luong.'.$i.'.soluong')  * $dichvu->phi_dv; 
-        }
+        for($i=1; $i<=count($request->input('dich_vu'));$i++){
             
+            $dichvu2 = DichVu::find($request->input('dichvu.'.$i.'.id'));
+            // if($dichvu2->id==$sophuongtien){
+
+            // }
+            $soluong=($request->input('so_luong.'.$i.'.soluong')); 
+            $tt+= $request->input('so_luong.'.$i.'.soluong') *$dichvu2->phi_dv; 
+
+        }
+
          $hoadon = new HoaDon;
          $hoadon->can_ho_id =$request->input('can_ho');
          $hoadon->tinh_trang_tt=$request->input('tinh_trang_tt');
@@ -71,15 +80,16 @@ class HoaDonController extends Controller
          $hoadon->save();
         
         
-        for($i=0; $i<count($request->input('dich_vu'));$i++){
+        for($i=1; $i<=count($request->input('dich_vu'));$i++){
             $cthoadon = new ChiTietHoaDon;
             $hoadon_id=(DB::table('hoadon')->max('id'));
             $cthoadon->hoa_don_id=$hoadon_id;
             $cthoadon->can_ho_id =$request ->input('can_ho');
-            $cthoadon->dich_vu_id = ($request->input('dich_vu.'.$i.'.id'));
-            $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
+            $cthoadon->dich_vu_id = ($request->input('dichvu.'.$i.'.id'));
+            $dichvu =DB::select('SELECT phi_dv from dichvu where id='.$request->input('dichvu.'.$i.'.id'));  
+            $dichvu2 = DichVu::find($request->input('dichvu.'.$i.'.id'));
             $cthoadon->so_luong = $request->input('so_luong.'.$i.'.soluong');   
-            $cthoadon->thanh_tien = $cthoadon->so_luong * $dichvu->phi_dv; 
+            $cthoadon->thanh_tien = $request->input('so_luong.'.$i.'.soluong') *$dichvu2->phi_dv; 
             $cthoadon->save();
          }
          

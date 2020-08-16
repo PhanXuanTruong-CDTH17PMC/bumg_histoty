@@ -2,13 +2,11 @@
 @section('title')
     Thông báo
 @endsection
-@section('css')
-
+@section('css')C
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -25,7 +23,7 @@
 <div class="row main">
   <div class="column left">
     <h2>Thông báo</h2></br>
-    @if (count($thongbao)>0)
+    @if (count($thongbao)>= 0)
         @foreach ($thongbao as $thong_bao )
         <h4 ><a href="/thong-bao/{{$thong_bao->id}}">{{$thong_bao->tieu_de_tb}}</a></h4>       
 
@@ -33,12 +31,14 @@
         @endforeach     
     @endif
   </div>
+  @if($thongbao2)
   <div class="column right" >
     <h2 style="text-align:center">{{$thongbao2->tieu_de_tb}}</h2>
     </br>
         <div class="container" >{!!(substr($thongbao2->noi_dung_tb,0, )) !!}</div>
     </br>
   </div>
+  @endif        
 </div>
 
 

@@ -5,9 +5,9 @@
 @section('main-content')
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
+            <div >
                 
-                    <h4 class="page-title">Sửa tin tức</h4>
+                    <h2 class="page-title">Sửa tin tức</h2>
                 
             </div>
         </div>
@@ -44,7 +44,7 @@
                         @endif
                     </div>
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/danh-sach-tin-tuc" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

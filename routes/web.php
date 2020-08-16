@@ -26,37 +26,44 @@ Route::get('user-logout','LoginController@userlogout')->name('user-logout');
 Route::get('/admin-info',function(){
     return view('quan-tri-vien.trang-ca-nhan');
 });
-/*Route::get('/danh-sach-nhan-vien',function(){
-    return view('nhan-vien.danh-sach-nhan-vien');
-});*/
+Route::prefix('danh-sach-nhan-vien')->middleware('checkNhanVienlogin::class')->group(function(){
+    Route::name('danh-sach-nhan-vien.')->group(function () {
+    Route::get('/','NhanVienController@index')->name('danh-sach-nhan-vien');
+    Route::get('them-moi','NhanVienController@create')->name('them-nhan-vien');
+    Route::post('them-moi','NhanVienController@store')->name('xu-ly-them-nhan-vien');
+    Route::get('/sua/{id}','NhanVienController@edit')->name('sua-nhan-vien');
+    Route::post('/sua/{id}','NhanVienController@update')->name('xu-ly-sua-nhan-vien');
+    Route::delete('xoa/{id}','NhanVienController@destroy')->name('xoa-nhan-vien');
+    });
+});
 
-//Quản lý thông tin nhân viên
-Route::resource('danh-sach-nhan-vien','NhanVienController')->middleware('checkNhanVienlogin::class');
-Route::resource('danh-sach-bo-phan','BoPhanController')->middleware('checkNhanVienlogin::class');
+// Route::prefix('tin-tuc')->group(function(){
+//     Route::get('/','TinTucController@index')->name('danh-sach-tin-tuc')->middleware('checkNhanVienlogin::class');
+//     Route::get('them','TinTucController@create')->name('them-tin-tuc')->middleware('checkNhanVienlogin::class');
+//     Route::post('them','TinTucController@store')->name('xu-ly-them-tin-tuc')->middleware('checkNhanVienlogin::class');
+// })
 
-// Route::resource('danh-sach-tin-tuc','TinTucController');
-// Route::resource('danh-sach-thong-bao','ThongBaoController');
-//Quản lý thông tin căn hộ
-/*Route::get('/can-ho', function () {
-    return view('can-ho.danh-sach-can-ho');
-});*/
+
+Route::prefix('danh-sach-bo-phan')->middleware('checkNhanVienlogin::class')->group(function(){
+    Route::name('bo-phan.')->group(function () {
+    Route::get('/','BoPhanController@index')->name('danh-sach-bo-phan');
+    Route::get('/them','BoPhanController@create')->name('them-bo-phan');
+    Route::post('/them','BoPhanController@store')->name('xu-ly-them-bo-phan');
+    Route::get('/sua/{id}','BoPhanController@edit')->name('sua-bo-phan');
+    Route::post('/sua/{id}','BoPhanController@update')->name('xu-ly-sua-bo-phan');
+    Route::delete('/xoa/{id}','BoPhanController@destroy')->name('	');
+    });
+});
+
+
 Route::resource('can-ho','CanHoController')->middleware('checkNhanVienlogin::class');
 
-
-
+Route::resource('danh-sach-phan-anh','PhanAnhController')->middleware('checkNhanVienlogin::class');
 
 
 Route::resource('loai-account', 'LoaiAccountController')->middleware('checkNhanVienlogin::class');
-/*Route::get('/bo-phan', function () {
-    return view('nhan-vien.bo-phan.danh-sach-bo-phan');
-});*/
 
 Route::resource('loai-can-ho', 'LoaiCanHoController')->middleware('checkNhanVienlogin::class');
-
-/*Route::get('/loai-account', function () {
-    return view('nhan-vien.loai-account.danh-sach-loai-account');
-});*/
-
 Route::resource('quan-he', 'MoiQuanHeController')->middleware('checkNhanVienlogin::class');
 
 Route::resource('cu-dan', 'CuDanController')->middleware('checkNhanVienlogin::class');
@@ -69,16 +76,21 @@ Route::resource('phuong-tien', 'PhuongTienController')->middleware('checkNhanVie
 
 Route::resource('danh-sach-thong-bao','ThongBaoController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('danh-sach-tin-tuc','TinTucController')->middleware('checkNhanVienlogin::class');
-
-
 
 
 Route::resource('dich-vu', 'DichVuController')->middleware('checkNhanVienlogin::class');
-Route::prefix('tin-tuc')->group(function(){
-    Route::get('/','TinTucController@index')->name('danh-sach-tin-tuc')->middleware('checkNhanVienlogin::class');
-    Route::get('them','TinTucController@create')->name('them-tin-tuc')->middleware('checkNhanVienlogin::class');
-    Route::post('them','TinTucController@store')->name('xu-ly-them-tin-tuc')->middleware('checkNhanVienlogin::class');
+
+
+
+Route::prefix('tin-tuc')->middleware('checkNhanVienlogin::class')->group(function(){
+    Route::name('tin-tuc.')->group(function () {
+    Route::get('/','TinTucController@index')->name('danh-sach-tin-tuc');
+    Route::get('/them','TinTucController@create')->name('them-tin-tuc');
+    Route::post('/them','TinTucController@store')->name('xu-ly-them-tin-tuc');
+    Route::get('/sua/{id}','TinTucController@edit')->name('sua-tin-tuc');
+    Route::post('/sua/{id}','TinTucController@update')->name('xu-ly-sua-tin-tuc');
+    Route::delete('/xoa/{id}','TinTucController@destroy')->name('xoa-tin-tuc');
+    });
 });
 
 

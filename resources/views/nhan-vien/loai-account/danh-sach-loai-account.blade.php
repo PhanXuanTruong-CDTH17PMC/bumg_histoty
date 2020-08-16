@@ -39,20 +39,13 @@
     
 @endsection
 @section('main-content')
-<!-- start page title -->
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box">
-            <h4 class="page-title">Loại tài khoản</h4>
+<div class="container">
+<div class="row col-12">
+        <div>
+            <h2 class="page-title">Loại tài khoản</h2>
             <a href="/loai-account/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
-</div>
-<!-- end page title --> 
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -87,5 +80,6 @@
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
+</div>
 </div>
 @endsection

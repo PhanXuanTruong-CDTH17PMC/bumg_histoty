@@ -17,18 +17,20 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- <link href="{{ asset('assets/css/light-bootstrap-dashboard.css?v=2.0.0 ') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/app.css" rel="stylesheet') }}" /> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 </head>
 <header >
     @include('partials.topnav')
 </header>
 <body class="authentication-bg authentication-bg-pattern">
     <div class="wrapper">
+    </br>
+    @include('messages.messages')
         @yield('main-content')
+        
     </div>
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 </body>
 </html>

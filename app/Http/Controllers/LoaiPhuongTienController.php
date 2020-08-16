@@ -46,6 +46,7 @@ class LoaiPhuongTienController extends Controller
     {
     //     $this->validate($request,[
     //     'ten_loai_phuong_tien'=>'required',
+    //     'gia_tien'=>'require',
     //     'dichvu'=>'required'
     // ]);
 

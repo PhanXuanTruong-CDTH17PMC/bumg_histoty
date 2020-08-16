@@ -1,13 +1,14 @@
 @extends('layout')
 @section('title')
-    Sửa loại tài khoản
+    Sửa thông tin loại tài khoản
 @endsection
 @section('main-content')
+<div class="container">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa loại tài khoản</h4>
+                    <h2>Sửa loại tài khoản</h2>
                 
             </div>
         </div>
@@ -25,9 +26,10 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/loai-account" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>
     </div>
+</div>
 @endsection
