@@ -59,8 +59,8 @@
             <div class="form-group">
                 <select class="form-control"  name="tinh_trang_searrch"  focus>
                     <option value="" disabled selected>Chọn tình trạng</option>  
-                    <option name="searrch_tt" value="0">Chưa thanh toán</option>
-                    <option name="searrch_tt" value="1">Đã thanh toán</option>
+                    <option name="searrch_tt" value="1">Chưa thanh toán</option>
+                    <option name="searrch_tt" value="2">Đã thanh toán</option>
                 </select>
             </div> 
         </div>
@@ -68,7 +68,7 @@
     <div class="col-2">     
         <div class="form group">
             <div class="form group">
-            <button type = 'submit' style="margin-bottom:10px;" class="btn btn-primary ">Tìm Kiếm</button>
+                <button type = 'submit' style="margin-bottom:10px;" class="btn btn-primary ">Tìm Kiếm</button>
                 <a href="/hoa-don/" style="margin-bottom:10px;" class="btn btn-info">Quay lại</a>
                 {{ csrf_field() }}
             </div>
@@ -82,36 +82,38 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th> Căn Hộ</th>
-							<th>Tổng tiền</th>   
-							<th>Hạn Thanh tán</th>    
-							<th> Tinh trạng</th>    
-                            <th>     </th>                       
-                       </tr>
-                        @if(count($hoadon)>0)   
-                            @foreach($hoadon as $hoa_don)
-                                <tr>
-                                    <th>{{$hoa_don->id}}</th>
-                                    <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
-                                    <th>{{$hoa_don->tong_tien}}</th>
-                                    <th>{{$hoa_don->created_at}}</th>
-                                    @if($hoa_don->tinh_trang_tt == 1) 
-                                        <th> Đã thanh toán</th>
-                                    @else
-                                        <th> Chưa thanh toán</th>
-                                    @endif
-                                    <th style="width: 200px">
-                                        <div>
-                                            {!!Form::open(['action'=> ['HoaDonController@update',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Update',['class'=>'btn btn-info'])}}
-                                            {!!Form::close()!!}
-                                        </div>
-                                    </th>
-                                </tr>
-                            @endforeach
+                        @if(count($hoadon) > 0) 
+                            <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th> Căn Hộ</th>
+                                <th>Tổng tiền</th>   
+                                <th>Hạn Thanh tán</th>    
+                                <th> Tinh trạng</th>    
+                                <th>     </th>                       
+                        </tr>  
+                        @foreach($hoadon as $hoa_don)
+                            <tr>
+                                <th>{{$hoa_don->id}}</th>
+                                <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
+                                <th>{{$hoa_don->tong_tien}}</th>
+                                <th>{{$hoa_don->created_at}}</th>
+                                @if($hoa_don->tinh_trang_tt == 1) 
+                                    <th> Đã thanh toán</th>
+                                @else
+                                    <th> Chưa thanh toán</th>
+                                @endif
+                                <th style="width: 200px">
+                                    <div>
+                                        {!!Form::open(['action'=> ['HoaDonController@update',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
+                                        {{Form::hidden('_method','PUT')}}
+                                        {{Form::submit('Update',['class'=>'btn btn-info'])}}
+                                        {!!Form::close()!!}
+                                    </div>
+                                </th>
+                            </tr>
+                        @endforeach
+                        @else
+                               <h1 style = "text-align: center; color:red"> <i>There is no data.</i></h1> 
                         @endif
                     </thead>
                     

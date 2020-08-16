@@ -50,7 +50,7 @@
     <script>
 $(document).ready(function(){
   $("#btnAddService").click(function(){
-    var rowTemplate = '<div class="row"><div class="form-group"><select class="form-control"  id="dichvu" name="dich_vu[][id]" required focus><option value="" disabled selected>Chọn dịch vụ</option>@foreach($dichvu as $dich_vu)<option name="dichvu[1][id]" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>@endforeach</select></div><div class="form-group">{{Form::Text("so_luong[][soluong]",'',["class"=> "form-control","placeholder"=>"Nhập số lượng"])}}</div></div>'
+    var rowTemplate = '<div class="row"><div class="form-group"><select class="form-control"  id="dichvu" name="dich_vu[][id]" required focus><option value="" disabled selected>Chọn dịch vụ</option>@foreach($dichvu as $dich_vu)<option name="dichvu[1][id]" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>@endforeach</select></div><div class="form-group"><input typr ="text"name = "so_luong[][soluong]" class = "form-control" placeholder ="Nhập số lượng"required focus></div></div>'
     $("#ser").append(rowTemplate);
   });
 });

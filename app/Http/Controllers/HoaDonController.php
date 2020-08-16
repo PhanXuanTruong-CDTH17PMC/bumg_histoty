@@ -106,20 +106,23 @@ class HoaDonController extends Controller
     {
         $canho=CanHo::all();
         $ch = $request->input('canho_search'); 
-        if(!empty($ch)){
+        $tt = $request->input('tinh_trang_searrch');
+        // dd($tt);
+        if(!empty($ch)) {
             $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
         }
-        else {
-            $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+        else if(!empty($tt) ) {
+            if($tt == 1){
+                 
+            $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 0' );
+            }
+            else{ 
+                $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1');
+            }
         }
-        // dd($request->input('searrch_tt'));
-        // if($request->input('searrch_tt') == 0) {
-        //     $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1' );
-        // }
-        // if($request->input('searrch_tt') == 1) {
-        //     $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt =0');
-        // }
-    
+        else {
+            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+        }
         return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 
@@ -145,7 +148,7 @@ class HoaDonController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $hoadon = HoaDon::find($id);
+            $hoadon = HoaDon::find($id);
         if( $hoadon->tinh_trang_tt == 1) {
             $hoadon->tinh_trang_tt = 0;
         }
