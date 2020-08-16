@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\BoPhan;
 use App\NhanVien;
 use App\LoaiAccount;
+use Auth;
 use Hash;
 use DB;
 
@@ -19,7 +20,8 @@ class NhanVienController extends Controller
     
     public function index() {
          $nhanvien = DB::select('SELECT nhanvien.id as id_nhan_vien,`ho_ten_nv`,`CMND`,`email`,`SDT`,`ngay_sinh`,`username`,`password`,loaiaccount.ten_loai_account as loai_account,bophan.ten_bo_phan as "tenbophan" FROM `nhanvien`,`bophan`,loaiaccount WHERE nhanvien.bo_phan_id=bophan.id and nhanvien.loai_account_id=loaiaccount.id and nhanvien.deleted_at is null ORDER BY id_nhan_vien');
-        return view('nhan-vien.danh-sach-nhan-vien')-> with('nhanvien',$nhanvien); 
+        $auth = Auth::guard('nhanvien')->user()->id;
+        return view('nhan-vien.danh-sach-nhan-vien', compact('nhanvien','auth')); 
     }
 
     /**
@@ -91,9 +93,6 @@ class NhanVienController extends Controller
         $id = $nhanvien->loai_account_id;
         $loaitaikhoan = LoaiAccount::all();
         $bophan= BoPhan::all();
-        // $loai_tk_edit = LoaiAccount::select(['ten_loai_account'])->where([
-        //     $id =>'loaiaccount.id'
-        // ])->first();
         
         return view('nhan-vien.sua-nhan-vien',compact('bophan','loaitaikhoan','nhanvien'    ));
     }
@@ -140,10 +139,9 @@ class NhanVienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {    
         $nhanvien = NhanVien::find($id);
         $nhanvien->delete();
         return redirect('danh-sach-nhan-vien')->with('success','Delete success');
-
     }
 }

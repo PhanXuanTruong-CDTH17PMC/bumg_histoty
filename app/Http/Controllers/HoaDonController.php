@@ -84,13 +84,12 @@ class HoaDonController extends Controller
         $ch_mail = DB::select('SELECT cudan.email from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
         $chuho = DB::select('SELECT cudan.ho_ten_cd from canho, cudan where cudan.id = canho.chu_ho_id and canho.id ='.$hoadon->can_ho_id);
         $ch_name = DB::select('SELECT canho.name from canho where canho.id ='.$hoadon->can_ho_id);
-       
+       $tong = number_format($hoadon->tong_tien, 0, ',', '.');
         $data = [
             'name'      => $chuho[0]->ho_ten_cd,
             'message'   =>   'Please pay your bill !',
             'mach'  => $ch_name[0]->name,
-            'tt' =>  $hoadon->tong_tien,
-
+            'tt' =>  $tong
         ];
         Mail::to($ch_mail)->send(new SendMail($data));
         return redirect('hoa-don')->with('success','Add success');
@@ -113,8 +112,7 @@ class HoaDonController extends Controller
         }   
         else if(!empty($tt) ) {
             if($tt == 1){
-                 
-            $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 0' );
+                $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 0' );
             }
             else{ 
                 $hoadon = DB::select('SELECT  hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id and hoadon.tinh_trang_tt = 1');
@@ -123,6 +121,16 @@ class HoaDonController extends Controller
         else {
             $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
         }
+
+        if(!empty($ch) && !empty($tt)) {
+            if ($tt == 1) {
+                 $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.tinh_trang_tt = 0 and hoadon.can_ho_id =  '.$ch );
+            }
+            else if ($tt == 2) {
+                $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.tinh_trang_tt = 1 and hoadon.can_ho_id =  '.$ch );
+            }
+        }   
+
         return view('hoa-don.danh-sach-hoa-don',  compact('hoadon','canho'));
     }
 

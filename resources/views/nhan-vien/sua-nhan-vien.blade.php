@@ -68,7 +68,6 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="loaitaikhoan" name="loaitaikhoan" required focus>
-                        <option value="" disabled selected></option>       
                         <option value="" >Chọn loại tài khoản</option>        
                         @foreach($loaitaikhoan as $loai_tk)
                         <option name="loaitk" value="{{$loai_tk->id}}">{{ $loai_tk->ten_loai_account }}</option>
