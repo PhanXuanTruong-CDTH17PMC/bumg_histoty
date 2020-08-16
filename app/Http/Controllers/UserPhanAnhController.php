@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\PhanAnh;
+use App\Events\HelloPusherEvent;
+use Carbon\Carbon;
 
 class UserPhanAnhController extends Controller
 {
@@ -38,16 +40,20 @@ class UserPhanAnhController extends Controller
     {
         $this->validate($request,[
             'noi_dung_pa'=>'required',
+            'tieu_de_pa'=>'required',
             
 
         ]);
 
         $phananh=new PhanAnh;
+        $phananh->tieu_de_pa= $request->tieu_de_pa;
         $phananh->nhan_vien_id=0;
+        $phananh->ngay_tao=Carbon::now();
         $phananh->tinh_trang_xl=0;
         $phananh->noi_dung_pa= $request->noi_dung_pa;
         $phananh->chu_ho_id=Auth::guard('canho')->user()->id;
         $phananh->save();
+        event(new HelloPusherEvent($request));
 
         return redirect('/thong-bao')->with('success','Add success');
     }

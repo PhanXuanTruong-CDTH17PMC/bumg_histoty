@@ -20,10 +20,7 @@ class LoaiCanHoSeeder extends Seeder
         ],
         [
             'ten_loai_can_ho'=> 'Căn góc',
-        ],
-        [
-            'ten_loai_can_ho'=> 'PẹnHouse',
-        ],
+        ]
       ]);
     }
 }

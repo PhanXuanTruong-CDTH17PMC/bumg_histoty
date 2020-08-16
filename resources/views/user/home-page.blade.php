@@ -65,10 +65,10 @@
                         <a href="#" class="thumbnail">
                           <img  class="img-fluid" style="height:150px;weight:150px;" src="{{asset('assets/images/'.$tin_tuc->anh_dai_dien) }}" alt="err">
                         </a>
-                        <h3 class="mb-0"><a href="/{{$tin_tuc->id}}"><u>Tin tức {{$tin_tuc->id}}</u></a></h3>
+                        <h3 class="mb-0"><a href="/home-page/{{$tin_tuc->id}}">Tin tức {{$tin_tuc->id}}</a></h3>
                         <div class="mb-3">
-                              <Label> <b>Title: </b>{{$tin_tuc->tieu_de}}</label>   <br/>    
-                              <label><b>Date: </b>{{date_format($tin_tuc->created_at, "h:i d/m/Y")}}</label>
+                              <a >Tạo vào</a> {{$tin_tuc->created_at}}
+                              <p>Nội dung: <html>{{$tin_tuc->tieu_de}}</html></p>
                         </div>
                       </div>
                   </div>

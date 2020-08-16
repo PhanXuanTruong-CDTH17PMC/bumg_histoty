@@ -46,6 +46,7 @@ class LoaiPhuongTienController extends Controller
     {
     //     $this->validate($request,[
     //     'ten_loai_phuong_tien'=>'required',
+    //     'gia_tien'=>'require',
     //     'dichvu'=>'required'
     // ]);
 
@@ -112,7 +113,7 @@ class LoaiPhuongTienController extends Controller
     public function destroy($id)
     {
         $loaiphuongtien=LoaiPhuongTien::find($id);
-        $loaiphuongtien->delete();
+        $loaiphuongtien->delete($id);
          return redirect('loai-phuong-tien')->with('success','Delete success');
     }
 }

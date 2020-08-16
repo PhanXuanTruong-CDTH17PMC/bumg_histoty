@@ -28,7 +28,7 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/loai-phuong-tien" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
 
 

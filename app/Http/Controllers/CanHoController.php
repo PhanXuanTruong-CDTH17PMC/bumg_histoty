@@ -101,15 +101,13 @@ class CanHoController extends Controller
             'tang'=>'required',
             'dientich'=>'required',
             'tencanho'=>'required',
-            'matkhau'=>'required',
             'loaicanho'=>'required',
             'chuho'=>'required'            
         ]);
         $canho = CanHo::find($id);
         $canho->Tang =$request ->input('tang');
         $canho->dien_tich =$request ->input('dientich');
-        $canho->name =  $request ->input('tencanho');
-        $canho->password =hash::make($request ->input('matkhau'));
+        $canho->name =$request ->input('tencanho');
         $canho->loai_can_ho_id =$request ->input('loaicanho');
         $canho->chu_ho_id =$request ->input('chuho');
         $canho->save();
@@ -126,7 +124,7 @@ class CanHoController extends Controller
     public function destroy($id)
     {
         $canho = CanHo::find($id);
-        $canho->delete();
+        $canho->delete($id);
         return redirect('can-ho')->with('success','Delete success');
     }
 }
