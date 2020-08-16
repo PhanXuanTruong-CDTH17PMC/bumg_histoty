@@ -17,6 +17,7 @@ class CreateLoaiPhuongTiensTable extends Migration
             $table->increments('id');
             $table->string('ten_loai_phuong_tien');
             $table->Integer('dich_vu_id');
+            $table->double('gia_tien');
             $table->softDeletes();
             $table->timestamps();
         });

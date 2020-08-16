@@ -8,6 +8,7 @@ use App\NhanVien;
 use App\LoaiAccount;
 use Hash;
 use DB;
+use Auth;
 
 class NhanVienController extends Controller
 {
@@ -95,7 +96,7 @@ class NhanVienController extends Controller
         //     $id =>'loaiaccount.id'
         // ])->first();
         
-        return view('nhan-vien.sua-nhan-vien',compact('bophan','loaitaikhoan','nhanvien'    ));
+        return view('nhan-vien.sua-nhan-vien',compact('bophan','loaitaikhoan','nhanvien'));
     }
 
     /**
@@ -114,7 +115,6 @@ class NhanVienController extends Controller
             'email'=>'required',
             'ngaysinh'=>'required',
             'username'=>'required',
-            'matkhau'=>'required',
             'loaitaikhoan'=>'required',
             'bophan'  =>'required'
         ]);
@@ -125,7 +125,6 @@ class NhanVienController extends Controller
         $nhanvien->email = $request->input('email');
         $nhanvien->ngay_sinh = $request->input('ngaysinh');
         $nhanvien->username = $request->input('username');
-        $nhanvien->password = hash::make($request->input('matkhau'));
         $nhanvien->loai_account_id = $request->input('loaitaikhoan');
         $nhanvien->bo_phan_id = $request->input('bophan');
         $nhanvien->save();
@@ -141,8 +140,12 @@ class NhanVienController extends Controller
      */
     public function destroy($id)
     {
+        if((Auth::guard('nhanvien')->user()->id)==$id){
+            return redirect('danh-sach-nhan-vien')->with('Error','Can`t Delete');
+        }
+        else
         $nhanvien = NhanVien::find($id);
-        $nhanvien->delete();
+        $nhanvien->delete($id);
         return redirect('danh-sach-nhan-vien')->with('success','Delete success');
 
     }

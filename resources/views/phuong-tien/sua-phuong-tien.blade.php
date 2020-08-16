@@ -43,9 +43,11 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="canho" name="khu_vuc" required focus>
-                        <option value="" disabled selected>Chọn khu vực</option>        
                         @foreach($khuvuc as $khu_vuc)
+                        @if(($phuongtien->khu_vuc_id)==($khu_vuc->id))
                         <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
+                        @else <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div> 
@@ -75,7 +77,7 @@
                     </div> 
                     </div>
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="/phuong-tien" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

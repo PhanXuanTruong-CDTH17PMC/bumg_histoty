@@ -34,7 +34,7 @@ class DichVuController extends Controller
         $this->validate($request,[
             'ten_dich_vu'=>'required',
             'don_vi'=>'required',
-            'phi_dv'=>'required'  
+            'phi_dv'=>'required',
         ]);
 
         $dichvu = new DichVu;

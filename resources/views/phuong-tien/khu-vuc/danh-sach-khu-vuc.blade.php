@@ -3,10 +3,12 @@
     Danh sách khu vực 
 @endsection
 @section('css')
+
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
+  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -43,6 +45,8 @@
         <div class="page-title-box">
             <h4 class="page-title">Khu vực để xe</h4>
             <a href="/khu-vuc/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
+            
+            
         </div>
     </div>
 </div>
@@ -66,14 +70,20 @@
                                         <th>{{$khu_vuc-> ten_khu_vuc}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button"<a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            <a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" >Edit</a>
+                                            {!!Form::open(['action'=> ['KhuVucController@destroy',$khu_vuc-> id],'method' =>'POST','class'=>'pull-right'])!!}
+                                            {{Form::hidden('_method','DELETE')}}
+                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                            {!!Form::close()!!}
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
+                        @else
                         @endif
+
                     </thead>
+                    <!--  -->
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
