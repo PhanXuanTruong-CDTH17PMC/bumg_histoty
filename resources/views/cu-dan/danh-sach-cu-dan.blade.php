@@ -3,7 +3,6 @@
     Danh sách cư dân
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
@@ -52,6 +51,31 @@
     </div>
 </div>
 <!-- end page title --> 
+<form action = "{{ route('cu-dan.search') }}" method = 'POST'>
+<div class="row">
+    <div class="col-2">
+        <div class="form-group">
+            <div class="form-group">
+                <select class="form-control"  id = "canho_search"name="canho_search"  focus>
+                    <option value="" disabled selected>Chọn căn hộ</option>        
+                    @foreach($canho as $can_ho)
+                    <option name="search_ch" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                    @endforeach
+                </select>
+            </div> 
+        </div>
+    </div>
+    <div class="col-2">     
+        <div class="form group">
+            <div class="form group">
+                <button type = 'submit' style="margin-bottom:10px;" class="btn btn-primary ">Tìm Kiếm</button>
+                <a href="/hoa-don/" style="margin-bottom:10px;" class="btn btn-info">Quay lại</a>
+                {{ csrf_field() }}
+            </div>
+        </div>
+    </div>
+ </div>
+ </form>
 <div class="row">
     <div class="col-12">
         <div class="card">

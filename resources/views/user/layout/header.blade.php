@@ -1,14 +1,22 @@
- <div >
-    <div class="text-center" id="nav">
-        <span class="logo-lg"style="font-size:40px; padding-top:20px;margin-top:20px">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="90">
-            
-        </span>
-        <label style="font-size:35px;font-family:Georgia "> PT Home's </label>
-    </div>
-    <div class="tab">
+<header>
+<div class="tab">
+<div class="logo-box topnav-menu  mb-0">
+            <a  class="logo text-center">
+                <span class="logo-lg">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" height="72">
+                </span>
+                <span class="logo-sm">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" height="52">
+                </span>
+            </a>
+        </div>
+        <div class="logo-box topnav-menu  mb-0">
+            <a  class="btn text-center">
+                <label style="font-size:30px; color:white"><b> PT Home's</b> </label>
+            </a>
+        </div>
         <div>
-            <a class="button" href="/thong-bao">Thông báo</a>
+            <a class="button " href="/thong-bao">Thông báo</a>
         </div>
         <div>
             <a class="button" href="/user-hoa-don">Hóa đơn</a>
@@ -26,6 +34,42 @@
             <a class=" name" style="" href="#">Xin chào {{Auth('canho')->user()->name}}</a>
         </div>
     </div>
-</div>
-<link href="{{ asset('assets/css/user-style.css') }}" rel="stylesheet') }}" />
-
+</div>  
+<style>
+    .tab{
+        background-color:#1E01FF;
+        overflow: hidden;
+        border: none;
+    }
+    .logo-sm{
+        marging-left:15px;
+    }
+    .tab .button {
+        float: left;
+        outline: none;
+        padding: 15px 15px;
+        pading: center;
+        color: white;
+        font-size:20px;
+    }
+    .tab .name {
+    float: right;
+    outline: none;
+    padding: 15px 16px;
+    transition: 0.5s;
+    color: white;
+    font-size:18px;
+    }
+    .tab .button2 {
+    float: right;
+    border: 3px solid white;
+    border-radius:50px;
+    color: white;
+    }
+    .tab .button:hover {
+    background-color: white;
+    color:#1E90FF;
+    height:62.5px;
+    }
+</style>
+</header>

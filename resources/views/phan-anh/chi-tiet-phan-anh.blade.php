@@ -36,25 +36,29 @@
 
     <!-- Sweet Alert2 QuanTriVien init js-->
     <script src="{{ asset('assets/js/pages/init/sweet-alerts-quan-tri-vien.init.js') }}"></script>
-    
+
 @endsection
 @section('main-content')
-<!-- start page title -->
+<div class="container">
 <div class="row">
-
-</div>
-<div class="row card-body">
-@if(count($chitietphananh)==1)
-    @foreach($chitietphananh as $chitiet)
-    <div class="col-12 card card-body">
-        <h2>{{$chitiet->tieu_de_pa}}</h2>
-        </br>
-        <h4><p>
-        {{$chitiet->noi_dung_pa}}
-        </p></h4></br>
-        <p>Tạo vào {{$chitiet->created_at}}</p>
-    </div>
-    @endforeach
-@endif
-</div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-body">
+              <form>
+                <fieldset>
+                <legend>Chi Tiết Phản Ánh</legend>
+                @if(count($chitietphananh)==1)
+                    @foreach($chitietphananh as $chitiet)   
+                        <div class="form-group ">Tiêu đề: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" class = 'form-control' disabled value="{{$chitiet->tieu_de_pa}}"></div>
+                        <div class="form-group">Nội dung: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" class = 'form-control' disabled value="{{$chitiet->noi_dung_pa}}"></div>
+                        <divclass="form-group">Ngày: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px"class = 'form-control'disabled value="{{ date('h:i d/m/yy', strtotime($chitiet->created_at)) }}"></div>
+                    @endforeach
+                @endif
+                </fieldset>
+            </form>
+             </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>        
+</div>   
 @endsection

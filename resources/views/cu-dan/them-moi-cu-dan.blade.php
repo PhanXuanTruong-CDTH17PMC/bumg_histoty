@@ -74,15 +74,8 @@
                         </select>
                     </div> 
                     </div>
-                   
-
-
-                    
-                   
-                    
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/cu-dan" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('cu-dan.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

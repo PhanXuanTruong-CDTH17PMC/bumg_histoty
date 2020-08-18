@@ -106,7 +106,6 @@ class HoaDonController extends Controller
         $canho=CanHo::all();
         $ch = $request->input('canho_search'); 
         $tt = $request->input('tinh_trang_searrch');
-        // dd($tt);
         if(!empty($ch)) {
             $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id = canho.id and hoadon.can_ho_id =  '.$ch );
         }   
@@ -144,7 +143,9 @@ class HoaDonController extends Controller
     {
         $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
         $hoadon=HoaDon::find($id);
-        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon'));
+        $canho = CanHo::all();
+        $dichvu = DichVu::all();
+        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon', 'canho', 'dichvu'));
     }
 
     /**

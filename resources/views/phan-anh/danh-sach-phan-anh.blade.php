@@ -64,7 +64,7 @@
                             @foreach($phananh as $phan_anh)
                                 <tr>
                                     <th>{{$phan_anh->id_phan_anh}}</th>
-                                    <th>{{$phan_anh->nguoi_tao}}</th>  
+                                    <th>{{$phan_anh->nguoi_tao}}</th>   
                                     <th>{{$phan_anh->ngay_tao}}</th> 
                                     <th>{{$phan_anh->tieu_de_pa}}</th> 
                                     <th><a href="danh-sach-phan-anh/{{$phan_anh->id_phan_anh}}">Xem chi tiết</a></th>

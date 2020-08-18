@@ -45,10 +45,6 @@
         <div class="page-title-box">
             <h4 class="page-title">Thông báo</h4>
             <a href="/danh-sach-thong-bao/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -75,12 +71,9 @@
                                         
                                          <th style="width: 200px">
                                             <div>
-                                            <a href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['ThongBaoController@destroy',$thong_bao-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class ="btn" ><a href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="{{ route('thong-bao.xoa', ['id' => $thong_bao-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            </div>			
                                         </th>
                                     </tr>                              
                             @endforeach    

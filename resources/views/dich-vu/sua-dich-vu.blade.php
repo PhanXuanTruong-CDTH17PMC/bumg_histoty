@@ -67,7 +67,7 @@
                     </div> 
                     <div class="form-group">
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/dich-vu" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('dich-vu.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
                     </div>         
             </div>

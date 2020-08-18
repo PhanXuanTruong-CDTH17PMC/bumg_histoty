@@ -40,7 +40,7 @@
         <div class="page-title-box">
             <h4 class="page-title">Nhân viên</h4>
             <a href="/danh-sach-nhan-vien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            <a href="/danh-sach-bo-phan   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý bộ phận</a>
+            <a href="/danh-sach-bo-phan " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý bộ phận</a>
 			<a href="/loai-account   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại tài khoản</a><br>
         </div>
     </div>

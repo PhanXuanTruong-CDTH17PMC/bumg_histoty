@@ -20,9 +20,10 @@ class UserPhuongTienController extends Controller
      */
     public function index()
     {
-        $id=Auth::guard('canho')->user()->id;
+        $id =Auth::guard('canho')->user()->id;
+        $auth = Auth::guard('canho')->user();     
         $phuongtien=DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and phuongtien.can_ho_id='.$id);
-        return view('user.user-phuongtien')->with('phuongtien',$phuongtien);
+        return view('user.user-phuongtien', compact('phuongtien','auth'));
     }
 
     /**

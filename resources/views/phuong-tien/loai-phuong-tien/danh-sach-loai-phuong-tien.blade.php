@@ -66,16 +66,13 @@
                         @if (count($loaiphuongtien )>0)
                             @foreach ($loaiphuongtien as $loai_phuong_tien )
                                     <tr>
-                                        <th>{{$loai_phuong_tien-> id}}</th>
-                                        <th>{{$loai_phuong_tien-> ten_loai_phuong_tien}}</th>
+                                        <th>{{$loai_phuong_tien->id}}</th>
+                                        <th>{{$loai_phuong_tien->ten_loai_phuong_tien}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/loai-phuong-tien/{{$loai_phuong_tien-> id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['LoaiPhuongTienController@destroy',$loai_phuong_tien-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <a type="button" href ="/loai-phuong-tien/{{$loai_phuong_tien->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>
+                                                <a type="button"a href="{{ route('loai-phuong-tien.xoa', ['id' => $loai_phuong_tien-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            </div>			
                                         </th>
                                     </tr>                              
                             @endforeach    

@@ -22,7 +22,7 @@ class CreatePhanAnhsTable extends Migration
             $table->Integer('nhan_vien_id');
             $table->Integer('chu_ho_id');
             $table->softDeletes();
-            $table->timestamps();     
+            $table->timestamps();       
        });
     }
 

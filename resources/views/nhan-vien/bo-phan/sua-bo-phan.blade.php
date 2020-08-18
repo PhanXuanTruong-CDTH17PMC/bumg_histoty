@@ -28,7 +28,7 @@
                     </div>
                     {{Form::hidden('_method','PUT')}}
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/danh-sach-bo-phan" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('bo-phan.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
 
 

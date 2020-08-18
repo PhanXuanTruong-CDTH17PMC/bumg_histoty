@@ -71,13 +71,13 @@
                         <select class="form-control" id="canho" name="can_ho" required focus>
                         <option value="" disabled selected>Chọn căn hộ</option>        
                         @foreach($canho as $can_ho)
-                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->id }}</option>
+                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
                         @endforeach
                         </select>
                     </div> 
                     </div>
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/phuong-tien" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('phuong-tien.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

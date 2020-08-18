@@ -1,35 +1,49 @@
 @extends('user.layout.user-layout')
 @section('title')
-    Thông báo
-@endsection
-@section('css')
-
-    <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
-    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    Hóa đơn
 @endsection
 @section('js')
 
     
 @endsection
 @section('main-content')
-<!-- start page title -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#pablo"><b> Hóa Đơn</b></a>
+        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="nav navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#pablo">
+                        <span class="no-icon">Account: <b>{{$auth->name}}</b></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="content">
+<div class="container-fluid">
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
+                    @if(count($hoadon)>0)
+                    <tr style="background-color: #00FFFF; color:white">
                             <th>ID</th>
 						    <th>Tổng tiền</th>      
 						    <th> Tinh trạng</th>   
                             <th></th>                    
                        </tr>
-                    @if(count($hoadon)>0)
                         @foreach($hoadon as $hoa_don)
                             <tr>
                                 <th>{{$hoa_don->id}}</th>
@@ -37,23 +51,21 @@
                                 <th>
                                     @if(($hoa_don->tinh_trang_tt)==0) 
                                         Chưa thanh toán
-                                        @else
+                                    @else
                                         Đã Thanh toán
                                     @endif    
                                 </th>
                                 <th><a href="/user-hoa-don/{{$hoa_don->id}}">Xem chi tiết</a></th>
                             </tr>
                         @endforeach
+                        @else 
+                        <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                     @endif
-
                     </thead>
-                    
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>        
-
-
-<!-- Css cho trang -->
+</div>   
 @endsection
