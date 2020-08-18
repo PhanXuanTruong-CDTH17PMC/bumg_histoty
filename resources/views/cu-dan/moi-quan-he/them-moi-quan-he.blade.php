@@ -16,8 +16,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                
-
                     {!!Form::open(['action' => 'MoiQuanHeController@store','method'=> 'POST']) !!}
                     <div class="form-group">
                     {{Form::label('title','Tên mối quan hệ')}}<span class="text-danger"> 
@@ -28,7 +26,7 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="{{route('quan-he.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
 
 

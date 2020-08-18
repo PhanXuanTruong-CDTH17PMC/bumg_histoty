@@ -43,10 +43,6 @@
         <div class="page-title-box">
             <h4 class="page-title">Thông báo</h4>
             <a href="/danh-sach-thong-bao/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -72,7 +68,7 @@
                                         
                                          <th style="width: 200px">
                                             <div>
-                                                <button type="button" href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <button type="button" class ="btn" ><a href="danh-sach-thong-bao/{{$thong_bao-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
                                                 <a type="button" href="{{ route('thong-bao.xoa', ['id' => $thong_bao-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>			
                                         </th>

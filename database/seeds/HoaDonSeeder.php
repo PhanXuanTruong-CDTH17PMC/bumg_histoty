@@ -16,8 +16,7 @@ class HoaDonSeeder extends Seeder
                 'can_ho_id'=> 1,
                 'tong_tien' =>  12000000,
                 'tinh_trang_tt' => 0,
-                'nhan_vien_id'=> 1,
-                'created_at' => '202/08/12'
+                'nhan_vien_id'=> 1
             ],
         ]);
     }

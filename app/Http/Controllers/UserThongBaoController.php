@@ -19,8 +19,9 @@ class UserThongBaoController extends Controller
         if(Auth::guard('canho')->check())
 		{
             $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
+            $auth = Auth::guard('canho')->user();
             $thongbao2= DB::table('thongbao')->find(DB::table('thongbao')->max('id'));
-            return view('user.user-thongbao',compact('thongbao','thongbao2'));
+            return view('user.user-thongbao',compact('thongbao','thongbao2','auth'));
 		}
 		else 
 		{
@@ -58,7 +59,7 @@ class UserThongBaoController extends Controller
     public function show($id)
     {
         $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-        $thongbao2= ThongBao::find();
+        $thongbao2= ThongBao::find($id);
         return view('user.user-chitietthongbao',compact('thongbao','thongbao2'));
     }
 

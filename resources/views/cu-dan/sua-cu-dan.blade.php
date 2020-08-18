@@ -55,10 +55,13 @@
                         {{Form::label('title','Căn hộ')}}<span class="text-danger"> 
                     *</span>
                     <div class="form-group">
-                        <select class="form-control" id="canho" name="can_ho" required focus>
-                        <option value="" disabled selected>Chọn căn hộ</option>        
+                    <select class="form-control" id="canho" name="can_ho" required focus>   
                         @foreach($canho as $can_ho)
-                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->id }}</option>
+                            @if (($cudan->can_ho_id)==($can_ho->id))
+                                <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                            @else
+                                <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div> 
@@ -67,23 +70,19 @@
                         {{Form::label('title','Quan hệ với chủ hộ')}}<span class="text-danger"> 
                     *</span>
                     <div class="form-group">
-                        <select class="form-control" id="quanhe" name="quanhe" required focus>
-                        <option value="" disabled selected>Chọn quan hệ</option>        
+                        <select class="form-control" id="quanhe" name="quanhe" required focus>     
                         @foreach($quanhe as $quan_he)
-                        <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
+                            @if(($cudan->quan_he_id)==($quan_he->id))
+                                <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
+                            @else
+                                 <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div> 
                     </div>
-                   
-
-
-                    
-                   
-                    
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="{{route('cu-dan.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

@@ -61,11 +61,11 @@
                             </tr>
                             @foreach ($loaiphuongtien as $loai_phuong_tien )
                                     <tr>
-                                        <th>{{$loai_phuong_tien-> id}}</th>
-                                        <th>{{$loai_phuong_tien-> ten_loai_phuong_tien}}</th>
+                                        <th>{{$loai_phuong_tien->id}}</th>
+                                        <th>{{$loai_phuong_tien->ten_loai_phuong_tien}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="/loai-phuong-tien/{{$loai_phuong_tien-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href ="/loai-phuong-tien/{{$loai_phuong_tien->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>
                                                 <a type="button"a href="{{ route('loai-phuong-tien.xoa', ['id' => $loai_phuong_tien-> id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>			
                                         </th>

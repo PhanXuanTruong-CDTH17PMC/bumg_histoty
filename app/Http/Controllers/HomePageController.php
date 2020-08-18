@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\TinTuc;
 
 class HomePageController extends Controller
@@ -15,7 +16,8 @@ class HomePageController extends Controller
     public function index()
     {
         $tintuc= TinTuc::all();
-        return view('user.home-page')->with('tintuc',$tintuc);
+        // $auth = Auth::guard('nhanvien')->user()      
+        return view('user.home-page',compact('tintuc'));
     }
 
     /**

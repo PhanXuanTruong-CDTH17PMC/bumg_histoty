@@ -40,8 +40,7 @@
                 </div>
                 <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="button">
-                    
-                    <a href="/log-in" class="nav-link  nav-user mr-0 waves-effect " style=" color: white">
+                    <a href="/logout" class="nav-link  nav-user mr-0 waves-effect " style=" color: white">
                         Đăng nhập
                     </a>
                 </li>

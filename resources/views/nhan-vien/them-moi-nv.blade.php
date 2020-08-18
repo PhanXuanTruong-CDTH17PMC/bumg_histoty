@@ -15,32 +15,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                <!-- <form
-                    
-                    <div class="form-group">
-                        
-                        <label>Tên nhân viên<span >class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Nhập tên nhân viên" class="form-control">
-                        <label>CMND<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Nhập số CMND" class="form-control">
-                        <label>Số điện thoại<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Nhập số điện thoại" class="form-control" >
-                        <label>Email<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Nhập email" class="form-control">
-                        <label>Ngày sinh<span class="text-danger">*</span></label>
-                        <input type="date"  placeholder="Ngày sinh" class="form-control">
-                        <label>Mật khẩu<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Nhập mật khẩu" class="form-control">
-                        <label>Loại tài khoản<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Loại tài khoản" class="form-control">
-                        <label>Bộ phận<span class="text-danger">*</span></label>
-                        <input type="text"  placeholder="Bộ phận" class="form-control">
-                    </div>
-                    <div class="form-group text-left mb-0">
-                        <button type="submit" class="btn btn-success waves-effect waves-light">Lưu</button>
-                        <a href="#" class="btn btn-purple waves-effect waves-light">Hủy</a>
-                    </div>
-                </form> -->
                 {!!Form::open(['action' => 'NhanVienController@store','method'=> 'POST']) !!}
                     <div class="form-group">
                         {{Form::label('title','Tên Nhân Viên')}}<span class="text-danger"> 
@@ -92,9 +66,6 @@
                     <div class="form-group">
                         {{Form::label('title','Loại tài khoản')}}<span class="text-danger"> 
                     *</span>
-
-
-                    
                     <div class="form-group">
                         <select class="form-control" id="loaitaikhoan" name="loaitaikhoan" required focus>
                         <option value="" disabled selected>Chọn loại tài khoản</option>        
@@ -117,11 +88,8 @@
                         </select>
                     </div> 
                     </div>
-
-                    
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="{{route('nhan-vien.danh-sach-nhan-vien') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

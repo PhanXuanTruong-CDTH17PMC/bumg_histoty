@@ -15,12 +15,13 @@ class CreatePhanAnhsTable extends Migration
     {
         Schema::create('phananh', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tieu_de_pa');
             $table->string('noi_dung_pa');
             $table->Boolean('tinh_trang_xl');
             $table->Integer('nhan_vien_id');
             $table->Integer('chu_ho_id');
             $table->softDeletes();
-            $table->timestamps();     
+            $table->timestamps();       
        });
     }
 

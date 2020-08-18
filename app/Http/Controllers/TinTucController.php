@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TinTuc;
+use Auth;
 class TinTucController extends Controller
 {
     /**
@@ -59,11 +60,11 @@ class TinTucController extends Controller
             $tintuc->tieu_de = $request->input('tieu_de');
             $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
             $tintuc->anh_dai_dien = $file_name;
-            $tintuc->nhan_vien_id=1;
+            $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
         }
         
-        return redirect()->route('tin-tuc.danh-sach')->with('success','Thêm thành công!');
+        return redirect('/danh-sach-tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -119,19 +120,20 @@ class TinTucController extends Controller
                     'anh_dai_dien.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
                 ]
             );
+            
+            $tintuc =  TinTuc::find($id);
             $file = $request->file('anh_dai_dien');
             $file_name = time().'_'.$file->getClientOriginalName();
             $filePath = public_path('assets\images');
             $file->move($filePath, $file_name);
-            $tintuc =  TinTuc::find($id);
             $tintuc->tieu_de = $request->input('tieu_de');
-            $tintuc->noi_dung_tt = $request->noi_dung_tt;
+            $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
             $tintuc->anh_dai_dien = $file_name;
-            $tintuc->nhan_vien_id= Auth::guard('nhanvien')->user()->id;
+            $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
         }
         
-        return redirect()->route('tin-tuc')->with('success','Thêm thành công!');
+        return redirect('danh-sach-tin-tuc')->with('success','Chỉnh sửa thành công!');
     }
 
     /**
@@ -144,7 +146,7 @@ class TinTucController extends Controller
     {
         
         $tintuc=TinTuc::find($id);
-        $tintuc->delete();
-        return redirect('tin-tuc')->with('success','Delete success');
+        $tintuc->delete($id);
+        return redirect('danh-sach-tin-tuc')->with('success','Delete success');
     }
 }

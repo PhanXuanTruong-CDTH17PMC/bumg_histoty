@@ -94,7 +94,7 @@
                         @foreach($hoadon as $hoa_don)
                             <tr>
                                 <th>{{$hoa_don->id}}</th>
-                                <th><a href="/hoa-don/{{$hoa_don->id}}">{{$hoa_don->canhoname}}</a></th>
+                                <th><a href="/hoa-don/{{$hoa_don->id}}/edit">{{$hoa_don->canhoname}}</a></th>
                                 <th>{{number_format($hoa_don->tong_tien, 0, ',', '.')}}</th>
                                 <th>{{date('d/m/yy', strtotime($hoa_don->created_at))}}</th>
                                 @if($hoa_don->tinh_trang_tt == 1) 
@@ -109,6 +109,16 @@
                                         {{Form::submit('Update',['class'=>'btn btn-info'])}}
                                         {!!Form::close()!!}
                                     </div>
+                                        <!-- <p>
+                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
+                                            {{Form::hidden('_method','PUT')}}
+                                            {{Form::submit('Đã thanh toán',['class'=>'btn btn-info','style' => 'margin-bottom:10px' ])}}
+                                            {{Form::hidden('_method','PUT')}}
+                                            {{Form::submit('Chưa thanh toán',['class'=>'btn btn-danger','style' => 'margin-bottom:10px' ,'disabled'])}}
+                                            {!!Form::close()!!}
+                                            </p> -->
+                                </th>
+                           
                                 </th>
                             </tr>
                         @endforeach

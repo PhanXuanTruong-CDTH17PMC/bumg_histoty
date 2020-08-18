@@ -49,9 +49,6 @@ Route::resource('danh-sach-thong-bao','ThongBaoController');
 
 Route::resource('danh-sach-tin-tuc','TinTucController');
 
-
-
-
 Route::resource('dich-vu', 'DichVuController');
 
 Route::prefix('nhan-vien')->group(function(){
@@ -105,6 +102,7 @@ Route::prefix('loai-phuong-tien')->group(function(){
 Route::prefix('phuong-tien')->group(function(){
     Route::name('phuong-tien.')->group(function(){
         Route::get('/','PhuongTienController@index')->name('danh-sach');
+        Route::post('/search','PhuongTienController@show')->name('search');
         Route::get('them','PhuongTienController@create')->name('them');
         Route::post('them','PhuongTienController@store')->name('xu-ly-them');
         Route::get('/xoa/{id}','PhuongTienController@destroy')->name('xoa');
@@ -118,7 +116,7 @@ Route::prefix('thong-bao')->group(function(){
         Route::get('/xoa/{id}','ThongBaoController@destroy')->name('xoa');
     });
 });
-Route::prefix('t in-tuc')->group(function(){
+Route::prefix('tin-tuc')->group(function(){
     Route::name('tin-tuc.')->group(function(){
         Route::get('/','TinTucController@index')->name('danh-sach');
         Route::get('them','TinTucController@create')->name('them');
@@ -129,8 +127,9 @@ Route::prefix('t in-tuc')->group(function(){
 Route::prefix('cu-dan')->group(function(){
     Route::name('cu-dan.')->group(function(){
         Route::get('/','CuDanController@index')->name('danh-sach');
-        Route::get('them','CuDanController@create')->name('them');
-        Route::post('them','CuDanController@store')->name('xu-ly-them');
+        Route::post('/search','CuDanController@show')->name('search');
+        Route::get('/them','CuDanController@create')->name('them');
+        Route::post('/them','CuDanController@store')->name('xu-ly-them');
         Route::get('/xoa/{id}','CuDanController@destroy')->name('xoa');
     });
 });
@@ -168,16 +167,25 @@ Route::prefix('hoa-don')->group(function(){
     });
 });
 
+// Route::prefix('phan-anh')->group(function(){
+//     Route::name('phan-anh.')->group(function(){
+//         Route::get('/','PhanAnhController@index')->name('danh-sach');
+//         Route::get('/show{id}','PhanAnhController@show')->name('show');
+//     });
+// });
 Route::resource('hoa-don','HoaDonController' );
 
  Route::get('/user', function () {
      return view('user.layout.user-layout');
  });
- Route::resource('/thong-bao', 'UserThongBaoController');
- Route::resource('/user-hoa-don', 'UserHoaDonController');
- Route::resource('/thong-bao', 'UserThongBaoController');
- Route::resource('/phan-anh','UserPhanAnhController');  
 
-
+ Route::resource('/thong-bao', 'UserThongBaoController')->middleware('checkUserlogin::class');
+ Route::resource('/user-hoa-don', 'UserHoaDonController')->middleware('checkUserlogin::class');
+ Route::resource('/phan-anh','UserPhanAnhController')->middleware('checkUserlogin::class');
+ Route::resource('/user-phuong-tien','UserPhuongTienController')->middleware('checkUserlogin::class');
+ Route::resource('/', 'HomePageController' );
+ Route::resource('/home-page', 'HomePageController' );
+ Route::resource('/danh-sach-phan-anh', 'PhanAnhController' );
+ 
 Route::get('/sendemail', 'SendEmailController@index');
 Route::post('/sendemail/send', 'SendEmailController@send');

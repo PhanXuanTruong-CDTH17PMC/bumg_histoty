@@ -17,10 +17,6 @@ class LoaiPhuongTienController extends Controller
     public function index()
     {
         $loaiphuongtien=LoaiPhuongTien::all();
-        
-        
-    // dd($loaiphuongtien);
-        // $loaiphuongtien= DB::select('SELECT * from loaiphuongtien, dichvu where dichvu.id = dich_vu_id');
         return view('phuong-tien.loai-phuong-tien.danh-sach-loai-phuong-tien')->with('loaiphuongtien',$loaiphuongtien);
     }
 
@@ -32,8 +28,8 @@ class LoaiPhuongTienController extends Controller
     public function create()
     {
         
-        $dichvu=DichVu::all();
-        return view('phuong-tien.loai-phuong-tien.them-loai-phuong-tien',compact('dichvu'));
+        $dichvu = DichVu::all();
+        return view('phuong-tien.loai-phuong-tien.them-loai-phuong-tien')->with('dichvu',$dichvu);
     }
 
     /**
@@ -44,10 +40,10 @@ class LoaiPhuongTienController extends Controller
      */
     public function store(Request $request)
     {
-    //     $this->validate($request,[
-    //     'ten_loai_phuong_tien'=>'required',
-    //     'dichvu'=>'required'
-    // ]);
+        $this->validate($request,[
+        'ten_loai_phuong_tien'=>'required',
+        'dich_vu'=>'required'
+    ]);
 
     $loaiphuongtien = new LoaiPhuongTien;
     $loaiphuongtien->ten_loai_phuong_tien =$request ->input('ten_loai_phuong_tien');
@@ -78,7 +74,7 @@ class LoaiPhuongTienController extends Controller
     {
         $loaiphuongtien=LoaiPhuongTien::find($id);
         $dichvu=DichVu::all();
-        return view('phuong-tien.loai-phuong-tien.sua-loai-phuong-tien')->with('loaiphuongtien','dichvu');
+        return view('phuong-tien.loai-phuong-tien.sua-loai-phuong-tien', compact('loaiphuongtien','dichvu'));
     }
 
     /**
@@ -93,12 +89,12 @@ class LoaiPhuongTienController extends Controller
         
          $this->validate($request,[
             'ten_loai_phuong_tien'=>'required',
-            'dich_vu_id'=>'required'
+            'dich_vu    '=>'required'
         ]);
 
         $loaiphuongtien=LoaiPhuongTien::find($id);
         $loaiphuongtien->ten_loai_phuong_tien =$request ->input('ten_loai_phuong_tien');
-        $loaiphuongtien->dich_vu_id =$request ->input('dich_vu_id');
+        $loaiphuongtien->dich_vu_id =$request ->input('dich_vu');
         $loaiphuongtien->save();
         return redirect('loai-phuong-tien')->with('success','Update success');
     }
@@ -112,7 +108,7 @@ class LoaiPhuongTienController extends Controller
     public function destroy($id)
     {
         $loaiphuongtien=LoaiPhuongTien::find($id);
-        $loaiphuongtien->delete();
+        $loaiphuongtien->delete($id);
          return redirect('loai-phuong-tien')->with('success','Delete success');
     }
 }
