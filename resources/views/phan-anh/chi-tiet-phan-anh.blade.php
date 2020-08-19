@@ -36,29 +36,6 @@
 
     <!-- Sweet Alert2 QuanTriVien init js-->
     <script src="{{ asset('assets/js/pages/init/sweet-alerts-quan-tri-vien.init.js') }}"></script>
-<<<<<<< HEAD
-    
-@endsection
-@section('main-content')
-<!-- start page title -->
-<div class="row">
-
-</div>
-<div class="row card-body">
-@if(count($chitietphananh)==1)
-    @foreach($chitietphananh as $chitiet)
-    <div class="col-12 card card-body">
-        <h2>{{$chitiet->tieu_de_pa}}</h2>
-        </br>
-        <h4><p>
-        {{$chitiet->noi_dung_pa}}
-        </p></h4></br>
-        <p>Tạo vào {{$chitiet->created_at}}</p>
-    </div>
-    @endforeach
-@endif
-</div>
-=======
 
 @endsection
 @section('main-content')
@@ -84,5 +61,4 @@
     </div><!-- end col-->
 </div>        
 </div>   
->>>>>>> phan_truong
 @endsection
