@@ -44,7 +44,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Cư dân</h4>
+            <h2>Cư dân</h2>
             <a href="/cu-dan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="quan-he   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý mối quan hệ</a><br>
         </div>

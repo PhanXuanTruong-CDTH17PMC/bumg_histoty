@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Loại phương tiện</h4>
+            <h2>Loại phương tiện</h2>
             <a href="/loai-phuong-tien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>

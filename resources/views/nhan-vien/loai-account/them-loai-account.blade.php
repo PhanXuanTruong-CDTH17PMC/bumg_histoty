@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm mới loại tài khoản</h4>
+                    <h2>Thêm mới loại tài khoản</h2>
                 
             </div>
         </div>

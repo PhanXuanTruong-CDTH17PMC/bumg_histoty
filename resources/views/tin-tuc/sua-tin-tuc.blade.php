@@ -7,7 +7,7 @@
         <div class="col-12">
             <div >
                 
-                    <h2 class="page-title">Sửa tin tức</h2>
+                    <h2>Sửa tin tức</h2>
                 
             </div>
         </div>

@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa thông tin loại căn hộ</h4>
+                    <h2>Sửa thông tin loại căn hộ</h2>
                 
             </div>
         </div>

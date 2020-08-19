@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Căn hộ</h4>
+            <h2>Căn hộ</h2>
             <a href="/can-ho/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới căn hộ</a>
 			<a href="/loai-can-ho" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại căn hộ</a>
         </div>

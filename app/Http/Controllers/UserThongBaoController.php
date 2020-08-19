@@ -58,9 +58,9 @@ class UserThongBaoController extends Controller
      */
     public function show($id)
     {
-        $thongbao=DB::table('thongbao')->orderBy('id', 'desc')->get();
-        $thongbao2= ThongBao::find($id);
-        return view('user.user-chitietthongbao',compact('thongbao','thongbao2'));
+        $auth = Auth::guard('canho')->user();
+        $thongbao = ThongBao::find($id);
+        return view('user.user-chitietthongbao',compact('auth','thongbao'));
     }
 
     /**

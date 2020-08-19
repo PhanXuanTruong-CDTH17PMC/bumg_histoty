@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm khu vực</h4>
+                    <h2>Thêm khu vực</h2>
                 
             </div>
         </div>

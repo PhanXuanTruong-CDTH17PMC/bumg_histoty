@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Thêm mới hóa đơn</h4>
+                <h2>Thêm mới hóa đơn</h2>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <span class="no-icon">Account: <b>{{$auth->name}}</b></span>
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i> Account: <b>{{$auth->name}}</b></span>
                     </a>
                 </li>
             </ul>
@@ -34,22 +34,22 @@
                 <table  class="table dt-responsive nowrap">
                     <thead>
                        @if (count($phuongtien )>0)
-                        <tr style="background-color: #00FFFF; color:white">
-                                <th>ID</th>
-                                <th>Nhãn hiệu</th>      
-                                <th>Màu sắc</th>   
-                                <th>Biển số</th>
-                                <th>Khu vực</th>
-                                <th>Loại phương tiện</th>                   
+                        <tr style="background-color: #CC00FF; Color:white">
+                                <th style="Color:white">ID</th>
+                                <th style="Color:white">Nhãn hiệu</th>      
+                                <th style="Color:white">Màu sắc</th>   
+                                <th style="Color:white">Biển số</th>
+                                <th style="Color:white">Khu vực</th>
+                                <th style="Color:white">Loại phương tiện</th>                   
                         </tr>
                             @foreach ($phuongtien as $phuong_tien )
                                     <tr>
-                                        <th>{{$phuong_tien-> phuongtien_id}}</th>
-                                        <th>{{$phuong_tien-> nhan_hieu}}</th>
-                                        <th>{{$phuong_tien-> mau_sac}}</th>
-                                        <th>{{$phuong_tien-> bien_so}}</th>
-                                        <th>{{$phuong_tien-> khu_vuc}}</th>
-                                        <th>{{$phuong_tien-> tenphuongtien}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> phuongtien_id}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> nhan_hieu}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> mau_sac}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> bien_so}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> khu_vuc}}</th>
+                                        <th style="Color:black">{{$phuong_tien-> tenphuongtien}}</th>
                                         
                                     </tr>                              
                             @endforeach 

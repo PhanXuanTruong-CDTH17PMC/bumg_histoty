@@ -40,25 +40,25 @@
                     </li>
                     <li>
                         <a class="nav-link" href="/user-hoa-don">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>Hòa Đơn</p>
+                            <i class="nc-icon nc-cart-simple"></i>
+                            <p>Hoa Đơn</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="/user-phuong-tien">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-bus-front-12"></i>
                             <p>Phương Tiện</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="/phan-anh">
-                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <i class="nc-icon nc-send"></i>
                             <p>Phản Ành</p>
                         </a>
                     </li>
                     <li class="nav-item active active-pro">
                         <a class="nav-link active" href="logout">
-                            <i class="nc-icon nc-lock"></i>
+                            <i class="nc-icon nc-button-power"></i>
                             <p>Đăng Xuất</p>
                         </a>
                     </li>

@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Dịch vụ</h4>
+            <h2>Dịch vụ</h2>
             <a href="dich-vu/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>

@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm mới bộ phận</h4>
+                    <h2>Thêm mới bộ phận</h2>
                 
             </div>
         </div>
@@ -16,8 +16,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                
-
                     {!!Form::open(['action' => 'BoPhanController@store','method'=> 'POST']) !!}
                     <div class="form-group">
                     {{Form::label('title','Tên bộ phận')}}<span class="text-danger"> 

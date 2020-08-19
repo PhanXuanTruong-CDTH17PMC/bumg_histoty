@@ -39,7 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Bộ Phận  </h4>
+            <h2>Bộ Phận  </h2>
             <a href="/danh-sach-bo-phan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>

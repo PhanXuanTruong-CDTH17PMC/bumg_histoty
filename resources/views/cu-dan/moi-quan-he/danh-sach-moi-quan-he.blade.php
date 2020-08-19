@@ -32,7 +32,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Mối quan hệ</h4>
+            <h2>Mối quan hệ</h2>
             <a href="/quan-he/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             
             

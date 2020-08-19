@@ -189,3 +189,9 @@ Route::resource('hoa-don','HoaDonController' );
  
 Route::get('/sendemail', 'SendEmailController@index');
 Route::post('/sendemail/send', 'SendEmailController@send');
+
+
+Route::get('/pusher', function(Illuminate\Http\Request $request) {
+    event(new App\Events\HelloPusherEvent($request));
+    return redirect('layout');
+});

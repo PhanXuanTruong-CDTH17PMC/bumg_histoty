@@ -18,7 +18,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <span class="no-icon">Account: <b>{{$auth->name}}</b></span>
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i> Account: <b>{{$auth->name}}</b></span>
                     </a>
                 </li>
             </ul>
@@ -44,7 +44,7 @@
                         {{Form::Textarea('noi_dung_pa','',['class'=> 'form-control','placeholder'=>'Nhập nội dung'])}}
                     </div> 
                 </div>
-                {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
+                {{Form::submit('Gửi',['class'=>'btn btn-success waves-effect waves-light'])}}
                 {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
                 {!!Form::close() !!}
             </div> <!-- end card body-->

@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Tin tức</h4>
+            <h2>Tin tức</h2>
             <a href="{{ Route('tin-tuc.them') }}" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>

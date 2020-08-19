@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Phương tiện</h4>
+            <h2>Phương tiện</h2>
             <a href="phuong-tien/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             <a href="/loai-phuong-tien" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý loại phương tiện</a><br>
             <a href="/khu-vuc" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý khu vực</a><br>

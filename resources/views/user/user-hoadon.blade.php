@@ -18,7 +18,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <span class="no-icon">Account: <b>{{$auth->name}}</b></span>
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i> Account: <b>{{$auth->name}}</b></span>
                     </a>
                 </li>
             </ul>
@@ -34,24 +34,26 @@
                 <table  class="table dt-responsive nowrap">
                     <thead>
                     @if(count($hoadon)>0)
-                    <tr style="background-color: #00FFFF; color:white">
-                            <th>ID</th>
-						    <th>Tổng tiền</th>      
-						    <th> Tinh trạng</th>   
+                    <tr style="background-color: #CC00FF">
+                            <th style="color:white">ID</th>
+						    <th style="color:white">Tổng tiền</th>   
+						    <th style="color:white">Hạn Thanh Toán</th>       
+						    <th style="color:white"> Tinh trạng</th>   
                             <th></th>                    
                        </tr>
                         @foreach($hoadon as $hoa_don)
                             <tr>
-                                <th>{{$hoa_don->id}}</th>
-                                <th>{{$hoa_don->tong_tien}}</th>
-                                <th>
+                                <th style="color:black">{{$hoa_don->id}}</th>
+                                <th style="color:black">{{number_format($hoa_don->tong_tien, 0, ',', '.')}}</th>
+                                <th style="color:black">{{date('d-m-yy', strtotime($hoa_don->created_at))}}</th>
+                                <th style="color:black">
                                     @if(($hoa_don->tinh_trang_tt)==0) 
                                         Chưa thanh toán
                                     @else
                                         Đã Thanh toán
                                     @endif    
                                 </th>
-                                <th><a href="/user-hoa-don/{{$hoa_don->id}}">Xem chi tiết</a></th>
+                                <th style="color:black"><a href="/user-hoa-don/{{$hoa_don->id}}">Xem chi tiết</a></th>
                             </tr>
                         @endforeach
                         @else 

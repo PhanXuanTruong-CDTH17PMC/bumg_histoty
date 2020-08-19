@@ -18,7 +18,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#pablo">
-                        <span class="no-icon">Account: <b>{{$auth->name}}</b></span>
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i>  Account: <b>{{$auth->name}}</b></span>
                     </a>
                 </li>
             </ul>
@@ -34,18 +34,18 @@
                 <table  class="table dt-responsive nowrap">
                     <thead>
                        @if(count($cthoadon)>0)  
-                            <tr style="background-color: #00FFFF; Color:white">
-                                <th>Tên dịch vụ</th>   
-                                <th>Phí dịch vụ</th>   
-                                <th>Số lượng</th>    
-                                <th>Thành tiền</th>                     
+                            <tr style="background-color: #CC00FF">
+                                <th style=" Color:white">Tên dịch vụ</th>   
+                                <th style=" Color:white">Phí dịch vụ</th>   
+                                <th style=" Color:white">Số lượng</th>    
+                                <th style=" Color:white">Thành tiền</th>                     
                         </tr> 
                             @foreach($cthoadon as $cthoa_don)
                                 <tr>
-                                    <th>{{$cthoa_don->ten_dv}}</th>
-                                    <th>{{$cthoa_don->phi_dv}}</th>
-                                    <th>{{$cthoa_don->so_luong}}</th>
-                                    <th>{{number_format($cthoa_don->thanh_tien, 0, ',', '.')}}</th>
+                                    <th style=" Color:black">{{$cthoa_don->ten_dv}}</th>
+                                    <th style=" Color:black">{{number_format($cthoa_don->phi_dv, 0, ',', '.')}}</</th>
+                                    <th style=" Color:black">{{$cthoa_don->so_luong}}</th>
+                                    <th style=" Color:black">{{number_format($cthoa_don->thanh_tien, 0, ',', '.')}}</th>
                                 </tr>
                             @endforeach
                         @else 
@@ -54,7 +54,7 @@
                     </thead>
                 </table>
                 </br>
-                <div>Tổng tiền: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" value="   {{$hoadon->tong_tien}}"></div>
+                <div>Tổng tiền: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" disabled value="   {{$hoadon->tong_tien}}"></div>
              </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

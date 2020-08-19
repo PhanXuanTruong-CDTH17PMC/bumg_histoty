@@ -34,7 +34,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Hóa đơn</h4>
+            <h2>Hóa đơn</h2>
             <a href="/hoa-don/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
         </div>
     </div>
@@ -96,7 +96,7 @@
                                 <th>{{$hoa_don->id}}</th>
                                 <th><a href="/hoa-don/{{$hoa_don->id}}/edit">{{$hoa_don->canhoname}}</a></th>
                                 <th>{{number_format($hoa_don->tong_tien, 0, ',', '.')}}</th>
-                                <th>{{date('d/m/yy', strtotime($hoa_don->created_at))}}</th>
+                                <th>{{date('d-m-yy', strtotime($hoa_don->created_at))}}</th>
                                 @if($hoa_don->tinh_trang_tt == 1) 
                                     <th> Đã thanh toán</th>
                                 @else

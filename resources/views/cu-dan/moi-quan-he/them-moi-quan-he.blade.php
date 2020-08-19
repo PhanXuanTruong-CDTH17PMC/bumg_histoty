@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm quan hệ</h4>
+                    <h2>Thêm quan hệ</h2>
                 
             </div>
         </div>
@@ -28,9 +28,6 @@
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
                     <a href="{{route('quan-he.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
-
-
-                    
         </div>
     </div>
 @endsection

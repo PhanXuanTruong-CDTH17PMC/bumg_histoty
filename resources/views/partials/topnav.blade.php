@@ -21,7 +21,7 @@
 
                 <li >
                     <a  class="nav-link  nav-user mr-0 waves-effect" >
-                        {{Auth('nhanvien')->user()->ho_ten_nv}}
+                        <b> {{Auth('nhanvien')->user()->ho_ten_nv}} </b>
                     </a>
                 </li>
                 <li class="dropdown dropdown-notifications nav-item">
@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="button">
-                    <a href="/nhan-vien-logout" class="nav-link  nav-user mr-0 waves-effect" >
+                    <a href="logout" class="nav-link  nav-user mr-0 waves-effect" >
                         Đăng xuất
                     </a>
                 </li>
@@ -52,6 +52,17 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     
+                <li class="dropdown has-submenu">
+                           <i class="glyphicon glyphicon-th" style="margin:50% 5px;Color:white; font-size:25px"></i>
+                            <div class="dropdown-content">
+                            <a href="/danh-sach-bo-phan">Quản lý bộ phận</a>
+                            <a href="/loai-account">Quản lý loại tài khoản</a>
+                            <a href="/loai-can-ho">Quản lý loại căn hộ</a>
+                            <a href="quan-he">Quản lý mối quan hệ</a>
+                            <a href="/loai-phuong-tien">Loại phương tiện</a>
+                            <a href="/khu-vuc">Khu vực để xe</a>
+                            </div>
+                        </li>
                     <li class="has-submenu">
                             <a href="/danh-sach-nhan-vien">
                                 Nhân viên
@@ -98,17 +109,6 @@
                                 Phản ánh
                             </a>
                         </li>
-                        <div class="dropdown">
-                        <button class="dropbtn" style="color:white;">Quản lý danh mục</button>
-                            <div class="dropdown-content">
-                            <a href="/danh-sach-bo-phan">Quản lý bộ phận</a>
-                            <a href="/loai-account">Quản lý loại tài khoản</a>
-                            <a href="/loai-can-ho">Quản lý loại căn hộ</a>
-                            <a href="quan-he">Quản lý mối quan hệ</a>
-                            <a href="/loai-phuong-tien">Loại phương tiện</a>
-                            <a href="/khu-vuc">Khu vực để xe</a>
-                            </div>
-                        </div>
                 </ul>
             </div>
         </div>
@@ -131,7 +131,7 @@
     // }
 
     //Thay giá trị PUSHER_APP_KEY vào chỗ xxx này nhé
-    var pusher = new Pusher('975945c0210358eba837', {
+    var pusher = new Pusher('ea64e584fb3b637504a6', {
         encrypted: true,
         cluster: "ap1"
     });
@@ -166,40 +166,21 @@
     });
 </script>
 <style>
-.dropbtn {
-  background-color: #6c757d;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #6c757d;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 170px;
   z-index: 1;
 }
 
 .dropdown-content a {
   color: white;
   padding: 12px 16px;
-  text-decoration: none;
   display: block;
 }
-
-.dropdown-content a:hover {background-color: #6c757d;
-color:black;}
-
 .dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #6c757d;}
 </style>
 </header>
 

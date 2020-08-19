@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa thông báo</h4>
+                    <h2>Sửa thông báo</h2>
                 
             </div>
         </div>
