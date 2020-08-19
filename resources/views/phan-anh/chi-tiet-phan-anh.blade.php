@@ -84,5 +84,4 @@
     </div><!-- end col-->
 </div>        
 </div>   
->>>>>>> phan_truong
 @endsection
