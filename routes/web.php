@@ -20,6 +20,8 @@ Route::resource('/', 'HomePageController' );
 Route::resource('/log-in','LoginController');
 Route::post('getLogin','LoginController@getLogin');
 Route::get('logout','LoginController@logout')->name('logout');
+Route::get('userlogout','LoginController@userlogout')->name('userlogout');
+
 
 Route::get('/admin-info',function(){
     return view('quan-tri-vien.trang-ca-nhan');
@@ -51,7 +53,7 @@ Route::resource('danh-sach-tin-tuc','TinTucController');
 
 Route::resource('dich-vu', 'DichVuController');
 
-Route::prefix('nhan-vien')->group(function(){
+Route::prefix('nhan-vien')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('nhan-vien.')->group(function(){
         Route::get('/','NhanVienController@index')->name('danh-sach-nhan-vien');
         Route::get('them','NhanVienController@create')->name('them');
@@ -59,7 +61,7 @@ Route::prefix('nhan-vien')->group(function(){
         Route::get('/xoa/{id}','NhanVienController@destroy')->name('xoa');
     });
 });
-Route::prefix('loai-can-ho')->group(function(){
+Route::prefix('loai-can-ho')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('loai-can-ho.')->group(function(){
         Route::get('/','LoaiCanHoController@index')->name('danh-sach');
         Route::get('them','LoaiCanHoController@create')->name('them');
@@ -67,7 +69,7 @@ Route::prefix('loai-can-ho')->group(function(){
         Route::get('/xoa/{id}','LoaiCanHoController@destroy')->name('xoa');
     });
 });
-Route::prefix('loai-account')->group(function(){
+Route::prefix('loai-account')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('loai-account.')->group(function(){
         Route::get('/','LoaiAccountController@index')->name('danh-sach');
         Route::get('them','LoaiAccountController@create')->name('them');
@@ -75,7 +77,7 @@ Route::prefix('loai-account')->group(function(){
         Route::get('/xoa/{id}','MoiQuanHeController@destroy')->name('xoa');
     });
 });
-Route::prefix('quan-he')->group(function(){
+Route::prefix('quan-he')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('quan-he.')->group(function(){
         Route::get('/','MoiQuanHeController@index')->name('danh-sach');
         Route::get('them','MoiQuanHeController@create')->name('them');
@@ -83,7 +85,7 @@ Route::prefix('quan-he')->group(function(){
         Route::get('/xoa/{id}','MoiQuanHeController@destroy')->name('xoa');
     });
 });
-Route::prefix('khu-vuc')->group(function(){
+Route::prefix('khu-vuc')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('khu-vuc.')->group(function(){
         Route::get('/','KhuVucController@index')->name('danh-sach');
         Route::get('them','KhuVucController@create')->name('them');
@@ -91,7 +93,7 @@ Route::prefix('khu-vuc')->group(function(){
         Route::get('/xoa/{id}','KhuVucController@destroy')->name('xoa');
     });
 });
-Route::prefix('loai-phuong-tien')->group(function(){
+Route::prefix('loai-phuong-tien')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('loai-phuong-tien.')->group(function(){
         Route::get('/','LoaiPhuongTienController@index')->name('danh-sach');
         Route::get('them','LoaiPhuongTienController@create')->name('them');
@@ -99,7 +101,7 @@ Route::prefix('loai-phuong-tien')->group(function(){
         Route::get('/xoa/{id}','LoaiPhuongTienController@destroy')->name('xoa');
     });
 });
-Route::prefix('phuong-tien')->group(function(){
+Route::prefix('phuong-tien')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('phuong-tien.')->group(function(){
         Route::get('/','PhuongTienController@index')->name('danh-sach');
         Route::post('/search','PhuongTienController@show')->name('search');
@@ -108,7 +110,7 @@ Route::prefix('phuong-tien')->group(function(){
         Route::get('/xoa/{id}','PhuongTienController@destroy')->name('xoa');
     });
 });
-Route::prefix('thong-bao')->group(function(){
+Route::prefix('thong-bao')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('thong-bao.')->group(function(){
         Route::get('/','ThongBaoController@index')->name('danh-sach');
         Route::get('them','ThongBaoController@create')->name('them');
@@ -116,7 +118,7 @@ Route::prefix('thong-bao')->group(function(){
         Route::get('/xoa/{id}','ThongBaoController@destroy')->name('xoa');
     });
 });
-Route::prefix('tin-tuc')->group(function(){
+Route::prefix('tin-tuc')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('tin-tuc.')->group(function(){
         Route::get('/','TinTucController@index')->name('danh-sach');
         Route::get('them','TinTucController@create')->name('them');
@@ -124,7 +126,7 @@ Route::prefix('tin-tuc')->group(function(){
         Route::get('/xoa/{id}','TinTucController@destroy')->name('xoa');
     });
 });
-Route::prefix('cu-dan')->group(function(){
+Route::prefix('cu-dan')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('cu-dan.')->group(function(){
         Route::get('/','CuDanController@index')->name('danh-sach');
         Route::post('/search','CuDanController@show')->name('search');
@@ -133,7 +135,7 @@ Route::prefix('cu-dan')->group(function(){
         Route::get('/xoa/{id}','CuDanController@destroy')->name('xoa');
     });
 });
-Route::prefix('can-ho')->group(function(){
+Route::prefix('can-ho')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('can-ho.')->group(function(){
         Route::get('/','CanHoController@index')->name('danh-sach');
         Route::get('them','CanHoController@create')->name('them');
@@ -141,7 +143,7 @@ Route::prefix('can-ho')->group(function(){
         Route::get('/xoa/{id}','CanHoController@destroy')->name('xoa');
     });
 });
-Route::prefix('dich-vu')->group(function(){
+Route::prefix('dich-vu')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('dich-vu.')->group(function(){
         Route::get('/','DichVuController@index')->name('danh-sach');
         Route::get('them','DichVuController@create')->name('them');
@@ -149,7 +151,7 @@ Route::prefix('dich-vu')->group(function(){
         Route::get('/xoa/{id}','DichVuController@destroy')->name('xoa');
     });
 });
-Route::prefix('bo-phan')->group(function(){
+Route::prefix('bo-phan')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('bo-phan.')->group(function(){
         Route::get('/','BoPhanController@index')->name('danh-sach');
         Route::get('them','BoPhanController@create')->name('them');
@@ -158,7 +160,7 @@ Route::prefix('bo-phan')->group(function(){
     });
 });
 
-Route::prefix('hoa-don')->group(function(){
+Route::prefix('hoa-don')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('hoa-don.')->group(function(){
         Route::get('/','HoaDonController@index')->name('danh-sach');
         Route::post('/search','HoaDonController@show')->name('search');
@@ -173,7 +175,7 @@ Route::prefix('hoa-don')->group(function(){
 //         Route::get('/show{id}','PhanAnhController@show')->name('show');
 //     });
 // });
-Route::resource('hoa-don','HoaDonController' );
+Route::resource('hoa-don','HoaDonController')->middleware('checkNhanVienlogin::class');
 
  Route::get('/user', function () {
      return view('user.layout.user-layout');

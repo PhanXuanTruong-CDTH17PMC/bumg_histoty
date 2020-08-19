@@ -51,7 +51,6 @@ class LoginController extends Controller
 	}
 	public function userlogout(){
 		Auth::guard('canho')->logout();
-
 		return view('quan-tri-vien.dang-nhap');
 	}
 }

@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="logout">
+                        <a class="nav-link active" href="userlogout">
                             <i class="nc-icon nc-button-power"></i>
                             <p>Đăng Xuất</p>
                         </a>

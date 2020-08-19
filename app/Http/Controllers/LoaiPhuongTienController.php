@@ -89,7 +89,7 @@ class LoaiPhuongTienController extends Controller
         
          $this->validate($request,[
             'ten_loai_phuong_tien'=>'required',
-            'dich_vu    '=>'required'
+            'dich_vu'=>'required'
         ]);
 
         $loaiphuongtien=LoaiPhuongTien::find($id);

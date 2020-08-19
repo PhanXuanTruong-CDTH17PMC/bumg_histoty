@@ -19,6 +19,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/delete-confirm.js') }}"></script>
 </head>
 <header >
     @include('partials.topnav')
@@ -30,6 +31,7 @@
         @yield('main-content')
         
     </div>
+    <script src="{{ asset('assets/libs/delete-confirm.js') }}"></script>
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
 </body>
