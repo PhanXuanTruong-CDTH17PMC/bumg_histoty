@@ -43,7 +43,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4 class="page-title">Khu vực để xe</h4>
+            <h2>Khu vực để xe</h2>
             <a href="/khu-vuc/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
             
             

@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm mới dịch vụ</h4>
+                    <h2>Thêm mới dịch vụ</h2>
                 
             </div>
         </div>
@@ -28,12 +28,12 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control " id="canho" name="don_vi" required focus>
-                            <option value="0" disabled selected>Chọn đơn vị</option>        
-                            <option value="1">m3/Tháng</option>  
-                            <option >kWh/Tháng</option>  
-                            <option >Chiếc/Tháng</option>  
-                            <option>Hộ/Tháng</option>  
-                            <option>Người/Tháng</option>  
+                            <option value="" disabled selected>Chọn đơn vị</option>        
+                            <option >VNĐ/m3</option>  
+                            <option >VNĐ/kWh</option>  
+                            <option >VNĐ/Chiếc</option>  
+                            <option>VNĐ/Hộ</option>  
+                            <option>VNĐ/Người</option>  
                         </select>
                     </div> 
                     </div> 
@@ -44,7 +44,7 @@
                         {{Form::Text('phi_dv','',['class'=> 'form-control','placeholder'=>'Nhập chi phí dịch vụ'])}}
                     </div> 
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/dich-vu" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('dich-vu.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
                     </div>         
             </div>

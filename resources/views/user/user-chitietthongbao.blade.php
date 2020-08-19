@@ -2,45 +2,49 @@
 @section('title')
     Thông báo
 @endsection
-@section('css')
-
-    <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
-    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-@section('js')
-
-    
-@endsection
 @section('main-content')
-<!-- start page title -->
-        
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#pablo"> <i class="nc-icon nc-email-859"></i> <b>Nội Dung Thông Báo</b> </a>
+        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="nav navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#pablo">
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i> Account: <b>{{$auth->name}}</b></span>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+</nav>
+<div class="content">
+<div class="container-fluid">
 <div class="row">
-  
- >
-
-<div class="row main">
-  <div class="column left">
-    <h2>Thông báo</h2></br>
-    @if (count($thongbao)>0)
-        @foreach ($thongbao as $thong_bao )
-        <h4 ><a href="/thong-bao/{{$thong_bao->id}}">{{$thong_bao->tieu_de_tb}}</a></h4>       
-
-            {{Form::hidden('_method','DELETE')}}                         
-        @endforeach     
-    @endif
-  </div>
-  <div class="column right" >
-    <h2 style="text-align:center">{{$thongbao2->tieu_de_tb}}</h2>
-    </br>
-        <div class="container" >{!!(substr($thongbao2->noi_dung_tb,0, )) !!}</div>
-    </br>
-  </div>
-</div>
-
-<!-- Css cho trang -->
-
+    <div class="col-2>
+        <div class="card">
+            <div class="card-body">
+            <form>
+                <legend>Thông Báo: TB{{$thongbao->id }}</legend>
+                  <div class ="form-group">Tiêu đề: <input type = "text" style="border:1px solid gray;border-radius:10px;width:100%"class ="font-controll" disabled value ="{{$thongbao->tieu_de_tb}}"></div>  
+                  <div class ="form-group">Ngày: <input type = "text" style="border:1px solid gray;border-radius:10px;width:100%"class ="font-controll" disabled value ="{{$thongbao->created_at}}"></div>     
+                  <div class ="form-group">Nội dung:
+                  
+                <fieldset style="border:1px solid gray;border-radius:10px;width:100%; pading:15px;"class ="font-controll">
+                  <div class="container" ><br/>{!!(substr($thongbao->noi_dung_tb,0, )) !!}</div>
+                </fieldset>
+                <div>
+            </form>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>        
+</div>    
 @endsection

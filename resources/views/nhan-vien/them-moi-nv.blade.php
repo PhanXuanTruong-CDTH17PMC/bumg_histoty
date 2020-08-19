@@ -3,12 +3,11 @@
     Thêm mới nhân viên
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-            <div >
+            <div class="page-title-box">
                 
-                    <h2 class="page-title">Thêm mới nhân viên</h2>
+                    <h2>Thêm mới nhân viên</h2>
                 
             </div>
         </div>
@@ -66,6 +65,7 @@
                     </div>
                     <div class="form-group">
                         {{Form::label('title','Loại tài khoản')}}<span class="text-danger"> 
+                    *</span>
                     <div class="form-group">
                         <select class="form-control" id="loaitaikhoan" name="loaitaikhoan" required focus>
                         <option value="" disabled selected>Chọn loại tài khoản</option>        
@@ -88,14 +88,10 @@
                         </select>
                     </div> 
                     </div>
-
-                    
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/danh-sach-nhan-vien" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('nhan-vien.danh-sach-nhan-vien') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>
     </div>
-</div>
 @endsection

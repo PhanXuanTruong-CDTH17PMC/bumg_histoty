@@ -1,12 +1,12 @@
 @extends('layout')
 @section('title')
-    Sửa dịch vụ
+    Thêm mới dịch vụ
 @endsection
 @section('main-content')
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                    <h4 class="page-title">Sửa dịch vụ</h4>
+                    <h2>Chi tiết dịch vụ</h2>
             </div>
         </div>
     </div>
@@ -24,38 +24,13 @@
                     <div class="form-group">
                     {{Form::label('title','Đơn vị')}}<span class="text-danger"> *</span>
                     <div class="form-group">
-                        <select class="form-control " id="canho" name="don_vi" value = "" required focus>    
-                            @if(($dichvu->don_vi)=='Chiếc/Tháng')
-                            <option> Chiếc/Tháng</option> 
-                            <option> m3/Tháng</option>  
-                            <option> kWh/Tháng</option>    
-                            <option> Hộ/Tháng</option>  
-                            <option> Người/Tháng</option>   
-                            @elseif (($dichvu->don_vi)=='m3/Tháng') 
-                            <option> m3/Tháng</option>  
-                            <option> Chiếc/Tháng</option>
-                            <option> kWh/Tháng</option>    
-                            <option> Hộ/Tháng</option>  
-                            <option> Người/Tháng</option> 
-                            @elseif (($dichvu->don_vi)=='kWh/Tháng') 
-                            <option> kWh/Tháng</option>
-                            <option> m3/Tháng</option>  
-                            <option> Chiếc/Tháng</option>    
-                            <option> Hộ/Tháng</option>  
-                            <option> Người/Tháng</option>
-                            @elseif (($dichvu->don_vi)=='Hộ/Tháng') 
-                            <option> Hộ/Tháng</option>
-                            <option> kWh/Tháng</option>
-                            <option> m3/Tháng</option>  
-                            <option> Chiếc/Tháng</option>      
-                            <option> Người/Tháng</option>
-                            @elseif (($dichvu->don_vi)=='Người/Tháng') 
-                            <option> Người/Tháng</option>
-                            <option> Hộ/Tháng</option>
-                            <option> kWh/Tháng</option>
-                            <option> m3/Tháng</option>  
-                            <option> Chiếc/Tháng</option>      
-                        @endif  
+                        <select class="form-control " id="canho" name="don_vi" value = "" required focus>
+                            <option value="" disabled selected>Chọn đơn vị</option>             
+                            <option >VNĐ/m3</option>  
+                            <option >VNĐ/kWh</option>  
+                            <option >VNĐ/Chiếc</option>  
+                            <option>VNĐ/Hộ</option>  
+                            <option>VNĐ/Người</option>   
                         </select>
                     </div> 
                      </div> 
@@ -65,9 +40,8 @@
                     <div class="form-group">
                         {{Form::Text('phi_dv',$dichvu->phi_dv,['class'=> 'form-control','placeholder'=>'Nhập chi phí dịch vụ'])}}
                     </div> 
-                    <div class="form-group">
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/dich-vu" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('dich-vu.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
                     </div>         
             </div>

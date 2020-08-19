@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa thông tin nhân viên</h4>
+                    <h2>Sửa thông tin nhân viên</h2>
                 
             </div>
         </div>
@@ -68,10 +68,10 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="loaitaikhoan" name="loaitaikhoan" required focus>
-                        <option value="" >Chọn loại tài khoản</option>        
-                        @foreach($loaitaikhoan as $loai_tk)
-                        <option name="loaitk" value="{{$loai_tk->id}}">{{ $loai_tk->ten_loai_account }}</option>
-                        @endforeach
+                            <option value="" >Chọn loại tài khoản</option>        
+                            @foreach($loaitaikhoan as $loai_tk)
+                                <option name="loaitk" value="{{$loai_tk->id}}">{{ $loai_tk->ten_loai_account }}</option>
+                            @endforeach
                         </select>
                     </div> 
                     </div
@@ -81,18 +81,15 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="bophan" name="bophan" required focus>
-                        <option value="" disabled selected>Chọn bộ phận</option>        
-                        @foreach($bophan as $bo_phan)
-                        <option name="tenbophan" value="{{$bo_phan->id}}">{{ $bo_phan->ten_bo_phan }}</option>
-                        @endforeach
+                            <option value="" disabled selected>Chọn bộ phận</option>        
+                            @foreach($bophan as $bo_phan)
+                                <option name="tenbophan" value="{{$bo_phan->id}}">{{ $bo_phan->ten_bo_phan }}</option>
+                            @endforeach
                         </select>
                     </div> 
                     </div>
-
-                    
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                    <a href="{{route('nhan-vien.danh-sach-nhan-vien') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

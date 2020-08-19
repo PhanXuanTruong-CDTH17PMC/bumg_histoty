@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Thêm loại phương tiện</h4>
+                    <h2>Thêm loại phương tiện</h2>
                 
             </div>
         </div>
@@ -29,19 +29,14 @@
                         <select class="form-control" id="dich_vu" name="dich_vu" required focus>
                         <option value="" disabled selected>Chọn dịch vụ</option>        
                         @foreach($dichvu as $dich_vu)
-                        <option name="ten_dichvu" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>
+                            <option name="ten_dichvu" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>
                         @endforeach
                         </select>
                     </div> 
                     </div>
-                    </div>
-                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/loai-phuong-tien" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('loai-phuong-tien.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
-
-
-                    
         </div>
     </div>
 @endsection

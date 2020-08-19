@@ -3,12 +3,10 @@
     Danh sách dịch vụ
 @endsection
 @section('css')
-
     <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('js')
@@ -43,10 +41,8 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
+            <h2>Dịch vụ</h2>
             <a href="dich-vu/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            <!-- @if (isset($quanTriViens))
-                <a href="{{ route('quan-tri-vien.thung-rac') }}" style="margin-bottom:10px;" class="btn btn-info waves-effect waves-light">Xem quản trị viên đã xóa</a>
-            @endif -->
         </div>
     </div>
 </div>
@@ -57,35 +53,32 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d;; color:white">
-                            <th>ID</th>
-                            <th>Tên dịch vụ</th>
-                            <th>Đơn vị</th>
-                            <th>Chi Phí</th>
-                            <th>     </th>
-                        </tr>
                          @if (count($dichvu )>0)
+                             <tr style="background-color: #6c757d;; color:white">
+                                <th>ID</th>
+                                <th>Tên dịch vụ</th>
+                                <th>Đơn vị</th>
+                                <th>Chi Phí</th>
+                                <th>     </th>
+                            </tr>
                             @foreach ($dichvu as $dich_vu )
                                     <tr>
                                         <th>{{$dich_vu-> id}}</th>
                                         <th>{{$dich_vu-> ten_dich_vu}}</th>
                                         <th>{{$dich_vu-> don_vi}}</th>
-                                        <th>{{$dich_vu-> phi_dv}}</th>
+                                        <th>{{number_format($dich_vu-> phi_dv, 0, ',', '.')}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/dich-vu/{{$dich_vu-> id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['DichVuController@destroy',$dich_vu-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
+                                                <button type="button" class="btn "><a href="/dich-vu/{{$dich_vu-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="{{ route('dich-vu.xoa', ['id' => $dich_vu->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
-                        @else
+                        `@else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
-                    
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->

@@ -2,49 +2,54 @@
 @section('title')
     Phản ánh
 @endsection
-@section('css')
-
-    <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/datatables/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" />
-  
-    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-@section('js')
-
-    
-@endsection
 @section('main-content')
-
-<div class="row">
-        <div class="col-lg-12">
-            <div class="card-box">
-            <h1>Gửi phản ánh cho ban quản lý</h1>
-            @if($errors->any())
-                 {{$errors}}
-                @endif
-                {!!Form::open(['action' => ['UserPhanAnhController@store'],'method'=> 'POST']) !!} 
-                <div class="form-group">
-                        {{Form::label('title','Tiêu đề')}}<span class="text-danger"> 
-                        *</span>
-                        <div class="form-group">
-                            {{Form::Text('tieu_de_pa','',['class'=> 'form-control','placeholder'=>'Nhập nội dung'])}}
-                        </div> 
-                        
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('title','Nội dung')}}<span class="text-danger"> 
-                        *</span>
-                        <div class="form-group">
-                            {{Form::Textarea('noi_dung_pa','',['class'=> 'form-control','placeholder'=>'Nhập nội dung'])}}
-                        </div> 
-                        
-                    </div>
-                    {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
-                    {!!Form::close() !!}
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#pablo"><b>Phản Ánh Cư Dân</b></a>
+        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+            <span class="navbar-toggler-bar burger-lines"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="nav navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#pablo">
+                        <span class="no-icon"><i class="nc-icon nc-circle-09"></i> Account: <b>{{$auth->name}}</b></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
+<div class="content">
+<div class="container-fluid">
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                 {!!Form::open(['action' => ['UserPhanAnhController@store'],'method'=> 'POST']) !!} 
+                <div class="form-group">
+                    {{Form::label('title','Tiêu đề')}}<span class="text-danger">*</span>
+                    <div class="form-group">
+                        {{Form::Text('tieu_de_pa','',['class'=> 'form-control','placeholder'=>'Nhập tiêu đề'])}}
+                    </div> 
+                </div>
+                <div class="form-group">
+                    {{Form::label('title','Nội dung')}}<span class="text-danger">*</span>
+                    <div class="form-group">
+                        {{Form::Textarea('noi_dung_pa','',['class'=> 'form-control','placeholder'=>'Nhập nội dung'])}}
+                    </div> 
+                </div>
+                {{Form::submit('Gửi',['class'=>'btn btn-success waves-effect waves-light'])}}
+                {{Form::button('Hủy',['class'=>'btn btn-purple waves-effect waves-light'])}}
+                {!!Form::close() !!}
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>        
+</div>   
 @endsection

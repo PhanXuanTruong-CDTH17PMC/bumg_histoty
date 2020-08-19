@@ -3,10 +3,13 @@
     Thêm mới bộ phận
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-                    <h2 class="page-title">Thêm mới bộ phận</h2>
+            <div class="page-title-box">
+                
+                    <h2>Thêm mới bộ phận</h2>
+                
+            </div>
         </div>
     </div>
      @include('messages.messages')
@@ -23,12 +26,8 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/danh-sach-bo-phan" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('bo-phan.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
-
-
-                    
         </div>
-    </div>
     </div>
 @endsection

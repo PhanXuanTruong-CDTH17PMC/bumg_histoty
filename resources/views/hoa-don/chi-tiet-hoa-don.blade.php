@@ -70,13 +70,12 @@
                                 </tr>
                             @endforeach
                         @endif
-                        
                     </thead>
-                    
                 </table>
                 </br>
-                <div>Tổng tiền: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" value="   {{$hoadon->tong_tien}}"></div>
-                </div> <!-- end card body-->
+            <div>
+                Tổng tiền: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" value="   {{$hoadon->tong_tien}}"></div>
+            </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>

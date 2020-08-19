@@ -3,10 +3,9 @@
     Thêm mới loại tài khoản
 @endsection
 @section('main-content')
-<div class="container">
     <div class="row">
         <div class="col-12">
-            <div >
+            <div class="page-title-box">
                 
                     <h2>Thêm mới loại tài khoản</h2>
                 
@@ -26,10 +25,9 @@
                     </div>
                     
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/loai-account" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('loai-account.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>
     </div>
-	</div>
 @endsection

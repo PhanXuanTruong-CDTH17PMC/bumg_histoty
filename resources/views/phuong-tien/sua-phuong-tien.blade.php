@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa thông tin phương tiện</h4>
+                    <h2>Sửa thông tin phương tiện</h2>
                 
             </div>
         </div>
@@ -43,11 +43,9 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="canho" name="khu_vuc" required focus>
+                        <option value="" disabled selected>Chọn khu vực</option>        
                         @foreach($khuvuc as $khu_vuc)
-                        @if(($phuongtien->khu_vuc_id)==($khu_vuc->id))
                         <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
-                        @else <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
-                        @endif
                         @endforeach
                         </select>
                     </div> 
@@ -71,13 +69,13 @@
                         <select class="form-control" id="canho" name="can_ho" required focus>
                         <option value="" disabled selected>Chọn căn hộ</option>        
                         @foreach($canho as $can_ho)
-                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->id }}</option>
+                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
                         @endforeach
                         </select>
                     </div> 
                     </div>
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
-                    <a href="/phuong-tien" class="btn btn-purple waves-effect waves-light">Hủy</a>
+                    <a href="{{route('phuong-tien.danh-sach') }}"type = "button" class="btn btn-purple waves-effect waves-light">Hủy</a>
                     {!!Form::close() !!}
             </div>
         </div>

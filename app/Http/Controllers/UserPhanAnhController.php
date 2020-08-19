@@ -16,8 +16,9 @@ class UserPhanAnhController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('user.user-phananh');
+    {    
+        $auth = Auth::guard('canho')->user();  
+        return view('user.user-phananh', compact('auth'));
     }
 
     /**
@@ -41,14 +42,11 @@ class UserPhanAnhController extends Controller
         $this->validate($request,[
             'noi_dung_pa'=>'required',
             'tieu_de_pa'=>'required',
-            
-
         ]);
 
         $phananh=new PhanAnh;
         $phananh->tieu_de_pa= $request->tieu_de_pa;
         $phananh->nhan_vien_id=0;
-        $phananh->ngay_tao=Carbon::now();
         $phananh->tinh_trang_xl=0;
         $phananh->noi_dung_pa= $request->noi_dung_pa;
         $phananh->chu_ho_id=Auth::guard('canho')->user()->id;

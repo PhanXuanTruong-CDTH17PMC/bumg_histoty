@@ -36,6 +36,7 @@
 
     <!-- Sweet Alert2 QuanTriVien init js-->
     <script src="{{ asset('assets/js/pages/init/sweet-alerts-quan-tri-vien.init.js') }}"></script>
+<<<<<<< HEAD
     
 @endsection
 @section('main-content')
@@ -57,4 +58,31 @@
     @endforeach
 @endif
 </div>
+=======
+
+@endsection
+@section('main-content')
+<div class="container">
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+              <form>
+                <fieldset>
+                <legend>Chi Tiết Phản Ánh</legend>
+                @if(count($chitietphananh)==1)
+                            @foreach($chitietphananh as $chitiet)   
+                        <div class="form-group ">Tiêu đề: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px" class = 'form-control' disabled value="{{$chitiet->tieu_de_pa}}"></div>
+                        <div class="form-group">Ngày: <input type="text" style="border:1px solid gray;height:35px;border-radius:10px"class = 'form-control'disabled value="{{ date('h:i d/m/yy', strtotime($chitiet->created_at)) }}"></div>
+                        <div class="form-group">Nội dung: <input type="textArea" style="border:1px solid gray;height:100px;border-radius:10px" class = 'form-control' disabled value="{{$chitiet->noi_dung_pa}}"></div>
+                    @endforeach
+                @endif
+                </fieldset>
+            </form>
+             </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>        
+</div>   
+>>>>>>> phan_truong
 @endsection

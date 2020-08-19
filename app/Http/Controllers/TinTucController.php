@@ -64,7 +64,7 @@ class TinTucController extends Controller
             $tintuc->save();
         }
         
-        return redirect('tin-tuc')->with('success','Thêm thành công!');
+        return redirect('/danh-sach-tin-tuc')->with('success','Thêm thành công!');
     }
 
     /**
@@ -120,11 +120,12 @@ class TinTucController extends Controller
                     'anh_dai_dien.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
                 ]
             );
+            
+            $tintuc =  TinTuc::find($id);
             $file = $request->file('anh_dai_dien');
             $file_name = time().'_'.$file->getClientOriginalName();
             $filePath = public_path('assets\images');
             $file->move($filePath, $file_name);
-            $tintuc =  TinTuc::find($id);
             $tintuc->tieu_de = $request->input('tieu_de');
             $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
             $tintuc->anh_dai_dien = $file_name;
@@ -132,7 +133,7 @@ class TinTucController extends Controller
             $tintuc->save();
         }
         
-        return redirect('danh-sach-tin-tuc')->with('success','Thêm thành công!');
+        return redirect('danh-sach-tin-tuc')->with('success','Chỉnh sửa thành công!');
     }
 
     /**

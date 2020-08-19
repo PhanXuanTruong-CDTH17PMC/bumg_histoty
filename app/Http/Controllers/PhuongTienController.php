@@ -7,7 +7,6 @@ use App\PhuongTien;
 use App\LoaiPhuongTien;
 use App\CanHo;
 use App\KhuVuc;
-use App\DichVu;
 use DB;
 
 
@@ -19,9 +18,11 @@ class PhuongTienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-            $phuongtien=DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id');
-            return view('phuong-tien.danh-sach-phuong-tien')->with('phuongtien',$phuongtien);
+    { 
+        $canho = CanHo::all();
+        $loai_pt = LoaiPhuongTien::all();
+        $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id');
+        return view('phuong-tien.danh-sach-phuong-tien', compact('phuongtien','canho', 'loai_pt'));
     }
 
     /**
@@ -34,8 +35,8 @@ class PhuongTienController extends Controller
         $khuvuc=KhuVuc::all();
         $canho=CanHo::all();
         $loaiphuongtien=LoaiPhuongTien::all();
-        $dichvu=DichVu::all();
-        return view('phuong-tien.them-moi-phuong-tien',compact('khuvuc','canho','loaiphuongtien','dichvu'));
+
+        return view('phuong-tien.them-moi-phuong-tien',compact('canho','loaiphuongtien','khuvuc'));
     }
 
     /**
@@ -75,9 +76,26 @@ class PhuongTienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $canho=CanHo::all();
+        $loai_pt=LoaiPhuongTien::all();
+        $ch = $request->input('loai_search'); 
+        $loai = $request->input('tinh_trang_searrch');
+        if(!empty($ch)) {
+            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho-id = '. $ch);
+        }   
+        else if(!empty($loai) ) {
+            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id = loaiphuongtien.id and phuongtien.loai_phuong_tien_id = '. $loai);
+        }
+        else {
+            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+        }
+
+        if(!empty($ch) && !empty($loai)) {
+            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id = loaiphuongtien.id and phuongtien.loai_phuong_tien_id = '. $loai .' andcan_ho-id = '. $ch );
+        }   
+        return view('phuong-tien.danh-sach-phuong-tien', compact('phuongtien','canho', 'loai_pt'));
     }
 
     /**
@@ -135,7 +153,7 @@ class PhuongTienController extends Controller
     public function destroy($id)
     {
         $phuongtien = PhuongTien::find($id);
-        $phuongtien->delete($id);
+        $phuongtien->delete();
         return redirect('phuong-tien')->with('success','Delete success');
     }
 }

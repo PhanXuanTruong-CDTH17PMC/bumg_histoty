@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="page-title-box">
                 
-                    <h4 class="page-title">Sửa thông báo</h4>
+                    <h2>Sửa thông báo</h2>
                 
             </div>
         </div>
@@ -39,7 +39,6 @@
                         @endforeach
                         </select>
                     </div> 
-                   
                     </div>                    
                     {{Form::submit('Lưu',['class'=>'btn btn-success waves-effect waves-light'])}}
                     <a href="/danh-sach-thong-bao" class="btn btn-purple waves-effect waves-light">Hủy</a>
@@ -52,12 +51,12 @@
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script>
 		CKEDITOR.replace( 'editor4', {
-        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
-        filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
-        filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
-        filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-        filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-        filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-    } );
-		</script>
+            filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+            filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+            filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+            filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+            filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+            filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+        });
+    </script>
 @endsection
