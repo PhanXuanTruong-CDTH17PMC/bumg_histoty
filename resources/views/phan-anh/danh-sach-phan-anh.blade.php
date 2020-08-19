@@ -43,7 +43,11 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
+<<<<<<< HEAD
+            <h4 class="page-title">Phản ánh</h4>
+=======
             <h2 class="">Phản ánh</h2>
+>>>>>>> phan_truong
         </div>
     </div>
 </div>
@@ -64,7 +68,11 @@
                             @foreach($phananh as $phan_anh)
                                 <tr>
                                     <th>{{$phan_anh->id_phan_anh}}</th>
+<<<<<<< HEAD
+                                    <th>{{$phan_anh->nguoi_tao}}</th>  
+=======
                                      <th>{{$phan_anh->nguoi_tao}}</th>   
+>>>>>>> phan_truong
                                     <th>{{$phan_anh->ngay_tao}}</th> 
                                     <th>{{$phan_anh->tieu_de_pa}}</th> 
                                     <th><a href="danh-sach-phan-anh/{{$phan_anh->id_phan_anh}}">Xem chi tiết</a></th>

@@ -45,31 +45,35 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
+                        <tr style="background-color: #6c757d;; color:white">
+                            <th>ID</th>
+                            <th>Tên quan hệ</th>
+                            <th></th>
+                        </tr>
+
                         @if (count($quanhe )>0)
-                            <tr style="background-color: #6c757d;; color:white">
-                                <th>ID</th>
-                                <th>Tên quan hệ</th>
-                                <th></th>
-                            </tr>
                             @foreach ($quanhe as $quan_he )
                                     <tr>
                                         <th>{{$quan_he-> id}}</th>
                                         <th>{{$quan_he-> ten_quan_he}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/quan-he/{{$quan_he->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button"<a href="{{ route('quan-he.xoa', ['id' => $quan_he->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            <a href="/quan-he/{{$quan_he->id}}/edit" class="btn btn-info" >Edit</a>
+                                            {!!Form::open(['action'=> ['MoiQuanHeController@destroy',$quan_he-> id],'method' =>'POST','class'=>'pull-right'])!!}
+                                            {{Form::hidden('_method','DELETE')}}
+                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                            {!!Form::close()!!}
                                             </div>
                                         </th>
                                     </tr>                              
                             @endforeach    
                         @else
-                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
+
                     </thead>
                 </table>
             </div> 
         </div> 
     </div>
-<</div>
+</div>
 @endsection

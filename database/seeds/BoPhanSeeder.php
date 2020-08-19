@@ -23,10 +23,6 @@ class BoPhanSeeder extends Seeder
             	
             ],
             [
-            	'ten_bo_phan' => 'Vận hành'
-            	
-            ],
-            [
             	'ten_bo_phan' => 'An ninh'
             ],
             [

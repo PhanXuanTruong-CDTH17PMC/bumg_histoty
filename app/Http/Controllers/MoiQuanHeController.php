@@ -100,7 +100,7 @@ class MoiQuanHeController extends Controller
     {
         $quanhe = QuanHe::find($id);
         
-        $quanhe->delete();
+        $quanhe->delete($id);
 
         return redirect('quan-he')->with('success','Delete success');
     }
