@@ -107,31 +107,35 @@ class TinTucController extends Controller
             ],			
             [
                 'noi_dung_tt.required' => 'Vui lòng nhập nội dung tin tức',
-                'anh_dai_dien.required' => 'Vui lòng chọn ảnh',
+                // 'anh_dai_dien.required' => 'Vui lòng chọn ảnh',
             ]
         );
-        if($request->hasFile('anh_dai_dien')) {
-            $this->validate($request, 
-                [
-                    'anh_dai_dien' => 'mimes:jpg,jpeg,png,gif|max:2048',
-                ],			
-                [
-                    'anh_dai_dien.mimes' => 'Chỉ chấp nhận hình thẻ với đuôi .jpg .jpeg .png .gif',
-                    'anh_dai_dien.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
-                ]
-            );
+        
             
             $tintuc =  TinTuc::find($id);
-            $file = $request->file('anh_dai_dien');
-            $file_name = time().'_'.$file->getClientOriginalName();
-            $filePath = public_path('assets\images');
-            $file->move($filePath, $file_name);
+            
             $tintuc->tieu_de = $request->input('tieu_de');
             $tintuc->noi_dung_tt = $request->input('noi_dung_tt');
-            $tintuc->anh_dai_dien = $file_name;
+            if($request->hasFile('anh_dai_dien')) {
+                $this->validate($request, 
+                    [
+                        'anh_dai_dien' => 'mimes:jpg,jpeg,png,gif|max:2048',
+                    ],			
+                    [
+                        'anh_dai_dien.mimes' => 'Chỉ chấp nhận hình thẻ với đuôi .jpg .jpeg .png .gif',
+                        'anh_dai_dien.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
+                    ]
+                );
+                $file = $request->file('anh_dai_dien');
+                $file_name = time().'_'.$file->getClientOriginalName();
+                $filePath = public_path('assets\images');
+                $file->move($filePath, $file_name);
+                dd($file_name);
+                $tintuc->anh_dai_dien = $file_name;
+            }
             $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
-        }
+
         
         return redirect('danh-sach-tin-tuc')->with('success','Chỉnh sửa thành công!');
     }

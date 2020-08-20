@@ -42,10 +42,16 @@
                     {{Form::label('title','Khu vực')}}<span class="text-danger"> 
                     *</span>
                     <div class="form-group">
-                        <select class="form-control" id="canho" name="khu_vuc" required focus>
-                        <option value="" disabled selected>Chọn khu vực</option>        
+                        <select class="form-control" id="canho" name="khu_vuc" required focus>     
                         @foreach($khuvuc as $khu_vuc)
-                        <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
+                            @if(($phuongtien->khu_vuc_id)==($khu_vuc->id))
+                            <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
+                            @endif
+                        @endforeach
+                        @foreach($khuvuc as $khu_vuc)
+                            @if(($phuongtien->khu_vuc_id)!=($khu_vuc->id))
+                            <option name="loaiphuongtien" value="{{$khu_vuc->id}}">{{ $khu_vuc->ten_khu_vuc }}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div> 
@@ -55,9 +61,15 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="canho" name="loai_phuong_tien" required focus>
-                        <option value="" disabled selected>Chọn loại phương tiện</option>        
                         @foreach($loaiphuongtien as $loai_phuong_tien)
-                        <option name="loaiphuongtien" value="{{$loai_phuong_tien->id}}">{{ $loai_phuong_tien->ten_loai_phuong_tien }}</option>
+                            @if(($phuongtien->loai_phuong_tien_id)==($loai_phuong_tien->id))
+                            <option name="loaiphuongtien" value="{{$loai_phuong_tien->id}}">{{ $loai_phuong_tien->ten_loai_phuong_tien }}</option>
+                            @endif
+                        @endforeach
+                        @foreach($loaiphuongtien as $loai_phuong_tien)
+                            @if(($phuongtien->loai_phuong_tien_id)!=($loai_phuong_tien->id))
+                            <option name="loaiphuongtien" value="{{$loai_phuong_tien->id}}">{{ $loai_phuong_tien->ten_loai_phuong_tien }}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div> 
@@ -67,9 +79,15 @@
                     *</span>
                     <div class="form-group">
                         <select class="form-control" id="canho" name="can_ho" required focus>
-                        <option value="" disabled selected>Chọn căn hộ</option>        
                         @foreach($canho as $can_ho)
-                        <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                        @if(($phuongtien->can_ho_id)==($can_ho->id))
+                            <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                        @endif
+                        @endforeach
+                        @foreach($canho as $can_ho)
+                        @if(($phuongtien->can_ho_id)!=($can_ho->id))
+                            <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div> 

@@ -56,7 +56,7 @@
                         @if (count($tintuc) >0)
                             <tr style="background-color: #6c757d; color:white">
                                 <th>ID</th>
-                                <th>Nội dung</th>
+                                <th>Tiêu đề</th>
                                 <th>Ngày đăng tin</th>
                                 <th>     </th>
                             </tr>

@@ -48,10 +48,14 @@
                         <div class="form-group">
                             <select class="form-control" id="loaicanho" name="loaicanho" required focus>
                                 @foreach($loaicanho as $loai_can_ho)
-                                @if(($canho->loai_can_ho_id)==($loai_can_ho->id))
-                                <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
-                                @else  <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
-                                @endif
+                                    @if(($canho->loai_can_ho_id)==($loai_can_ho->id))
+                                        <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
+                                    @endif
+                                @endforeach
+                                @foreach($loaicanho as $loai_can_ho)
+                                    @if(($canho->loai_can_ho_id)!=($loai_can_ho->id))
+                                        <option name="ten_loaicanho" value="{{$loai_can_ho->id}}">{{ $loai_can_ho->ten_loai_can_ho }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div> 
@@ -61,10 +65,14 @@
                         <div class="form-group">
                             <select class="form-control" id="bophan" name="chuho" required focus>    
                                 @foreach($cudan as $chu_ho)
-                                @if(($canho->chu_ho_id)==($chu_ho->id))
-                                <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
-                                @else <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
-                                @endif
+                                    @if(($canho->chu_ho_id)==($chu_ho->id))
+                                        <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
+                                    @endif
+                                @endforeach
+                                @foreach($cudan as $chu_ho)
+                                    @if(($canho->chu_ho_id)!=($chu_ho->id))
+                                        <option name="tenchuho" value="{{$chu_ho->id}}">{{ $chu_ho->ho_ten_cd }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div> 

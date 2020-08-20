@@ -59,7 +59,10 @@
                         @foreach($canho as $can_ho)
                             @if (($cudan->can_ho_id)==($can_ho->id))
                                 <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
-                            @else
+                            @endif
+                        @endforeach
+                        @foreach($canho as $can_ho)
+                            @if (($cudan->can_ho_id)!=($can_ho->id))
                                 <option name="canho" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
                             @endif
                         @endforeach
@@ -74,8 +77,11 @@
                         @foreach($quanhe as $quan_he)
                             @if(($cudan->quan_he_id)==($quan_he->id))
                                 <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
-                            @else
-                                 <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
+                            @endif
+                        @endforeach
+                        @foreach($quanhe as $quan_he)
+                            @if(($cudan->quan_he_id)!=($quan_he->id))
+                                <option name="quanhe" value="{{$quan_he->id}}">{{ $quan_he->ten_quan_he }}</option>
                             @endif
                         @endforeach
                         </select>

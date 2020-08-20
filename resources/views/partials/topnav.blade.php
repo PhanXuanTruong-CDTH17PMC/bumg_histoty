@@ -58,7 +58,7 @@
                             <a href="/danh-sach-bo-phan">Quản lý bộ phận</a>
                             <a href="/loai-account">Quản lý loại tài khoản</a>
                             <a href="/loai-can-ho">Quản lý loại căn hộ</a>
-                            <a href="quan-he">Quản lý mối quan hệ</a>
+                            <a href="/quan-he">Quản lý mối quan hệ</a>
                             <a href="/loai-phuong-tien">Loại phương tiện</a>
                             <a href="/khu-vuc">Khu vực để xe</a>
                             </div>

@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    Thêm mới tin tức
+    Sửa tin tức
 @endsection
 @section('main-content')
     <div class="row">
