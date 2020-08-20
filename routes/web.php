@@ -27,31 +27,31 @@ Route::get('/admin-info',function(){
     return view('quan-tri-vien.trang-ca-nhan');
 });
 
-Route::resource('danh-sach-nhan-vien','NhanVienController');
+Route::resource('danh-sach-nhan-vien','NhanVienController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('danh-sach-bo-phan','BoPhanController');
+Route::resource('danh-sach-bo-phan','BoPhanController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('can-ho','CanHoController');
+Route::resource('can-ho','CanHoController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('loai-account', 'LoaiAccountController');
+Route::resource('loai-account', 'LoaiAccountController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('loai-can-ho', 'LoaiCanHoController');
+Route::resource('loai-can-ho', 'LoaiCanHoController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('quan-he', 'MoiQuanHeController');
+Route::resource('quan-he', 'MoiQuanHeController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('cu-dan', 'CuDanController');
+Route::resource('cu-dan', 'CuDanController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('khu-vuc', 'KhuVucController');
+Route::resource('khu-vuc', 'KhuVucController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('loai-phuong-tien', 'LoaiPhuongTienController');
+Route::resource('loai-phuong-tien', 'LoaiPhuongTienController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('phuong-tien', 'PhuongTienController');
+Route::resource('phuong-tien', 'PhuongTienController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('danh-sach-thong-bao','ThongBaoController');
+Route::resource('danh-sach-thong-bao','ThongBaoController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('danh-sach-tin-tuc','TinTucController');
+Route::resource('danh-sach-tin-tuc','TinTucController')->middleware('checkNhanVienlogin::class');
 
-Route::resource('dich-vu', 'DichVuController');
+Route::resource('dich-vu', 'DichVuController')->middleware('checkNhanVienlogin::class');
 
 Route::prefix('nhan-vien')->middleware('checkNhanVienlogin::class')->group(function(){
     Route::name('nhan-vien.')->group(function(){
