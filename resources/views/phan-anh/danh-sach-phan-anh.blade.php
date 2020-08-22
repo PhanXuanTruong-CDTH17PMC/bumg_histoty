@@ -53,14 +53,14 @@
             <div class="card-body">
                 <table  class="table dt-responsive nowrap">
                     <thead>
-                        <tr style="background-color: #6c757d; color:white">
-                            <th>ID</th>
-                            <th>Người tạo</th>
-                            <th>Vào lúc</th>
-                            <th>Tiêu đề</th>
-                            <th></th>
-                        </tr>
                         @if(count($phananh)>0)
+                            <tr style="background-color: #6c757d; color:white">
+                                <th>ID</th>
+                                <th>Người tạo</th>
+                                <th>Vào lúc</th>
+                                <th>Tiêu đề</th>
+                                <th></th>
+                            </tr>
                             @foreach($phananh as $phan_anh)
                                 <tr>
                                     <th>{{$phan_anh->id_phan_anh}}</th>
@@ -70,10 +70,10 @@
                                     <th><a href="danh-sach-phan-anh/{{$phan_anh->id_phan_anh}}">Xem chi tiết</a></th>
                                 </tr>
                             @endforeach
+                        @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
-                        
                     </thead>
-                    
                 </table>
             </div> <!-- end card body-->
         </div> <!-- end card -->

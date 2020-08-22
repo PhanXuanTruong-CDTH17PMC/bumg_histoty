@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\LoaiCanHo;
 
@@ -14,7 +15,7 @@ class LoaiCanHoController extends Controller
      */
     public function index()
     {
-        $loaicanho= LoaiCanHo::all();
+        $loaicanho= LoaiCanHo::paginate(5);
         return view('can-ho.loai-can-ho.danh-sach-loai-can-ho')->with('loaicanho',$loaicanho);
     }
 

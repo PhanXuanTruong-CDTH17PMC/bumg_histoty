@@ -16,7 +16,7 @@ class LoaiPhuongTienController extends Controller
      */
     public function index()
     {
-        $loaiphuongtien=LoaiPhuongTien::all();
+        $loaiphuongtien=LoaiPhuongTien::paginate(5);
         return view('phuong-tien.loai-phuong-tien.danh-sach-loai-phuong-tien')->with('loaiphuongtien',$loaiphuongtien);
     }
 

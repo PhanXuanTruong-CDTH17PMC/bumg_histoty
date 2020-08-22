@@ -63,7 +63,7 @@
                             </tr>
                             @foreach ($dichvu as $dich_vu )
                                     <tr>
-                                        <th>{{$dich_vu-> id}}</th>
+                                        <th>{{$dich_vu->id}}</th>
                                         <th>{{$dich_vu-> ten_dich_vu}}</th>
                                         <th>{{$dich_vu-> don_vi}}</th>
                                         <th>{{number_format($dich_vu-> phi_dv, 0, ',', '.')}}</th>
@@ -80,6 +80,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $dichvu->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

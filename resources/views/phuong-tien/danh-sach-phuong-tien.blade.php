@@ -109,9 +109,9 @@
                                         <th>{{$phuong_tien-> nhan_hieu}}</th>
                                         <th>{{$phuong_tien-> mau_sac}}</th>
                                         <th>{{$phuong_tien-> bien_so}}</th>
-                                        <th>{{$phuong_tien-> can_ho_id}}</th>
                                         <th>{{$phuong_tien-> khu_vuc}}</th>
                                         <th>{{$phuong_tien-> tenphuongtien}}</th>
+                                        <th>{{$phuong_tien-> can_ho_id}}</th>
                                         <th style="width: 200px">
                                             <div>
                                                 <a type="button" href="phuong-tien/{{$phuong_tien-> phuongtien_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>

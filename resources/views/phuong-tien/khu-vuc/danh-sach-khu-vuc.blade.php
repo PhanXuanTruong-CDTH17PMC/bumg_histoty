@@ -70,21 +70,18 @@
                                         <th>{{$khu_vuc-> ten_khu_vuc}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                            <a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" >Edit</a>
-                                            {!!Form::open(['action'=> ['KhuVucController@destroy',$khu_vuc-> id],'method' =>'POST','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                            {!!Form::close()!!}
-                                            </div>
+                                                <button type="button" class="btn "><a href="/khu-vuc/{{$khu_vuc->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a href="{{ route('khu-vuc.xoa', ['id' => $khu_vuc->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                            </div>						
                                         </th>
                                     </tr>                              
                             @endforeach    
                         @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
-
                     </thead>
-                    <!--  -->
                 </table>
+                {!! $khuvuc->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

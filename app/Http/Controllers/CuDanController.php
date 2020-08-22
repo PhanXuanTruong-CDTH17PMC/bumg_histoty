@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\CuDan;
 use App\CanHo;
 use App\QuanHe;
@@ -17,7 +18,22 @@ class CuDanController extends Controller
     public function index()
     {
         $canho = CanHo::all();
-        $cudan= DB::select('SELECT cudan.id as cu_dan_id, ho_ten_cd, CMND, email, SDT, ng_sinh, can_ho_id, quanhe.ten_quan_he as quanhe FROM cudan, quanhe where   cudan.quan_he_id=quanhe.id and cudan.deleted_at IS NULL ');
+        // $cudan= DB::select('SELECT cudan.id as cu_dan_id, ho_ten_cd, CMND, email, SDT, ng_sinh, can_ho_id, quanhe.ten_quan_he as quanhe FROM cudan, quanhe where   cudan.quan_he_id=quanhe.id and cudan.deleted_at IS NULL ');
+        $cudan = CuDan::select([
+            'cudan.id',
+             'ho_ten_cd',
+              'CMND', 
+              'email',  
+              'SDT', 
+              'ng_sinh',
+              'canho.name',
+              'quanhe.ten_quan_he'
+         ])
+         ->join('canho', 'can_ho_id', '=', 'canho.id')
+         ->join('quanhe','quan_he_id', '=', 'quanhe.id')
+         ->whereNull('cudan.deleted_at')
+         ->paginate(5);
+         
         return view('cu-dan.danh-sach-cu-dan', compact('cudan', 'canho'));
     }
 
@@ -75,13 +91,42 @@ class CuDanController extends Controller
     public function show(Request $request)
     {
         $canho=CanHo::all();
+     
         $ch = $request->input('canho_search'); 
         if(!empty($ch)) {
-            $cudan= DB::select('SELECT cudan.id as cu_dan_id, ho_ten_cd, CMND, email, SDT, ng_sinh, can_ho_id, quanhe.ten_quan_he as quanhe FROM cudan, quanhe where   cudan.quan_he_id=quanhe.id and cudan.deleted_at IS NULL and can_ho_id = ' .$ch);
+            $cudan = CuDan::select([
+                'cudan.id',
+                 'ho_ten_cd',
+                  'CMND', 
+                  'email',  
+                  'SDT', 
+                  'ng_sinh',
+                  'canho.name',
+                  'quanhe.ten_quan_he'
+             ])
+             ->join('canho', 'can_ho_id', '=', 'canho.id')
+             ->join('quanhe','quan_he_id', '=', 'quanhe.id')
+             ->where(['can_ho_id' => $ch])
+             ->whereNull('cudan.deleted_at')
+             ->paginate(5);
         }   
         else {
-            $cudan= DB::select('SELECT cudan.id as cu_dan_id, ho_ten_cd, CMND, email, SDT, ng_sinh, can_ho_id, quanhe.ten_quan_he as quanhe FROM cudan, quanhe where   cudan.quan_he_id=quanhe.id and cudan.deleted_at IS NULL ');
+            $cudan = CuDan::select([
+                'cudan.id',
+                 'ho_ten_cd',
+                  'CMND', 
+                  'email',  
+                  'SDT', 
+                  'ng_sinh',
+                  'canho.name',
+                  'quanhe.ten_quan_he'
+             ])
+             ->join('canho', 'can_ho_id', '=', 'canho.id')
+             ->join('quanhe','quan_he_id', '=', 'quanhe.id')
+             ->whereNull('cudan.deleted_at')
+             ->paginate(5);
         }
+        
         return view('cu-dan.danh-sach-cu-dan', compact('cudan', 'canho'));  
     }
 

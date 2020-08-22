@@ -21,7 +21,7 @@ class PhuongTienController extends Controller
     { 
         $canho = CanHo::all();
         $loai_pt = LoaiPhuongTien::all();
-        $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id');
+        $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, canho.name as can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id =   loaiphuongtien.id and can_ho_id = canho.id and phuongtien.deleted_at IS NUll and canho.deleted_at IS NUll and loaiphuongtien.deleted_at IS NUll order by phuongtien.id ASC');
         return view('phuong-tien.danh-sach-phuong-tien', compact('phuongtien','canho', 'loai_pt'));
     }
 
@@ -80,22 +80,21 @@ class PhuongTienController extends Controller
     {
         $canho=CanHo::all();
         $loai_pt=LoaiPhuongTien::all();
-        $ch = $request->input('loai_search'); 
-        $loai = $request->input('tinh_trang_searrch');
+        $ch = $request->input('search_ch'); 
+        $loai = $request->input('search_loai');
         if(!empty($ch)) {
-            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho-id = '. $ch);
+            $phuongtien = DB::select('SELECT distinct phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, canho.name as can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho_id = canho.id and phuongtien.deleted_at IS NUll and canho.deleted_at IS NUll and loaiphuongtien.deleted_at IS NUll and can_ho_id = '. $ch);
         }   
         else if(!empty($loai) ) {
-            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id = loaiphuongtien.id and phuongtien.loai_phuong_tien_id = '. $loai);
+            $phuongtien = DB::select('SELECT distinct phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, canho.name as can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho_id = canho.id and phuongtien.deleted_at IS NUll and canho.deleted_at IS NUll and loaiphuongtien.deleted_at IS NUll and loai_phuong_tien_id = '. $loai);
         }
         else {
-            $hoadon = DB::select('SELECT Distinct hoadon.tong_tien, hoadon.id, canho.name as canhoname, hoadon.created_at, hoadon.tinh_trang_tt FROM hoadon, canho WHERE hoadon.can_ho_id=canho.id  '); 
+            $phuongtien = DB::select('SELECT distinct  phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, canho.name as can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho_id = canho.id and phuongtien.deleted_at IS NUll and canho.deleted_at IS NUll and loaiphuongtien.deleted_at IS NUll');
         }
-
-        if(!empty($ch) && !empty($loai)) {
-            $phuongtien = DB::select('SELECT phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id = loaiphuongtien.id and phuongtien.loai_phuong_tien_id = '. $loai .' andcan_ho-id = '. $ch );
-        }   
-        return view('phuong-tien.danh-sach-phuong-tien', compact('phuongtien','canho', 'loai_pt'));
+         if(!empty($ch) && !empty($loai)) {
+            $phuongtien = DB::select('SELECT distinct phuongtien.id as phuongtien_id, nhan_hieu, mau_sac, bien_so, canho.name as can_ho_id, khuvuc.ten_khu_vuc as khu_vuc, loaiphuongtien.ten_loai_phuong_tien as tenphuongtien FROM phuongtien, khuvuc, loaiphuongtien, canho WHERE phuongtien.khu_vuc_id= khuvuc.id and phuongtien.loai_phuong_tien_id=loaiphuongtien.id and can_ho_id = canho.id and phuongtien.deleted_at IS NUll and canho.deleted_at IS NUll and loaiphuongtien.deleted_at IS NUll and phuongtien.loai_phuong_tien_id = '. $loai .' and can_ho_id = '. $ch );
+        }  
+        return view('phuong-tien.danh-sach-phuong-tien', compact('phuongtien','canho', 'loai_pt')); 
     }
 
     /**

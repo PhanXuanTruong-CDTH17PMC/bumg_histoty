@@ -178,7 +178,14 @@ Route::resource('hoa-don','HoaDonController' );
  Route::get('/user', function () {
      return view('user.layout.user-layout');
  });
-
+ 
+ Route::middleware('checkUserlogin::class')->group(function(){
+    Route::prefix('userhoadon')->group(function(){
+        Route::name('userhoadon.')->group(function(){
+            Route::get('pay/{id}','UserHoaDonController@pay')->name('pay');
+        });
+    });
+});
  Route::resource('/thong-bao', 'UserThongBaoController')->middleware('checkUserlogin::class');
  Route::resource('/user-hoa-don', 'UserHoaDonController')->middleware('checkUserlogin::class');
  Route::resource('/phan-anh','UserPhanAnhController')->middleware('checkUserlogin::class');

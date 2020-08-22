@@ -505,7 +505,7 @@ demo = {
 
         $.notify({
             icon: "nc-icon nc-app",
-            message: "Welcome to <b>PT Home's</b> - a beautiful freebie for every web developer."
+            message: "Welcome to <b>PT Home's</b> - a beautiful freebie for every home."
 
         }, {
             type: type[color],

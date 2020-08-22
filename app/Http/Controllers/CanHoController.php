@@ -17,7 +17,20 @@ class CanHoController extends Controller
      */
     public function index()
     {                                                                               
-        $canho= DB::select('SELECT canho.id as canho_id , Tang, dien_tich, name , password, loaicanho.ten_loai_can_ho as tenloaicanho, cudan.ho_ten_cd as chuho from canho,cudan,loaicanho where canho.loai_can_ho_id=loaicanho.id and canho.chu_ho_id= cudan.id and canho.deleted_at is null');
+        // $canho = DB::select('SELECT canho.id as canho_id , Tang, dien_tich, name , password, loaicanho.ten_loai_can_ho as tenloaicanho, cudan.ho_ten_cd as chuho from canho,cudan,loaicanho where canho.loai_can_ho_id=loaicanho.id and canho.chu_ho_id= cudan.id and canho.deleted_at is null');
+        $canho = CanHo::select([
+           'canho.id',
+            'Tang',
+             'name', 
+             'dien_tich',  
+             'loaicanho.ten_loai_can_ho', 
+             'cudan.ho_ten_cd'
+        ])
+        ->join('cudan', 'chu_ho_id', '=', 'cudan.id')
+        ->join('loaicanho','loai_can_ho_id', '=', 'loaicanho.id')
+        ->whereNull('canho.deleted_at')
+        ->paginate(5);
+        
         return view('can-ho.danh-sach-can-ho')->with('canho',$canho);
     }
 

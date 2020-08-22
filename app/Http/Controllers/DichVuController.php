@@ -15,7 +15,7 @@ class DichVuController extends Controller
      */
     public function index()
     {
-        $dichvu=DichVu::all();
+        $dichvu=DichVu::paginate(5);
         return view('dich-vu.danh-sach-dich-vu')->with('dichvu',$dichvu);
     }
     public function create()

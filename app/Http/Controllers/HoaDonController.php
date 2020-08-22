@@ -60,7 +60,6 @@ class HoaDonController extends Controller
             $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
             $tt += $request->input('so_luong.'.$i.'.soluong')  * $dichvu->phi_dv; 
         }
-            
          $hoadon = new HoaDon;
          $hoadon->can_ho_id = $request->input('can_ho');
          $hoadon->tinh_trang_tt = $request->input('tinh_trang_tt');
@@ -77,6 +76,7 @@ class HoaDonController extends Controller
             $cthoadon->dich_vu_id = ($request->input('dich_vu.'.$i.'.id'));
             $dichvu =DichVu::find($request->input('dich_vu.'.$i.'.id'));
             $cthoadon->so_luong = $request->input('so_luong.'.$i.'.soluong');   
+            $cthoadon->gia = $dichvu->phi_dv; 
             $cthoadon->thanh_tien = $cthoadon->so_luong * $dichvu->phi_dv; 
             $cthoadon->save();
          }
@@ -141,11 +141,10 @@ class HoaDonController extends Controller
      */
     public function edit($id)
     {
-        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, dichvu.don_vi as don_vi, dichvu.phi_dv as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
-        $hoadon=HoaDon::find($id);
-        $canho = CanHo::all();
-        $dichvu = DichVu::all();
-        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon', 'canho', 'dichvu'));
+        $hoadon = HoaDon::find($id);
+        $cthoadon= DB::select('SELECT dichvu.ten_dich_vu as ten_dv, chitiethoadon.gia as phi_dv, chitiethoadon.so_luong as so_luong, chitiethoadon.thanh_tien as thanh_tien from chitiethoadon, dichvu where dichvu.id=chitiethoadon.dich_vu_id and hoa_don_id='.$id);
+      
+        return view('hoa-don.chi-tiet-hoa-don',compact('cthoadon','hoadon'));
     }
 
     /**

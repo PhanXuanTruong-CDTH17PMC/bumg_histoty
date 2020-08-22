@@ -14,7 +14,7 @@ class TinTucController extends Controller
      */
     public function index()
     {
-        $tintuc=TinTuc::all();
+        $tintuc=TinTuc::paginate(5);
         return view('tin-tuc.danh-sach-tin-tuc')->with('tintuc',$tintuc);
     }
 
@@ -110,13 +110,13 @@ class TinTucController extends Controller
                 'anh_dai_dien.required' => 'Vui lòng chọn ảnh',
             ]
         );
-        if($request->hasFile('anh_dai_dien')) {
+        if($request->has('anh_dai_dien')) {
             $this->validate($request, 
                 [
                     'anh_dai_dien' => 'mimes:jpg,jpeg,png,gif|max:2048',
                 ],			
                 [
-                    'anh_dai_dien.mimes' => 'Chỉ chấp nhận hình thẻ với đuôi .jpg .jpeg .png .gif',
+                    'anh_dai_dien.mimes' => 'Chỉ chấp nhận hình ảnh với đuôi .jpg .jpeg .png .gif',
                     'anh_dai_dien.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
                 ]
             );
@@ -124,6 +124,7 @@ class TinTucController extends Controller
             $tintuc =  TinTuc::find($id);
             $file = $request->file('anh_dai_dien');
             $file_name = time().'_'.$file->getClientOriginalName();
+            // dd($file_name);
             $filePath = public_path('assets\images');
             $file->move($filePath, $file_name);
             $tintuc->tieu_de = $request->input('tieu_de');
@@ -132,7 +133,6 @@ class TinTucController extends Controller
             $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
         }
-        
         return redirect('danh-sach-tin-tuc')->with('success','Chỉnh sửa thành công!');
     }
 
@@ -146,7 +146,7 @@ class TinTucController extends Controller
     {
         
         $tintuc=TinTuc::find($id);
-        $tintuc->delete($id);
+        $tintuc->delete();
         return redirect('danh-sach-tin-tuc')->with('success','Delete success');
     }
 }

@@ -14,7 +14,7 @@ class BoPhanController extends Controller
      */
     public function index()
     {
-        $bophan = BoPhan::all();
+        $bophan = BoPhan::paginate(5);
         return view('nhan-vien.bo-phan.danh-sach-bo-phan')-> with('bophan',$bophan);
     }
 

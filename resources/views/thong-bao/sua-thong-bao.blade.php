@@ -33,10 +33,16 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" id="canhoid" name="can_ho_id" required focus>
-                        <option value="0"  selected>Tất cả căn hộ</option>        
                         @foreach($canho as $can_ho)
-                        <option name="can_ho_id" value="{{$can_ho->id}}">{{ $can_ho->name }}</option>
+                        @if (($thongbao->can_ho_id)==$can_ho->id) <option name="can_ho_id" value="{{$can_ho->id}}">{{ $can_ho->name }}</option> 
+                        @endif
                         @endforeach
+                        <option value="0" >Tất cả căn hộ</option>   
+                        @foreach($canho as $can_ho)
+                        @if (($thongbao->can_ho_id)!=$can_ho->id) <option name="can_ho_id" value="{{$can_ho->id}}">{{ $can_ho->name }}</option> 
+                        @endif
+                        @endforeach
+                        
                         </select>
                     </div> 
                     </div>                    

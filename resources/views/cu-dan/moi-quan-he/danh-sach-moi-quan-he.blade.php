@@ -68,10 +68,12 @@
                                     </tr>                              
                             @endforeach    
                         @else
+                               <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
-
                     </thead>
                 </table>
+                
+                {!! $quanhe->links() !!}
             </div> 
         </div> 
     </div>

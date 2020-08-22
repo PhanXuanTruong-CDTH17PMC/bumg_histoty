@@ -78,6 +78,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $tintuc->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

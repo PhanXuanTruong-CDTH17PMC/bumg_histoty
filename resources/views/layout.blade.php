@@ -26,11 +26,12 @@
 <body class="authentication-bg authentication-bg-pattern">
     <div class="wrapper">
     </br>
-    @include('messages.messages')
+        @include('messages.messages')
         @yield('main-content')
         
     </div>
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/delete-confirm.js') }}"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Auth;
 use DB;
 use App\ThongBao;
-
 use Illuminate\Http\Request;
 
 class UserThongBaoController extends Controller

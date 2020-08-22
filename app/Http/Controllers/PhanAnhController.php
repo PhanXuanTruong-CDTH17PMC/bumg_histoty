@@ -15,7 +15,7 @@ class PhanAnhController extends Controller
      */
     public function index()
     {
-        $phananh=DB::select('SELECT phananh.id as id_phan_anh,tieu_de_pa, noi_dung_pa, phananh.created_at as ngay_tao, cudan.ho_ten_cd  as nguoi_tao From cudan, phananh WHERE phananh.chu_ho_id =cudan.id');
+        $phananh=DB::select('SELECT phananh.id as id_phan_anh,tieu_de_pa, noi_dung_pa, phananh.created_at as ngay_tao, cudan.ho_ten_cd, canho.name as nguoi_tao From cudan, phananh, canho WHERE phananh.chu_ho_id = canho.chu_ho_id and phananh.chu_ho_id =cudan.id');
         return view('phan-anh.danh-sach-phan-anh')->with('phananh',$phananh);
     }
 

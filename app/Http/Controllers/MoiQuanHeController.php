@@ -14,7 +14,7 @@ class MoiQuanHeController extends Controller
      */
     public function index()
     {
-        $quanhe= QuanHe::all();
+        $quanhe= QuanHe::paginate(5);
         return view('cu-dan.moi-quan-he.danh-sach-moi-quan-he')->with('quanhe',$quanhe);
     }
 

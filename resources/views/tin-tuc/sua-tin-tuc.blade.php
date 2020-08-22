@@ -15,10 +15,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                @if($errors->any())
-                 {{$errors}}
-                @endif
-                {!!Form::open(['action' => ['TinTucController@update',$tintuc->id],'method'=> 'PUT']) !!}
+                {!!Form::open(['action' => ['TinTucController@update',$tintuc->id],'method'=> 'PUT','enctype'=> 'multipart/form-data']) !!}
                 <div class="form-group">
                         {{Form::label('title','Tiêu đề')}}<span class="text-danger"> 
                         *</span>

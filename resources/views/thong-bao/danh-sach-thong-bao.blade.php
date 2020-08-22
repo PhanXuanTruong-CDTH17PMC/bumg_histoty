@@ -78,8 +78,8 @@
                                <h3 style = "text-align: center; color:red"> <i>Không có dữ liệu để hiển thị.</i></h3> 
                         @endif
                     </thead>
-                    <!--  -->
                 </table>
+                {!! $thongbao->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

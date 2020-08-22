@@ -11,14 +11,14 @@ class HoaDonSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('hoadon')->insert([
-            [
-                'can_ho_id'=> 1,
-                'tong_tien' =>  12000000,
-                'tinh_trang_tt' => 0,
-                'nhan_vien_id'=> 1
-            ],
-        ]);
+        // DB::table('hoadon')->insert([
+        //     [
+        //         'can_ho_id'=> 1,
+        //         'tong_tien' =>  12000000,
+        //         'tinh_trang_tt' => 0,
+        //         'nhan_vien_id'=> 1
+        //     ],
+        // ]);
     }
 }
 

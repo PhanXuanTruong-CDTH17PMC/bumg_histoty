@@ -76,6 +76,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $loaiaccount->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

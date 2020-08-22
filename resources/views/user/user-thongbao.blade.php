@@ -33,7 +33,11 @@
             <div class="card-body">
                        @if (count($thongbao )>0)
                             @foreach ($thongbao as $thong_bao )
-                                   <div class ="form-group"><a href ="/thong-bao/{{$thong_bao->id}}" style="Color:black"><input type = "text" style="height:40px;border:1px solid gray;border-radius:15px 0 0 15px;width:50%; pading:15px;"class ="font-controll" disabled value ="{{$thong_bao->tieu_de_tb}}"><button  class ="font-controll"><i class="nc-icon nc-stre-right"></i></button></a></div>
+                            <a href ="/thong-bao/{{$thong_bao->id}}"><div class ="form-group col-4" style = "background-color:#CC00FF; height: 70px; color    : white">
+                            <u><b>Thông Báo: TB{{$thong_bao->id }}</b></u><br/>
+                             {{$thong_bao->tieu_de_tb}}<br/>
+                            <i> Ngày: {{date('H:i d-m-yyyy', strtotime($thong_bao->created_at))}}</i>
+                            </div></a>
                                                            
                             @endforeach 
                         @else 

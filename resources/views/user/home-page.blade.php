@@ -40,8 +40,13 @@
                 </div>
                 <ul class="list-unstyled topnav-menu float-right mb-0">
                 <li class="button">
-                    <a href="/logout" class="nav-link  nav-user mr-0 waves-effect " style=" color: white">
+                    @if(empty($auth))
+                        <a href="/log-in" class="nav-link  nav-user mr-0 waves-effect " style=" color: white">
                         Đăng nhập
+                    @else
+                      <a href="logout" class="nav-link  nav-user mr-0 waves-effect " style=" color: white">
+                        Đăng xuất
+                    @endif
                     </a>
                 </li>
             </ul>
@@ -72,7 +77,6 @@
                       </div>
                   </div>
                 @endforeach    
-            @else
             @endif  
         </div>
       </div>
@@ -81,14 +85,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg">
-            <div class="custom-pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-             
-            </div>
+              
+            {!! $tintuc->links() !!}
           </div>
         </div>
       </div>

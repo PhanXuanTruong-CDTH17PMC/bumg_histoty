@@ -16,7 +16,7 @@ class ThongBaoController extends Controller
      */
     public function index()
     {
-        $thongbao= thongbao::all();
+        $thongbao= thongbao::paginate(5);
         return view('thong-bao.danh-sach-thong-bao')->with('thongbao',$thongbao);
     }
 

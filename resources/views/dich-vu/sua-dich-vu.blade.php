@@ -25,12 +25,38 @@
                     {{Form::label('title','Đơn vị')}}<span class="text-danger"> *</span>
                     <div class="form-group">
                         <select class="form-control " id="canho" name="don_vi" value = "" required focus>
-                            <option value="" disabled selected>Chọn đơn vị</option>             
-                            <option >VNĐ/m3</option>  
+                            @if($dichvu->don_vi=="VNĐ/m3")          
+                            <option selected>VNĐ/m3</option> 
                             <option >VNĐ/kWh</option>  
                             <option >VNĐ/Chiếc</option>  
                             <option>VNĐ/Hộ</option>  
-                            <option>VNĐ/Người</option>   
+                            <option>VNĐ/Người</option> 
+                            @elseif($dichvu->don_vi=="VNĐ/kWh")  
+                            <option selected>VNĐ/kWh</option>         
+                            <option>VNĐ/m3</option>  
+                            <option >VNĐ/Chiếc</option>  
+                            <option>VNĐ/Hộ</option>  
+                            <option>VNĐ/Người</option> 
+                            @elseif($dichvu->don_vi=="VNĐ/Chiếc")     
+                            <option selected>VNĐ/Chiếc</option>       
+                            <option>VNĐ/m3</option> 
+                            <option >VNĐ/kWh</option>  
+                            <option>VNĐ/Hộ</option>  
+                            <option>VNĐ/Người</option> 
+                            @elseif($dichvu->don_vi=="VNĐ/Hộ") 
+                            <option selected>VNĐ/Hộ</option>     
+                            <option>VNĐ/Chiếc</option>       
+                            <option>VNĐ/m3</option> 
+                            <option >VNĐ/kWh</option>  
+                            <option>VNĐ/Người</option> 
+                            @elseif($dichvu->don_vi=="VNĐ/Người")
+                            <option selected>VNĐ/Người</option>      
+                            <option>VNĐ/Chiếc</option>       
+                            <option>VNĐ/m3</option> 
+                            <option >VNĐ/kWh</option>  
+                            <option>VNĐ/Hộ</option>  
+                            @endif 
+                            
                         </select>
                     </div> 
                      </div> 

@@ -46,7 +46,7 @@
         <div class="page-title-box">
             <h2>Cư dân</h2>
             <a href="/cu-dan/create" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Thêm mới</a>
-            <a href="quan-he   " style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý mối quan hệ</a><br>
+            <a href="quan-he" style="margin-bottom:10px;" class="btn btn-primary waves-effect waves-light">Quản lý mối quan hệ</a><br>
         </div>
     </div>
 </div>
@@ -69,7 +69,7 @@
         <div class="form group">
             <div class="form group">
                 <button type = 'submit' style="margin-bottom:10px;" class="btn btn-primary ">Tìm Kiếm</button>
-                <a href="/hoa-don/" style="margin-bottom:10px;" class="btn btn-info">Quay lại</a>
+                <a href="cu-dan" style="margin-bottom:10px;" class="btn btn-info">Quay lại</a>
                 {{ csrf_field() }}
             </div>
         </div>
@@ -96,18 +96,18 @@
                             </tr>
                             @foreach ($cudan as $cu_dan )
                                     <tr>
-                                        <th>{{$cu_dan-> cu_dan_id}}</th>
+                                        <th>{{$cu_dan->id}}</th>
                                         <th>{{$cu_dan-> ho_ten_cd}}</th>
                                         <th>{{$cu_dan-> CMND}}</th>
                                         <th>{{$cu_dan-> SDT}}</th>
                                         <th>{{$cu_dan-> email}}</th>
                                         <th>{{$cu_dan-> ng_sinh}}</th>
-                                        <th>{{$cu_dan-> can_ho_id}}</th>
-                                        <th>{{$cu_dan-> quanhe}}</th>
+                                        <th>{{$cu_dan-> name}}</th>
+                                        <th>{{$cu_dan-> ten_quan_he}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/cu-dan/{{$cu_dan->cu_dan_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button"<a href="{{ route('cu-dan.xoa', ['id' => $cu_dan->cu_dan_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                                <button type="button" class="btn "><a href="/cu-dan/{{$cu_dan->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button"<a href="{{ route('cu-dan.xoa', ['id' => $cu_dan->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>   
                                     </tr>                              
@@ -117,6 +117,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $cudan->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

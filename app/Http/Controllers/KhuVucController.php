@@ -14,7 +14,7 @@ class KhuVucController extends Controller
      */
     public function index()
     {
-        $khuvuc=KhuVuc::all();
+        $khuvuc=KhuVuc::paginate(5);
         return view('phuong-tien.khu-vuc.danh-sach-khu-vuc')->with('khuvuc',$khuvuc);
     }
 

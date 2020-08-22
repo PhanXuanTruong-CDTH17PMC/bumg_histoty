@@ -27,9 +27,15 @@
                     {{Form::label('title','Dịch vụ')}}<span class="text-danger">*</span>
                     <div class="form-group">
                         <select class="form-control" id="dich_vu" name="dich_vu" required focus>
-                        <option value="" disabled selected>Chọn dịch vụ</option>        
                         @foreach($dichvu as $dich_vu)
-                        <option name="ten_dichvu" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>
+                            @if(($loaiphuongtien->dich_vu_id)==($dich_vu->id))
+                            <option name="ten_dichvu" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>
+                            @endif
+                        @endforeach
+                        @foreach($dichvu as $dich_vu)
+                            @if(($loaiphuongtien->dich_vu_id)!=($dich_vu->id))
+                            <option name="ten_dichvu" value="{{$dich_vu->id}}">{{ $dich_vu->ten_dich_vu }}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div> 

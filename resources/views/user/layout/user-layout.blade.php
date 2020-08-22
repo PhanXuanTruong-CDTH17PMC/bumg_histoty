@@ -66,6 +66,7 @@
             </div>
         </div>
         <div class="main-panel">
+                 @include('messages.messages')
                 @yield('main-content')
         </div>
 </body>

@@ -3,9 +3,9 @@
 <div class="navbar-custom" style="; co;color:black  ">
         <div class="container-fluid">
              <div class="logo-box topnav-menu  mb-0">
-             <a  class="logo text-center">
+             <a href ="/home-page" class="logo text-center">
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="" height="72">
+                      <img src="{{ asset('assets/images/logo.png') }}" alt="" height="72"> 
                     </span>
                     <span class="logo-sm">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="" height="52">
@@ -127,9 +127,9 @@
     var notificationsCount     = parseInt(notificationsCountElem.data('count'));
     var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
-    // if (notificationsCount <= 0) {
-    //     notificationsWrapper.hide();
-    // }
+    if (notificationsCount <= 0) {
+        notificationsWrapper.hide();
+    }
 
     //Thay giá trị PUSHER_APP_KEY vào chỗ xxx này nhé
     var pusher = new Pusher('975945c0210358eba837', {

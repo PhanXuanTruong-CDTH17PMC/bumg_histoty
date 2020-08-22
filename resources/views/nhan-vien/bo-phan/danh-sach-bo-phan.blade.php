@@ -74,6 +74,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $bophan->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

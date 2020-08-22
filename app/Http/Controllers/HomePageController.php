@@ -15,9 +15,10 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        $tintuc= TinTuc::all();
-        // $auth = Auth::guard('nhanvien')->user()      
-        return view('user.home-page',compact('tintuc'));
+        $tintuc= TinTuc::paginate(5);
+        $auth = Auth::guard('nhanvien')->user();  
+        $auth2 = Auth::guard('canho')->user();  
+        return view('user.home-page',compact('tintuc', 'auth','auth2'));
     }
 
     /**

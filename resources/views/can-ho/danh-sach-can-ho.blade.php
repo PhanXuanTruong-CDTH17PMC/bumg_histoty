@@ -66,16 +66,16 @@
                             </tr>
                             @foreach ($canho as $can_ho )
                                     <tr>
-                                        <th>{{$can_ho-> canho_id}}</th>
-                                        <th>{{$can_ho-> Tang}}</th>
-                                        <th>{{$can_ho-> dien_tich}}</th> 
-                                        <th>{{$can_ho-> name}}</th>   
-                                        <th>{{$can_ho-> tenloaicanho}}</th>
-                                        <th>{{$can_ho-> chuho}}</th>
+                                        <th>{{$can_ho->id}}</th>
+                                        <th>{{$can_ho->Tang}}</th>
+                                        <th>{{$can_ho->dien_tich}}</th> 
+                                        <th>{{$can_ho->name}}</th>   
+                                        <th>{{$can_ho->ten_loai_can_ho}}</th>
+                                        <th>{{$can_ho->ho_ten_cd}}</th>
                                          <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/can-ho/{{$can_ho->canho_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button" href="{{ route('can-ho.xoa', ['id' => $can_ho->canho_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                                <button type="button" class="btn "><a href="/can-ho/{{$can_ho->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="{{ route('can-ho.xoa', ['id' => $can_ho->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>
                                     </tr>                              
@@ -85,6 +85,7 @@
                         @endif
                     </thead>
                 </table>
+                {!! $canho->links() !!}
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

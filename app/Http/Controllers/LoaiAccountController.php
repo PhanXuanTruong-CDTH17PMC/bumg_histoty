@@ -15,7 +15,7 @@ class LoaiAccountController extends Controller
      */
     public function index()
     {
-        $loaiaccount = DB::select('SELECT * FROM loaiaccount' );
+        $loaiaccount = LoaiAccount::paginate(5);
         return view('nhan-vien.loai-account.danh-sach-loai-account')->with('loaiaccount',$loaiaccount);
     }
 
