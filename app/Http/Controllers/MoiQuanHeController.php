@@ -44,7 +44,7 @@ class MoiQuanHeController extends Controller
         $quanhe->ten_quan_he =$request ->input('ten_moi_quan_he');
         $quanhe->save();
 
-        return redirect('quan-he')->with('success','Add success');
+        return redirect('quan-he')->with('success','Thêm thành công');
     }
 
     /**
@@ -87,7 +87,7 @@ class MoiQuanHeController extends Controller
         $quanhe->ten_quan_he =$request ->input('ten_moi_quan_he');
         $quanhe->save();
 
-        return redirect('quan-he')->with('success','Change success');
+        return redirect('quan-he')->with('success','Sửa thành công');
     }
 
     /**
@@ -102,6 +102,6 @@ class MoiQuanHeController extends Controller
         
         $quanhe->delete($id);
 
-        return redirect('quan-he')->with('success','Delete success');
+        return redirect('quan-he')->with('success','Xóa thành công');
     }
 }

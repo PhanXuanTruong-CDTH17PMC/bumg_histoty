@@ -67,7 +67,7 @@ class NhanVienController extends Controller
         $nhanvien->bo_phan_id =$request ->input('bophan');
         $nhanvien->save();
 
-        return redirect('danh-sach-nhan-vien')->with('success','Add success');
+        return redirect('danh-sach-nhan-vien')->with('success','Thêm thành công');
     }
 
     /**
@@ -94,7 +94,7 @@ class NhanVienController extends Controller
         $loaitaikhoan = LoaiAccount::all();
         $bophan= BoPhan::all();
         
-        return view('nhan-vien.sua-nhan-vien',compact('bophan','loaitaikhoan','nhanvien'    ));
+        return view('nhan-vien.sua-nhan-vien',compact('bophan','loaitaikhoan','nhanvien'));
     }
 
     /**

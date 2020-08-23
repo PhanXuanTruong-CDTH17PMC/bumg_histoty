@@ -59,7 +59,7 @@ class CanHoController extends Controller
         $canho->chu_ho_id =$request ->input('chuho');
         $canho->save();
 
-        return redirect('can-ho')->with('success','Save success');
+        return redirect('can-ho')->with('success','Thêm thành công');
     }
 
     /**
@@ -112,7 +112,7 @@ class CanHoController extends Controller
         $canho->chu_ho_id =$request ->input('chuho');
         $canho->save();
 
-        return redirect('can-ho')->with('success','Change success');
+        return redirect('can-ho')->with('success','Sừa thành công');
     }
 
     /**
@@ -125,6 +125,6 @@ class CanHoController extends Controller
     {
         $canho = CanHo::find($id);
         $canho->delete($id);
-        return redirect('can-ho')->with('success','Delete success');
+        return redirect('can-ho')->with('success','Xóa thành công');
     }
 }

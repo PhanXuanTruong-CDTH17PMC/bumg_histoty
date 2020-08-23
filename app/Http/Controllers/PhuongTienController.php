@@ -67,7 +67,7 @@ class PhuongTienController extends Controller
         
         $phuongtien->save();
 
-        return redirect('phuong-tien')->with('success','Add success');
+        return redirect('phuong-tien')->with('success','Thêm thành công');
     }
 
     /**
@@ -141,7 +141,7 @@ class PhuongTienController extends Controller
         $phuongtien->loai_phuong_tien_id  =$request ->input('loai_phuong_tien');
         $phuongtien->save();
 
-        return redirect('phuong-tien')->with('success','Update success');
+        return redirect('phuong-tien')->with('success','Sửa thành công');
     }
 
     /**
@@ -154,6 +154,6 @@ class PhuongTienController extends Controller
     {
         $phuongtien = PhuongTien::find($id);
         $phuongtien->delete();
-        return redirect('phuong-tien')->with('success','Delete success');
+        return redirect('phuong-tien')->with('success','Xóa thành công');
     }
 }

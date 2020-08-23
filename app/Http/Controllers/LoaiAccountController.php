@@ -45,7 +45,7 @@ class LoaiAccountController extends Controller
         $loaiaccount->ten_loai_account =$request ->input('ten_loai_account');
         $loaiaccount->save();
 
-        return redirect('/loai-account')->with('success','Add success');
+        return redirect('/loai-account')->with('success','Thêm thành công');
     }
 
     /**
@@ -88,7 +88,7 @@ class LoaiAccountController extends Controller
         $loaiaccount->ten_loai_account =$request ->input('ten_loai_account');
         $loaiaccount->save();
 
-        return redirect('loai-account')->with('success','Change success');
+        return redirect('loai-account')->with('success','Sửa thành công');
     }
 
     /**
@@ -101,7 +101,7 @@ class LoaiAccountController extends Controller
     {
         $loaiaccount = LoaiAccount::find($id);
         $loaiaccount->delete();
-        return redirect('loai-account')->with('success','dalete success');
+        return redirect('loai-account')->with('success','Xóa thành công');
 
     }
 }

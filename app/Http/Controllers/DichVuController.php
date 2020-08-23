@@ -43,7 +43,7 @@ class DichVuController extends Controller
         $dichvu->phi_dv=$request->input('phi_dv');
         $dichvu->save();
 
-        return redirect('dich-vu')->with('success','Add success');
+        return redirect('dich-vu')->with('success','Thêm thành công');
     }
 
     /**
@@ -90,7 +90,7 @@ class DichVuController extends Controller
         $dichvu->phi_dv=$request->input('phi_dv');
         $dichvu->save();
 
-        return redirect('dich-vu')->with('success','Change success');
+        return redirect('dich-vu')->with('success','Sửa thành công');
     }
 
     /**
@@ -104,6 +104,6 @@ class DichVuController extends Controller
         $dichvu = DichVu::find($id);
         $dichvu->delete();
 
-        return redirect('dich-vu')->with('success','Delete success');
+        return redirect('dich-vu')->with('success','Xóa thành công');
     }
 }

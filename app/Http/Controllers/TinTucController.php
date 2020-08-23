@@ -130,14 +130,13 @@ class TinTucController extends Controller
                 $file_name = time().'_'.$file->getClientOriginalName();
                 $filePath = public_path('assets\images');
                 $file->move($filePath, $file_name);
-                dd($file_name);
                 $tintuc->anh_dai_dien = $file_name;
             }
             $tintuc->nhan_vien_id=Auth::guard('nhanvien')->user()->id;
             $tintuc->save();
 
         
-        return redirect('danh-sach-tin-tuc')->with('success','Chỉnh sửa thành công!');
+        return redirect('danh-sach-tin-tuc')->with('success','Sửa thành công!');
     }
 
     /**
@@ -151,6 +150,6 @@ class TinTucController extends Controller
         
         $tintuc=TinTuc::find($id);
         $tintuc->delete($id);
-        return redirect('danh-sach-tin-tuc')->with('success','Delete success');
+        return redirect('danh-sach-tin-tuc')->with('success','Xóa thành công');
     }
 }

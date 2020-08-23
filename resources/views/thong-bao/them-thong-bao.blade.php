@@ -5,18 +5,14 @@
 @section('main-content')
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
-                
+            <div class="page-title-box">  
                     <h2>Thêm mới thông báo</h2>
-                
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                
-
                 {!!Form::open(['action' => 'ThongBaoController@store','method'=> 'POST']) !!}
                 <div class="form-group">
                         {{Form::label('title','Tiêu đề')}}<span class="text-danger"> 

@@ -44,7 +44,7 @@ class KhuVucController extends Controller
         $khuvuc->ten_khu_vuc =$request ->input('ten_khu_vuc');
         $khuvuc->save();
 
-        return redirect('khu-vuc')->with('success','Add success');
+        return redirect('khu-vuc')->with('success','Thêm  thành công');
     }
 
     /**
@@ -87,7 +87,7 @@ class KhuVucController extends Controller
         $khuvuc->ten_khu_vuc =$request ->input('ten_khu_vuc');
         $khuvuc->save();
 
-        return redirect('/khu-vuc')->with('success','Update success');
+        return redirect('/khu-vuc')->with('success','Sửa thành công');
     }
 
     /**
@@ -100,6 +100,6 @@ class KhuVucController extends Controller
     {
         $khuvuc= KhuVuc::find($id);
         $khuvuc->delete($id);
-        return redirect('/khu-vuc')->with('success','Delete success');
+        return redirect('/khu-vuc')->with('success','Xóa thành công');
     }
 }

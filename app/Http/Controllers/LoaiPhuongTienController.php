@@ -50,7 +50,7 @@ class LoaiPhuongTienController extends Controller
     $loaiphuongtien->dich_vu_id =$request ->input('dich_vu');
     $loaiphuongtien->save();
 
-        return redirect('loai-phuong-tien')->with('success','Add success');
+        return redirect('loai-phuong-tien')->with('success','Thêm thành công');
     }
 
     /**
@@ -96,7 +96,7 @@ class LoaiPhuongTienController extends Controller
         $loaiphuongtien->ten_loai_phuong_tien =$request ->input('ten_loai_phuong_tien');
         $loaiphuongtien->dich_vu_id =$request ->input('dich_vu');
         $loaiphuongtien->save();
-        return redirect('loai-phuong-tien')->with('success','Update success');
+        return redirect('loai-phuong-tien')->with('success','Sửa thành công');
     }
 
     /**
@@ -109,6 +109,6 @@ class LoaiPhuongTienController extends Controller
     {
         $loaiphuongtien=LoaiPhuongTien::find($id);
         $loaiphuongtien->delete($id);
-         return redirect('loai-phuong-tien')->with('success','Delete success');
+         return redirect('loai-phuong-tien')->with('success','Xóa thành công');
     }
 }

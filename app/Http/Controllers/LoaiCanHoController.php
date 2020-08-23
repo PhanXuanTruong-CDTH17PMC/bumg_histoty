@@ -44,7 +44,7 @@ class LoaiCanHoController extends Controller
         $loaicanho->ten_loai_can_ho =$request ->input('ten_loai_can_ho');
         $loaicanho->save();
 
-        return redirect('/loai-can-ho')->with('success','Add success');
+        return redirect('/loai-can-ho')->with('success','Thêm thành công');
     }
 
     /**
@@ -87,7 +87,7 @@ class LoaiCanHoController extends Controller
         $loaicanho->ten_loai_can_ho =$request ->input('ten_loai_can_ho');
         $loaicanho->save();
 
-        return redirect('loai-can-ho')->with('success','Change success');
+        return redirect('loai-can-ho')->with('success','Sửa thành công');
     }
 
     /**
@@ -101,6 +101,6 @@ class LoaiCanHoController extends Controller
         $loaicanho =LoaiCanHo::find($id);
         $loaicanho->delete($id);
 
-        return redirect('loai-can-ho')->with('success','delete success');
+        return redirect('loai-can-ho')->with('success','Xóa thành công');
     }
 }

@@ -39,7 +39,7 @@ class LoginController extends Controller
 		
 			}
 	     else {	     	
-	     	 return redirect('/log-in')->with('error','Log in fail');
+	     	 return redirect('/log-in')->with('error','Đăng nhập thất bại');
 		 }
 		
 	}

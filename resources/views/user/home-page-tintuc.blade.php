@@ -56,10 +56,8 @@
           <h1  style="margin:auto;padding-bottom: 50px;Color green;display: block;text-align: center;"><b>Tin Tức</b></h1>
       </div>
       <div class="container">
-      <h2>{{$tintuc->tieu_de}}</h2>
-          <div class="container">
-          {!!(substr($tintuc->noi_dung_tt,1, )) !!}
-        </div>
+      <h2>{{$tintuc->tieu_de}}</h2></br>
+          <div class="container">{!!(substr($tintuc->noi_dung_tt,1, )) !!}</div>
       </div>
     </div>
     

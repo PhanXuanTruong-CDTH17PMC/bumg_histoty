@@ -105,10 +105,17 @@
                                         <th>{{$cu_dan-> can_ho_id}}</th>
                                         <th>{{$cu_dan-> quanhe}}</th>
                                         <th style="width: 200px">
+                                        @if((Auth::guard('nhanvien')->user()->loai_account_id)==1)
                                             <div>
                                                 <button type="button" class="btn "><a href="/cu-dan/{{$cu_dan->cu_dan_id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a type="button"<a href="{{ route('cu-dan.xoa', ['id' => $cu_dan->cu_dan_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                                <a type="button" href="{{ route('cu-dan.xoa', ['id' => $cu_dan->cu_dan_id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
+                                        @else 
+                                            <div>
+                                                <button type="button" class="btn" ><a href="/cu-dan/{{$cu_dan->cu_dan_id}}/edit" class="btn btn-info disabled" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="{{ route('cu-dan.xoa', ['id' => $cu_dan->cu_dan_id]) }}"  class="btn btn-danger delete-confirm disabled"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                            @endif
                                         </th>   
                                     </tr>                              
                             @endforeach 

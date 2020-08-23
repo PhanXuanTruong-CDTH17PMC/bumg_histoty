@@ -92,7 +92,7 @@ class HoaDonController extends Controller
             'tt' =>  $tong
         ];
         Mail::to($ch_mail)->send(new SendMail($data));
-        return redirect('hoa-don')->with('success','Add success');
+        return redirect('hoa-don')->with('success','Thêm thành công');
     }
 
     /**
@@ -166,7 +166,7 @@ class HoaDonController extends Controller
         }        
         $hoadon->save();
 
-        return redirect('hoa-don')->with('success','Delete success');
+        return redirect('hoa-don')->with('success','Sửa thành công');
     }
 
     /**
@@ -180,6 +180,6 @@ class HoaDonController extends Controller
         $hoadon = HoaDon::find($id);
         $hoadon->delete();
 
-        return redirect('hoa-don')->with('success','Delete success');
+        return redirect('hoa-don')->with('success','Xóa thành công');
     }
 }

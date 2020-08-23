@@ -3,21 +3,17 @@
     Thêm mới tin tức
 @endsection
 @section('main-content')
+<div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
-                
+            <div class="page-title-box">    
                     <h2>Thêm mới tin tức</h2>
-                
             </div>
         </div>
     </div>
-    <div class="row">
+
         <div class="col-lg-12">
             <div class="card-box">
-                @if($errors->any())
-                 {{$errors}}
-                @endif
                 {!!Form::open(['action' => 'TinTucController@store','method'=> 'POST', 'class'=>'form-horizontal', 'enctype'=> 'multipart/form-data']) !!}
                 <div class="form-group">
                         {{Form::label('title','Tiêu đề')}}<span class="text-danger"> 
@@ -48,6 +44,7 @@
                     {!!Form::close() !!}
             </div>
         </div>
+    </div>
     </div>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>

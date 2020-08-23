@@ -44,7 +44,7 @@ class BoPhanController extends Controller
         $bophan->ten_bo_phan =$request ->input('ten_bo_phan');
         $bophan->save();
 
-        return redirect('/danh-sach-bo-phan')->with('success','Add success');
+        return redirect('/danh-sach-bo-phan')->with('success','Thêm thành công');
     }
 
     /**
@@ -87,7 +87,7 @@ class BoPhanController extends Controller
         $bophan->ten_bo_phan =$request ->input('ten_bo_phan');
         $bophan->save();
 
-        return redirect('/danh-sach-bo-phan')->with('success','Change success');
+        return redirect('/danh-sach-bo-phan')->with('success','Sửa thành công');
     }
 
     /**
@@ -101,6 +101,6 @@ class BoPhanController extends Controller
         $bophan = BoPhan::find($id);
         $bophan->delete();
 
-        return redirect('/danh-sach-bo-phan')->with('success','Delete success');
+        return redirect('/danh-sach-bo-phan')->with('success','Xóa thành công');
     }
 }

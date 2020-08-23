@@ -5,7 +5,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets2/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets2/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
+    <title>PH HOME's xin chào</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -41,7 +41,7 @@
                     <li>
                         <a class="nav-link" href="/user-hoa-don">
                             <i class="nc-icon nc-cart-simple"></i>
-                            <p>Hoa Đơn</p>
+                            <p>Hóa Đơn</p>
                         </a>
                     </li>
                     <li>
