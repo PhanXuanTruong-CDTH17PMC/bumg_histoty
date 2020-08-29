@@ -72,7 +72,7 @@ Route::prefix('loai-account')->group(function(){
         Route::get('/','LoaiAccountController@index')->name('danh-sach');
         Route::get('them','LoaiAccountController@create')->name('them');
         Route::post('them','LoaiAccountController@store')->name('xu-ly-them');
-        Route::get('/xoa/{id}','MoiQuanHeController@destroy')->name('xoa');
+        Route::get('/xoa/{id}','LoaiAccountController@destroy')->name('xoa');
     });
 });
 Route::prefix('quan-he')->group(function(){
@@ -180,9 +180,17 @@ Route::resource('hoa-don','HoaDonController' );
  });
  
  Route::middleware('checkUserlogin::class')->group(function(){
-    Route::prefix('userhoadon')->group(function(){
-        Route::name('userhoadon.')->group(function(){
+    Route::prefix('user-hoa-don')->group(function(){
+        Route::name('user-hoa-don.')->group(function(){
             Route::get('pay/{id}','UserHoaDonController@pay')->name('pay');
+            Route::get('momo/{id}','UserHoaDonController@processResultMomo')->name('momo');
+        });
+    });
+    Route::prefix('user-cu-dan')->group(function(){
+        Route::name('user-cu-dan.')->group(function(){\
+            Route::get('/','UserCuDanController@index')->name('danh-sach');
+            Route::get('them','UserCuDanController@create')->name('them');
+            Route::get('them','UserCuDanController@store')->name('xu-li-them');
         });
     });
 });

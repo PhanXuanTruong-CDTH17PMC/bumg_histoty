@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LoaiAccount;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\CuDan;
+use App\CanHo;
+use App\QuanHe;
+use Auth;
 use DB;
 
-class LoaiAccountController extends Controller
+class UserCuDanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +18,26 @@ class LoaiAccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $loaiaccount = LoaiAccount::where(['deleted_at' => NULL])->paginate(5);
-        return view('nhan-vien.loai-account.danh-sach-loai-account')->with('loaiaccount',$loaiaccount);
+    {   
+        $auth = Auth::guard('canho')->user();
+         $cudan = CuDan::select([
+            'cudan.id',
+             'ho_ten_cd',
+              'CMND', 
+              'email',  
+              'SDT', 
+              'ng_sinh',
+              'quanhe.ten_quan_he'
+         ])
+         ->join('canho', 'can_ho_id', '=', 'canho.id')
+         ->join('quanhe','quan_he_id', '=', 'quanhe.id')
+         ->where(['can_ho_id' => $auth->id])
+         ->where(['chu_ho_id' => $auth->chu_ho_id])
+         ->whereNull('cudan.deleted_at')
+         ->orderby('quan_he_id')
+         ->paginate(5);
+      
+        return view('user.user-cudan',compact('cudan','auth'));
     }
 
     /**
@@ -26,7 +47,7 @@ class LoaiAccountController extends Controller
      */
     public function create()
     {
-        return view('nhan-vien.loai-account.them-loai-account');
+        //
     }
 
     /**
@@ -37,15 +58,7 @@ class LoaiAccountController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'ten_loai_account'=>'required'  
-        ]);
-
-        $loaiaccount = new LoaiAccount;
-        $loaiaccount->ten_loai_account =$request ->input('ten_loai_account');
-        $loaiaccount->save();
-
-        return redirect('/loai-account')->with('success','Add success');
+        //
     }
 
     /**
@@ -67,8 +80,7 @@ class LoaiAccountController extends Controller
      */
     public function edit($id)
     {
-        $loaiaccount = LoaiAccount::find($id);
-        return view('nhan-vien.loai-account.sua-loai-account')->with('loaiaccount',$loaiaccount);
+        //
     }
 
     /**
@@ -80,15 +92,7 @@ class LoaiAccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'ten_loai_account'=>'required'  
-        ]);
-
-        $loaiaccount = LoaiAccount::find($id);
-        $loaiaccount->ten_loai_account =$request ->input('ten_loai_account');
-        $loaiaccount->save();
-
-        return redirect('loai-account')->with('success','Change success');
+        //
     }
 
     /**
@@ -99,9 +103,6 @@ class LoaiAccountController extends Controller
      */
     public function destroy($id)
     {
-        $loaiaccount = LoaiAccount::find($id);
-        $loaiaccount->delete();
-        return redirect('loai-account')->with('success','dalete success');
-
+        //
     }
 }

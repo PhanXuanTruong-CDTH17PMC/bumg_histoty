@@ -80,7 +80,8 @@ class UserHoaDonController extends Controller
         $orderInfo = "Thanh toán Momo";
         $amount = $hoadon->tong_tien . "";
         $notifyurl = 'Http://'.$_SERVER['HTTP_HOST'].'/user-hoa-don';
-        $returnUrl = 'Http://'.$_SERVER['HTTP_HOST'].'/user-hoa-don';
+        $returnUrl = 'Http://'.$_SERVER['HTTP_HOST'].'/user-hoa-don/momo/'.$hoadon->id;
+        // dd($returnUrl);
         $extraData = "merchantName=MOMONFHQ20200821";
 
         $requestId = time() . "";
@@ -105,17 +106,22 @@ class UserHoaDonController extends Controller
         $jsonResult = json_decode($response, true);
         // check response OK
         if($jsonResult['errorCode'] == 0) {
-            $hoadon->tinh_trang_tt = 1;
-            $hoadon->save();
-            return redirect()->to($jsonResult['payUrl'])->send()->with('success','Thanh toán thành công!');;
-        }
-        else {
-            return redirect()->to($jsonResult['payUrl'])->send()->with('success','Thanh toán thất bại!');;
+            return redirect()->to($jsonResult['payUrl'])->send();
         }
 
     }   
 
-
+    public function processResultMomo(Request $request, $id) {
+        $hoadon = HoaDon::find($id);
+        if($request->errorCode == 0) {
+            $hoadon->tinh_trang_tt = 1;
+            $hoadon->save();
+            return redirect('user-hoa-don')->with('success', $request->localMessage);
+        }
+        else {
+            return redirect('user-hoa-don')->with('error', $request->localMessage);
+        }
+    }
 
     /**
      * Update the specified resource in storage.

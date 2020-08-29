@@ -29,9 +29,7 @@
                     <div class="form-group">
                         <select class="form-control " id="canho" name="don_vi" required focus>
                             <option value="" disabled selected>Chọn đơn vị</option>        
-                            <option >VNĐ/m3</option>  
-                            <option >VNĐ/kWh</option>  
-                            <option >VNĐ/Chiếc</option>  
+                           <option >VNĐ/Chiếc</option>  
                             <option>VNĐ/Hộ</option>  
                             <option>VNĐ/Người</option>  
                         </select>

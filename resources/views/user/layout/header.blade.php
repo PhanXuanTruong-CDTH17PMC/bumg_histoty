@@ -19,6 +19,9 @@
             <a class="button " href="/thong-bao">Thông báo</a>
         </div>
         <div>
+            <a class="button " href="/thong-bao">Thành viên</a>
+        </div>
+        <div>
             <a class="button" href="/user-hoa-don">Hóa đơn</a>
         </div>
         <div>

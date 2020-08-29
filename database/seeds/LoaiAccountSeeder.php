@@ -17,9 +17,6 @@ class LoaiAccountSeeder extends Seeder
             ],
             [	
                 'ten_loai_account' => 'Nhân viên '	
-            ],
-            [	
-                'ten_loai_account' => 'Quản lí '	
             ]
         ]);
     }

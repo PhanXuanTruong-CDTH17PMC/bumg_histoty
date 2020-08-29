@@ -60,7 +60,7 @@
                         @if($hoadon->tinh_trang_tt == 1)
                            <a class ="btn btn-primary" disabled>Đã Thanh Toán </a>
                         @else
-                             <a href="{{ route('userhoadon.pay', ['id' => $hoadon->id]) }}"  class ="btn btn-danger">Chưa Thanh Toán</a>
+                             <a href="{{ route('user-hoa-don.pay', ['id' => $hoadon->id]) }}"  class ="btn btn-danger">Chưa Thanh Toán</a>
                         @endif
                  </div>
              </div> <!-- end card body-->

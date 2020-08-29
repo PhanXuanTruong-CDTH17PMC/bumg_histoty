@@ -88,8 +88,7 @@
                                 <th> Căn Hộ</th>
                                 <th>Tổng tiền</th>   
                                 <th>Hạn Thanh tán</th>    
-                                <th> Tinh trạng</th>    
-                                <th>     </th>                       
+                                <th> Tinh trạng</th>                
                         </tr>  
                         @foreach($hoadon as $hoa_don)
                             <tr>
@@ -102,24 +101,6 @@
                                 @else
                                     <th> Chưa thanh toán</th>
                                 @endif
-                                <th style="width: 200px">
-                                    <div>
-                                        {!!Form::open(['action'=> ['HoaDonController@update',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
-                                        {{Form::hidden('_method','PUT')}}
-                                        {{Form::submit('Update',['class'=>'btn btn-info'])}}
-                                        {!!Form::close()!!}
-                                    </div>
-                                        <!-- <p>
-                                            {!!Form::open(['action'=> ['HoaDonController@destroy',$hoa_don->id],'method' =>'PUT','class'=>'pull-right'])!!}
-                                            {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Đã thanh toán',['class'=>'btn btn-info','style' => 'margin-bottom:10px' ])}}
-                                            {{Form::hidden('_method','PUT')}}
-                                            {{Form::submit('Chưa thanh toán',['class'=>'btn btn-danger','style' => 'margin-bottom:10px' ,'disabled'])}}
-                                            {!!Form::close()!!}
-                                            </p> -->
-                                </th>
-                           
-                                </th>
                             </tr>
                         @endforeach
                         @else

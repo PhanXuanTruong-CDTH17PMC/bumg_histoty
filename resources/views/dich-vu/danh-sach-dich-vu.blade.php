@@ -69,7 +69,7 @@
                                         <th>{{number_format($dich_vu-> phi_dv, 0, ',', '.')}}</th>
                                         <th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/dich-vu/{{$dich_vu-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
+                                                <a type="button" href="/dich-vu/{{$dich_vu-> id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>
                                                 <a type="button" href="{{ route('dich-vu.xoa', ['id' => $dich_vu->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </th>

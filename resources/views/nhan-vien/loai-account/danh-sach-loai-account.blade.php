@@ -65,8 +65,13 @@
                                         <th>{{$loai_account-> ten_loai_account}}</th>
 										<th style="width: 200px">
                                             <div>
-                                                <button type="button" class="btn "><a href="/loai-account/{{$loai_account->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                <a href="{{ route('loai-account.xoa', ['id' => $loai_account->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                                @if((Auth::guard('nhanvien')->user()->loai_account_id)==1)
+                                                    <a type="button" href="/loai-account/{{$loai_account->id}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('loai-account.xoa', ['id' => $loai_account->id]) }}"  class="btn btn-danger delete-confirm"><i class="fa fa-trash"></i></a>
+                                                @else                                                
+                                                    <a type="button" href="/loai-account/{{$loai_account->id}}/edit" class="btn btn-info disabled" ><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('loai-account.xoa', ['id' => $loai_account->id]) }}"  class="btn btn-danger delete-confirm disabled"><i class="fa fa-trash"></i></a>
+                                                @endif
                                             </div>						
 										</th>
                                     </tr>                              

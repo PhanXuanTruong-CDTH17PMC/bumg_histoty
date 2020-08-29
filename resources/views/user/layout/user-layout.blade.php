@@ -38,6 +38,12 @@
                             <p>Thông Bào</p>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                         <a class="nav-link" href="/user-cu-dan">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Thành viên</p>
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link" href="/user-hoa-don">
                             <i class="nc-icon nc-cart-simple"></i>

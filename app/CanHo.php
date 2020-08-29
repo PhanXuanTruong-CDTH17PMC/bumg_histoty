@@ -17,4 +17,8 @@ class CanHo extends Model implements AuthenticatableContract
         'name','mat_khau',
        ];
     use Authenticatable;
+    public function cudan()
+    {
+        return $this->belongsTo('App\CuDan');
+    }
 }

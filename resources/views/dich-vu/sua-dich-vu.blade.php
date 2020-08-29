@@ -45,15 +45,11 @@
                             <option>VNĐ/Người</option> 
                             @elseif($dichvu->don_vi=="VNĐ/Hộ") 
                             <option selected>VNĐ/Hộ</option>     
-                            <option>VNĐ/Chiếc</option>       
-                            <option>VNĐ/m3</option> 
-                            <option >VNĐ/kWh</option>  
+                            <option>VNĐ/Chiếc</option> 
                             <option>VNĐ/Người</option> 
                             @elseif($dichvu->don_vi=="VNĐ/Người")
                             <option selected>VNĐ/Người</option>      
-                            <option>VNĐ/Chiếc</option>       
-                            <option>VNĐ/m3</option> 
-                            <option >VNĐ/kWh</option>  
+                            <option>VNĐ/Chiếc</option>   
                             <option>VNĐ/Hộ</option>  
                             @endif 
                             

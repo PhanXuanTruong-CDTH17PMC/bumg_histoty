@@ -56,11 +56,11 @@
                             <tr style="background-color: #6c757d;; color:white">
                                 <th>ID</th>
                                 <th>Họ tên</th>
+                                <th>Tên đăng nhập</th>
                                 <th>CMND</th>
                                 <th>SĐT</th>
                                 <th>Email</th>
                                 <th>Ngày sinh</th>
-                                <th>Tên đăng nhập</th>
                                 <!-- <th>Mật khẩu</th> -->
                                 <th>Bộ phận</th>
                                 <th>Loại tài khoản</th>
@@ -70,20 +70,25 @@
                                     <tr>
                                         <th>{{$nhan_vien-> id_nhan_vien}}</th>
                                         <th>{{$nhan_vien-> ho_ten_nv}}</th>
+                                        <th>{{$nhan_vien-> username}}</th>
                                         <th>{{$nhan_vien-> CMND}}</th>
                                         <th>{{$nhan_vien-> SDT}}</th>
                                         <th>{{$nhan_vien-> email}}</th>
                                         <th>{{$nhan_vien-> ngay_sinh}}</th>
-                                        <th>{{$nhan_vien-> username}}</th>
                                         <th>{{$nhan_vien-> tenbophan}}</th>
                                         <th>{{$nhan_vien-> loai_account}}</th>
                                         <th>
                                             <div>
-                                                <button type="button" class="btn "><a href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a></button>
-                                                @if ($auth == $nhan_vien->id_nhan_vien) 
-                                                    <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm disabled"><i class="fa fa-trash"></i></a>
-                                                @else 
-                                                    <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm "><i class="fa fa-trash"></i></a>
+                                                @if((Auth::guard('nhanvien')->user()->loai_account_id)==1)
+                                                    <a  type="button" href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info" ><i class="fa fa-edit"></i></a>
+                                                    @if ($auth == $nhan_vien->id_nhan_vien) 
+                                                        <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm disabled"><i class="fa fa-trash"></i></a>
+                                                    @else 
+                                                        <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm "><i class="fa fa-trash"></i></a>
+                                                    @endif
+                                                @else                                                
+                                                       <a type="button" href="/danh-sach-nhan-vien/{{$nhan_vien->id_nhan_vien}}/edit" class="btn btn-info disabled" ><i class="fa fa-edit"></i></a>
+                                                        <a type="button" href="{{ route('nhan-vien.xoa', ['id' => $nhan_vien->id_nhan_vien]) }}"  class="btn btn-danger delete-confirm disabled"><i class="fa fa-trash"></i></a>
                                                 @endif
                                             </div>			
                                         </th>

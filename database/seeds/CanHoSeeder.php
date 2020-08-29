@@ -27,7 +27,7 @@ class CanHoSeeder extends Seeder
                 'name'=>'CH102',
                 'password'=>hash::make('273657749'),
                 'loai_can_ho_id'=>2,
-                'chu_ho_id'=>2
+                'chu_ho_id'=>4
             ],
             [
                 'Tang'=>1,
@@ -35,7 +35,7 @@ class CanHoSeeder extends Seeder
                 'name'=>'CH103',
                 'password'=>hash::make('123456789'),
                 'loai_can_ho_id'=>3,
-                'chu_ho_id'=>3
+                'chu_ho_id'=>5
             ],
             [
                 'Tang'=>1,
@@ -43,22 +43,6 @@ class CanHoSeeder extends Seeder
                 'name'=>'CH104',
                 'password'=>hash::make('123456789'),
                 'loai_can_ho_id'=>4,
-                'chu_ho_id'=>4
-            ],
-            [
-                'Tang'=>2,
-                'dien_tich'=>200,   
-                'name'=>'CH201',
-                'password'=>hash::make('123456789'),
-                'loai_can_ho_id'=>1,
-                'chu_ho_id'=>5
-            ],
-            [
-                'Tang'=>2,
-                'dien_tich'=>56,   
-                'name'=>'CH203',
-                'password'=>hash::make('123456789'),
-                'loai_can_ho_id'=>3,
                 'chu_ho_id'=>6
             ],
             [
@@ -69,8 +53,22 @@ class CanHoSeeder extends Seeder
                 'loai_can_ho_id'=>4,
                 'chu_ho_id'=>7
             ],
+            [
+                'Tang'=>2,
+                'dien_tich'=>200,   
+                'name'=>'CH206',
+                'password'=>hash::make('123456789'),
+                'loai_can_ho_id'=>4,
+                'chu_ho_id'=>8
+            ],
+            [
+                'Tang'=>3,
+                'dien_tich'=>220,   
+                'name'=>'CH301',
+                'password'=>hash::make('123456789'),
+                'loai_can_ho_id'=>4,
+                'chu_ho_id'=>9
+            ]
         ]);
-
-
     }
 }
