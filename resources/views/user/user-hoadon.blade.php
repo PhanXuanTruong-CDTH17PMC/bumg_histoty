@@ -41,8 +41,8 @@
 						    <th style="color:white"> Tinh trạng</th>   
                        </tr>
                         @foreach($hoadon as $hoa_don)
-                            <tr><a href="/user-hoa-don/{{$hoa_don->id}}">Xem chi tiết</a>
-                                <th style="color:black">{{$hoa_don->id}}</th>
+                            <tr>
+                                <th style="color:black"><a href="/user-hoa-don/{{$hoa_don->id}}">{{$hoa_don->id}}t</a></th>
                                 <th style="color:black">{{number_format($hoa_don->tong_tien, 0, ',', '.')}}</th>
                                 <th style="color:black">{{date('d-m-yy', strtotime($hoa_don->created_at))}}</th>
                                 <th style="color:black">
